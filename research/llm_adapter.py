@@ -54,8 +54,20 @@ def rule_payload(cast: dict[str, Any], features: dict[str, Any]) -> dict[str, An
     }
 
 
-def neutral_payload(payload: dict[str, Any]) -> dict[str, Any]:
-    return {"kind": "neutral_placebo", "body": _neutralize(payload)}
+def same_keys(payload: dict[str, Any], kind: str) -> dict[str, Any]:
+    """Keep B's keys. Change only values. Do not wrap them under another body key."""
+
+    neutralized = _neutralize(payload)
+    if not isinstance(neutralized, dict) or set(neutralized) != set(payload):
+        raise PromptError("安慰剂或基线块的键与规则块不一致。")
+    neutralized["kind"] = kind
+    return neutralized
+
+
+TOKEN_DISCLOSURE = (
+    "等字节不是等 token。四臂未运行，没有模型 tokenizer 的实际计数。"
+    "max_tokens 只是完成长度上限，不能写成 prompt token 已经相等。"
+)
 
 
 def _neutralize(value: Any) -> Any:
@@ -145,10 +157,10 @@ def build_arm_messages(events: list[dict[str, Any]]) -> list[dict[str, Any]]:
         real = rule_payload(event["cast"], event["features"])
         donor = rule_payload(events[donor_index[index]]["cast"], events[donor_index[index]]["features"])
         payloads = {
-            "A": {"kind": "noninformative_pad", "note": "length equalizer, not a hexagram"},
+            "A": same_keys(real, "chat_llm_baseline"),
             "B": real,
             "C": donor,
-            "D": neutral_payload(real),
+            "D": same_keys(real, "neutral_placebo"),
         }
         blocks = equalize_payloads(payloads)
         question = event["question"]
@@ -170,7 +182,23 @@ def build_arm_messages(events: list[dict[str, Any]]) -> list[dict[str, Any]]:
         lengths = {arm: len(msgs[1]["content"].encode("utf-8")) for arm, msgs in arm_messages.items()}
         if len(set(lengths.values())) != 1:
             raise PromptError(f"四臂题面字节数不一致：{lengths}")
-        messages.append({"event_id": event["event_id"], "arms": arm_messages, "utf8_bytes": lengths})
+        messages.append(
+            {
+                "event_id": event["event_id"],
+                "arms": arm_messages,
+                "utf8_bytes": lengths,
+                "arm_a_name": "chat_llm_baseline",
+                "arm_a_is_original_mirofish": False,
+                "token_budget": {
+                    "max_completion_tokens": int(protocol["llm_four_arm"]["max_tokens"]),
+                    "measured_prompt_tokens": None,
+                    "measured_completion_tokens": None,
+                    "byte_lengths_equal": True,
+                    "tokens_equal": None,
+                    "disclosure_zh": TOKEN_DISCLOSURE,
+                },
+            }
+        )
     return messages
 
 

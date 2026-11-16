@@ -8,7 +8,7 @@ import pytest
 
 from research.cli import build_parser, main
 from research.data_openmeteo import SnapshotError, parse_snapshot, request_url
-from research.experiment import future_ledger, run_experiment
+from research.experiment import run_experiment
 from research.protocol import load_protocol
 from research.server import CastHandler
 from http.server import ThreadingHTTPServer
@@ -115,11 +115,11 @@ def test_synthetic_window_does_not_leak_labels_or_score_the_future():
     assert summary["holdout"]["n_events"] if False else summary["contrasts"]["rule_minus_base_rate"]["n_events"] == summary["holdout"]["n_resolved"]
     assert "不能用来声称预测提升" in first["explanation"]
     assert "不是“玄学已被科学验证”的证据" in first["explanation"]
-    assert "主终点（规则增强臂 B 相对原版臂 A 的配对 Brier 差）本次未估计" in first["explanation"]
-    future_ids = {row["event_id"] for row in first["future_ledger"]}
-    assert future_ids.isdisjoint({row["event_id"] for row in first["events"]})
-    assert all(row["outcome"] is None and row["status"] == "pending_settlement" for row in first["future_ledger"])
-    assert future_ledger()[0]["issued_prospectively"] is True
+    assert "主终点（聊天基线臂 A 与规则文本臂 B 的配对 Brier 差）本次未估计" in first["explanation"]
+    assert "研究者选择泄漏未排除" in first["explanation"]
+    assert "也不能写成 p<0.0001" in first["explanation"]
+    assert "小于 0.0001" not in first["explanation"]
+    assert "future_ledger" not in first
 
 
 def test_module_entrypoint_prints_the_protocol():

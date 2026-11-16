@@ -1,9 +1,10 @@
 # Copyright (C) 2026 ZhouYiFish contributors
 # SPDX-License-Identifier: AGPL-3.0-only
-"""Brier score, cluster bootstrap, and Holm adjustment.
+"""Brier score, recentered cluster bootstrap, and a narrow Holm helper.
 
 The sample size is the number of events. Seeds and agents are aggregated
-before anything in this module is called.
+before anything in this module is called. Week-cluster intervals from one
+year are exploratory descriptions: weeks are not independent.
 """
 
 from __future__ import annotations
@@ -44,10 +45,25 @@ def nearest_rank(sorted_values: list[float], probability: float) -> float:
     return sorted_values[min(rank, count) - 1]
 
 
-def holm(p_values: dict[str, float]) -> dict[str, float]:
-    """Holm step-down adjusted p-values, ties broken by name."""
+def wilson_interval(count: int, trials: int, z: float = 1.959963984540054) -> tuple[float, float]:
+    """95% Wilson interval for a Monte Carlo proportion. Not a Brier interval."""
 
-    ordered = sorted(p_values.items(), key=lambda item: (item[1], item[0]))
+    if trials <= 0 or count < 0 or count > trials:
+        raise ValueError("蒙特卡洛计数无效。")
+    proportion = count / trials
+    denom = 1.0 + z * z / trials
+    center = (proportion + z * z / (2.0 * trials)) / denom
+    half = z * math.sqrt(proportion * (1.0 - proportion) / trials + z * z / (4.0 * trials * trials)) / denom
+    return max(0.0, center - half), min(1.0, center + half)
+
+
+def holm(proportions: dict[str, float]) -> dict[str, float]:
+    """Holm step-down on a family of zero-difference Monte Carlo proportions.
+
+    This does not adjust percentile intervals and does not test a margin.
+    """
+
+    ordered = sorted(proportions.items(), key=lambda item: (item[1], item[0]))
     family = len(ordered)
     adjusted: dict[str, float] = {}
     running = 0.0
@@ -111,14 +127,26 @@ def bootstrap_contrast(
     ordered = sorted(samples)
     low = nearest_rank(ordered, 0.025)
     high = nearest_rank(ordered, 0.975)
-    hits = sum(1 for sample in samples if abs(sample - observed) >= abs(observed))
+    extreme_count = sum(1 for sample in samples if abs(sample - observed) >= abs(observed))
+    mc_n = len(samples)
+    wilson_low, wilson_high = wilson_interval(extreme_count, mc_n)
     return {
         "estimate": observed,
         "ci95_low": low,
         "ci95_high": high,
         "ci_width": high - low,
         "covers_zero": low <= 0.0 <= high,
-        "p_unadjusted": hits / len(samples),
+        "interval_role": "exploratory_percentile_interval",
+        "bootstrap_null": "recentered_cluster_bootstrap",
+        "null_statement": (
+            "H0 is a zero event-weighted mean paired Brier difference. "
+            "A replicate is extreme when |bootstrap mean - observed| >= |observed|. "
+            "extreme_count/mc_n is a Monte Carlo proportion, not an exact p-value."
+        ),
+        "extreme_count": extreme_count,
+        "mc_n": mc_n,
+        "mc_proportion": extreme_count / mc_n,
+        "mc_proportion_wilson95": [wilson_low, wilson_high],
         "n_events": len(paired_differences),
         "n_clusters": len(grouped),
         "bootstrap_replicates": replicates,
@@ -129,15 +157,15 @@ def interpret(contrast: dict[str, float | bool | str], margin: float) -> str:
     low = float(contrast["ci95_low"])
     high = float(contrast["ci95_high"])
     if low <= 0.0 <= high:
-        return "ci_includes_zero_not_equivalence"
+        return "interval_includes_zero"
     if high <= -margin:
-        return "lower_brier_entire_ci_beyond_margin"
+        return "interval_entirely_below_minus_margin"
     if high < 0.0:
-        return "lower_brier_detectable_but_not_entirely_beyond_margin"
+        return "interval_below_zero"
     if low >= margin:
-        return "higher_brier_entire_ci_beyond_margin"
+        return "interval_entirely_above_margin"
     if low > 0.0:
-        return "higher_brier_detectable_but_not_entirely_beyond_margin"
+        return "interval_above_zero"
     return "unclassified"
 
 

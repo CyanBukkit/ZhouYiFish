@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import platform
 import subprocess
@@ -145,10 +146,18 @@ def command_verify(_args: argparse.Namespace) -> int:
     expected = {
         "predictions.jsonl": dumps_jsonl(result["events"]),
         "score_summary.json": dumps_json(result["summary"]),
-        "future_ledger.jsonl": dumps_jsonl(result["future_ledger"]),
         "实验说明.md": result["explanation"],
     }
+    from research.prospective import old_queue_disposition
+
+    ledger_bytes = (OUTPUT_DIR / "future_ledger.jsonl").read_bytes()
+    disposition = old_queue_disposition()
     mismatches = []
+    if disposition["source_sha256"] != hashlib.sha256(ledger_bytes).hexdigest():
+        mismatches.append("future_ledger.jsonl")
+    stored = json.loads((OUTPUT_DIR / "future_ledger_disposition.json").read_text(encoding="utf-8"))
+    if stored != disposition:
+        mismatches.append("future_ledger_disposition.json")
     for name, text in expected.items():
         path = OUTPUT_DIR / name
         actual = path.read_text(encoding="utf-8")

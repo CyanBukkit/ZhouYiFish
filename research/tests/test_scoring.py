@@ -24,22 +24,38 @@ def test_holm_stepdown():
     assert adjusted == {"a": 0.03, "c": 0.06, "b": 0.06}
 
 
-def test_interpret_does_not_call_zero_equivalence():
-    assert interpret({"ci95_low": -0.01, "ci95_high": 0.01}, 0.02) == "ci_includes_zero_not_equivalence"
-    assert interpret({"ci95_low": -0.05, "ci95_high": -0.03}, 0.02) == "lower_brier_entire_ci_beyond_margin"
-    assert interpret({"ci95_low": -0.03, "ci95_high": -0.005}, 0.02) == "lower_brier_detectable_but_not_entirely_beyond_margin"
-    assert interpret({"ci95_low": 0.03, "ci95_high": 0.04}, 0.02) == "higher_brier_entire_ci_beyond_margin"
+def test_interpret_describes_interval_location_only():
+    assert interpret({"ci95_low": -0.01, "ci95_high": 0.01}, 0.02) == "interval_includes_zero"
+    assert interpret({"ci95_low": -0.05, "ci95_high": -0.03}, 0.02) == "interval_entirely_below_minus_margin"
+    assert interpret({"ci95_low": -0.03, "ci95_high": -0.005}, 0.02) == "interval_below_zero"
+    assert interpret({"ci95_low": 0.03, "ci95_high": 0.04}, 0.02) == "interval_entirely_above_margin"
 
 
-def test_bootstrap_is_deterministic_and_zero_difference_is_not_a_discovery():
-    differences = [0.0, 0.0, 0.0, 0.0]
-    clusters = ["2023-W01", "2023-W01", "2023-W02", "2023-W02"]
-    first = bootstrap_contrast(differences, clusters, replicates=30)
-    second = bootstrap_contrast(differences, clusters, replicates=30)
-    assert first == second
-    assert first["p_unadjusted"] == 1
-    assert first["n_events"] == 4
-    assert first["n_clusters"] == 2
+def test_bootstrap_reports_extreme_counts_and_does_not_rewrite_zero_as_a_bound():
+    from research.explain import _mc_sentence
+
+    zeros = bootstrap_contrast([0.0, 0.0, 0.0, 0.0], ["2023-W01", "2023-W01", "2023-W02", "2023-W02"], replicates=30)
+    assert zeros["extreme_count"] == 30
+    assert zeros["mc_n"] == 30
+    shifted = bootstrap_contrast([1.0, 1.0, 1.0, 1.0], ["2023-W01", "2023-W01", "2023-W02", "2023-W02"], replicates=20)
+    assert shifted["extreme_count"] == 0
+    assert shifted["mc_n"] == 20
+    text = _mc_sentence(shifted)
+    assert "0/20" in text
+    assert "也不能写成 p<0.0001" in text
+    assert "小于 0.0001" not in text
+    assert "精确的零" not in text
+    assert shifted["mc_proportion_wilson95"][1] > 0
+    holm_note = {
+        **shifted,
+        "holm_mc_proportion": 0.0,
+        "ci95_low": shifted["ci95_low"],
+        "ci95_high": shifted["ci95_high"],
+    }
+    rendered = _mc_sentence(holm_note)
+    assert "不调整百分位区间" in rendered
+    assert "也不检验差是否超过 0.02" in rendered
+    assert holm({"only": shifted["mc_proportion"]})["only"] == shifted["mc_proportion"]
 
 
 def test_symbol_control_preserves_each_month_and_ignores_nothing_but_values():

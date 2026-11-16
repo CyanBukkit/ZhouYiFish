@@ -1,6 +1,6 @@
 # Copyright (C) 2026 ZhouYiFish contributors
 # SPDX-License-Identifier: AGPL-3.0-only
-"""P-MAP-1. A frozen structural map, not a probability from the classic."""
+"""P-MAP-1, an engineering hypothesis. It is not a probability from the classic."""
 
 from __future__ import annotations
 

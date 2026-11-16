@@ -194,7 +194,7 @@ MiroFish's simulation engine is powered by **[OASIS (Open Agent Social Interacti
 
 ## Zhouyi research module
 
-`research/` is an additional exploratory experiment. It does not change the MiroFish application above and does not run that swarm simulation. It tests whether one frozen Plum-Blossom time rule changes Brier score on a settleable binary weather question. There is no prediction guarantee. It is not for medical, gambling, or investment decisions, and it does not claim that divination has been scientifically validated. Read [research/README.md](research/README.md).
+`research/` is additional exploratory code. It does not change the MiroFish application above. The four chat arms were not run, OASIS is not connected, and this is not a completed MiroFish enhancement experiment. It does not show that the rule predicts better. Read [research/README.md](research/README.md).
 
 ## 📈 Project Statistics
 

@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 import json
+import math
 import urllib.parse
 import urllib.request
 from datetime import date, datetime, timedelta, timezone
@@ -100,10 +101,7 @@ def parse_snapshot(snapshot: dict[str, Any]) -> list[dict[str, Any]]:
         raise SnapshotError("快照日期与协议窗口不是逐日连续对齐。")
     rows = []
     for civil, amount in zip(expected, amounts):
-        if amount is None:
-            millimeters = None
-        else:
-            millimeters = float(amount)
+        millimeters = clean_precipitation(amount)
         rows.append(
             {
                 "date": civil.isoformat(),
@@ -114,6 +112,19 @@ def parse_snapshot(snapshot: dict[str, Any]) -> list[dict[str, Any]]:
             }
         )
     return rows
+
+
+def clean_precipitation(amount: Any) -> float | None:
+    """Keep null as null. Never replace a missing value with zero."""
+
+    if amount is None:
+        return None
+    if isinstance(amount, bool) or not isinstance(amount, (int, float)):
+        raise SnapshotError(f"降水量不是数字或空值：{amount!r}")
+    value = float(amount)
+    if not math.isfinite(value) or value < 0:
+        raise SnapshotError(f"降水量必须是有限非负数，收到 {amount!r}。空值不能填 0。")
+    return value
 
 
 def split_name(civil: str) -> str:

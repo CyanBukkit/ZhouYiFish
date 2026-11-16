@@ -4,6 +4,7 @@
 
 from __future__ import annotations
 
+import math
 from datetime import date, datetime, timedelta, timezone
 from typing import Any
 from zoneinfo import ZoneInfo
@@ -88,37 +89,12 @@ def run_experiment(
         rates,
         bootstrap_replicates,
     )
-    future = future_ledger()
     explanation = render_explanation(summary)
     return {
         "events": events,
         "summary": summary,
-        "future_ledger": future,
         "explanation": explanation,
     }
-
-
-def future_ledger() -> list[dict[str, Any]]:
-    protocol, digest = load_protocol()
-    window = protocol["task"]["future_ledger"]
-    rows = []
-    for civil in _dates(window["start"], window["end"]):
-        row = _cast_row(
-            civil,
-            precipitation_mm=None,
-            grid=None,
-            protocol=protocol,
-            digest=digest,
-            record_class="prospective_lock",
-            issued_prospectively=True,
-        )
-        row["split"] = "future_ledger"
-        row["status"] = "pending_settlement"
-        row["grid_settled"] = False
-        if row["outcome"] is not None:
-            raise RuntimeError("前瞻台账不能写入结局。")
-        rows.append(row)
-    return rows
 
 
 def dumps_json(obj: Any) -> str:
@@ -144,7 +120,6 @@ def _event_from_daily(row: dict[str, Any], protocol: dict[str, Any], digest: str
         protocol=protocol,
         digest=digest,
         record_class="retrospective_engineering",
-        issued_prospectively=False,
     )
     event["split"] = split_name(row["date"])
     event["grid_settled"] = True
@@ -163,7 +138,6 @@ def _cast_row(
     protocol: dict[str, Any],
     digest: str,
     record_class: str,
-    issued_prospectively: bool,
 ) -> dict[str, Any]:
     moment = datetime(civil.year, civil.month, civil.day, 0, 0, 0, tzinfo=SHANGHAI)
     cast = cast_from_datetime(moment)
@@ -171,6 +145,8 @@ def _cast_row(
     p_rule = probability_from_lines(list(cast["lines_bottom_up"]))
     task = protocol["task"]
     question = task["question_template"].format(date=civil.isoformat())
+    if record_class != "retrospective_engineering":
+        raise RuntimeError("历史事件构建器不写前瞻发行标记。")
     outcome = _outcome(precipitation_mm, float(task["threshold_mm"]))
     subject = "requested:{:.4f},{:.4f}".format(
         float(task["requested_latitude"]), float(task["requested_longitude"])
@@ -204,7 +180,7 @@ def _cast_row(
     return {
         "event_id": input_body["event_id"],
         "record_class": record_class,
-        "issued_prospectively": issued_prospectively,
+        "issued_prospectively": False,
         "status": "settled" if outcome is not None else "unresolved",
         "subject_id": subject,
         "question": question,
@@ -264,24 +240,22 @@ def _summarize(
             series["calendar"], series["base_rate"], outcomes, scoring, bootstrap_replicates
         ),
     }
-    family = holm(
-        {
-            name: float(contrasts[name]["p_unadjusted"])
-            for name in protocol["statistics"]["holm_family"]
-        }
-    )
+    family_names = list(protocol["statistics"]["holm_family"])
+    family = holm({name: float(contrasts[name]["mc_proportion"]) for name in family_names})
     for name, block in contrasts.items():
-        block["flag"] = interpret(block, margin)
+        block["interval_location"] = interpret(block, margin)
+        block["margin_is_a_reading_aid_not_a_holm_test"] = True
         block["wider_than_margin"] = float(block["ci_width"]) > margin
         if name in family:
-            block["p_holm"] = family[name]
-        if name == "calendar_minus_base_rate":
-            block["role"] = "descriptive_not_in_holm_family"
-            block.pop("p_unadjusted", None)
-        elif name == "rule_minus_base_rate":
-            block["role"] = "offline_reference_not_study_primary"
+            block["holm_mc_proportion"] = family[name]
+            block["holm_applies_to"] = "zero_difference_mc_proportion_only"
+            block["holm_does_not_adjust_intervals"] = True
+            block["holm_does_not_test_margin"] = True
+            block["role"] = "exploratory_zero_difference_family"
+        elif name == "calendar_minus_base_rate":
+            block["role"] = "exploratory_description_not_in_holm_family"
         else:
-            block["role"] = "offline_secondary_holm_family"
+            block["role"] = "exploratory_reference_not_study_primary"
     cast_counts: dict[tuple, int] = {}
     for row in scoring:
         # The full cast hash includes the civil timestamp, so it never collides.
@@ -298,7 +272,6 @@ def _summarize(
     collisions = sum(count for count in cast_counts.values() if count > 1)
     unresolved = sum(1 for row in holdout if row["outcome"] not in (0, 1))
     n_dates = len(holdout)
-    future = protocol["task"]["future_ledger"]
     quote = protocol["quotes_from_simplified_transcription"]["worked_example_quote"]
     return {
         "sample_class": sample_class,
@@ -310,10 +283,9 @@ def _summarize(
             "contrast": "mean paired Brier of arm B minus arm A",
             "status": "not_run",
             "reason_zh": (
-                "没有可用的、明确提供给本次任务的模型凭据。"
+                "四臂没有运行。阻塞是没有明确交给本次任务的模型凭据。"
                 "未购买、未搜索凭据，也没有用随机数或 mock 回答填充四臂。"
-                "臂 A 即使将来运行，也只是与 MiroFish 相同的聊天补全接口上的固定预算基线，"
-                "不是 OASIS 群体仿真。"
+                "臂 A 只是聊天补全基线，不是原版 MiroFish。OASIS 群体仿真没有接通。"
             ),
         },
         "task": {
@@ -324,6 +296,13 @@ def _summarize(
             "holdout_end": protocol["task"]["holdout"]["end"],
             "threshold_mm": protocol["task"]["threshold_mm"],
             "settlement": protocol["task"]["settlement"]["attribution"],
+            "settlement_kind": "open_meteo_archive_grid_not_a_station_observation",
+            "model_parameter_pinned": False,
+            "requested_latitude": protocol["task"]["requested_latitude"],
+            "requested_longitude": protocol["task"]["requested_longitude"],
+            "returned_grid_latitude": holdout[0]["grid_latitude"] if holdout else None,
+            "returned_grid_longitude": holdout[0]["grid_longitude"] if holdout else None,
+            "missing_rows_imputed_as_zero": 0,
         },
         "pilot": _split_counts(pilot),
         "holdout": {
@@ -365,40 +344,47 @@ def _summarize(
                 "香港天文台边界日期所核验的 zhdate 0.1 农历换算",
                 "Open-Meteo 日降水快照的解析与评分" if sample_class.startswith("historical") else "合成降水上的链路演练",
                 "先导期常数基率与农历月基线",
-                "同农历月符号对照",
-                "按 ISO 周的配对聚类 bootstrap",
-                "前瞻台账的预测锁定",
+                "同农历月的单次固定置换",
+                "按 ISO 周的探索性百分位区间",
             ],
             "not_run": [
-                "模型四臂 A/B/C/D",
-                "MiroFish 的 OASIS 群体仿真、Zep 与报告代理",
+                "聊天四臂 A/B/C/D",
+                "OASIS 群体仿真、Zep 与报告代理",
                 "奇门遁甲",
                 "风水",
                 "揲蓍",
                 "体用五行与卦辞断语",
             ],
             "pending_settlement": [
-                f"{future['start']} 至 {future['end']} 的前瞻台账，结局为空，未打分"
+                "prospective_v2 的结算表仍为空。旧 future_ledger.jsonl 已标为 invalid/excluded，不在待结算队列。"
             ],
         },
+        "symbol_control": {
+            "draws": 1,
+            "kind": "single_fixed_hmac_permutation",
+            "interval_includes_permutation_randomness": False,
+        },
+        "evaluation_label_zh": "预设代码分割的回顾性评估，研究者选择泄漏未排除",
         "rule_note_zh": (
-            "规则来自维基文库《梅花易数》卷一公开转录，不是校勘定本，也不把邵雍写成已证实的作者。"
+            "规则计数来自维基文库《梅花易数》卷一公开转录，不是校勘定本，也不把邵雍写成已证实的作者。"
             f"观梅占算例核对为：{quote}"
             "八整为坤有该转录的句子。六整除记为上爻没有对应的原文句子，只是协议边界。"
-            "概率用的是测试前固定的 (阳爻数+1)/8，不是书里的概率。"
+            "P-MAP-1 是工程假设 (阳爻数+1)/8，不是古法给出的概率，也不是有传统依据的预测模型。"
         ),
         "limitations_zh": [
-            "主终点四臂模型对照没有运行，不能写成已经验证规则增强。",
-            "离线数字只说明这条映射在该历史窗口上的 Brier，不是对周易或梅花的终审。",
-            "年月日时起卦在固定时点上是日历函数；赢过常数基率仍可能只是季节或日期信息。",
+            "四臂没有运行，OASIS 没有接通，不能说规则增强了 MiroFish，也不能说预测更准。",
+            "这是预设代码分割的回顾性评估，研究者选择泄漏未排除。没有外部时间证据证明研究者从未看过 2023 年的降水，或没有试过别的映射。",
+            "P-MAP-1 只是人为的概率映射。",
+            "离线 Brier 只描述这一窗口上的这条映射，不是对周易或梅花的终审。",
+            "年月日时起卦在固定时点上是日历函数。",
             "预测时点固定在当地 0 点，时支恒为子，本任务识别不了时辰效应。",
-            "闰月与本月使用同一个月数，初一等日期会得到同一卦。这是协议，不是漏算。",
-            "只有一个地理主体。按 ISO 周聚类后，相邻周仍可能相关，区间可能偏窄。",
-            "历史天气已经公开。本次计算与协议写在同一次工作里，不是对外预注册之后的前瞻试验。",
-            "前瞻台账只锁预测。未发生的结局保持空白，不能补写。",
+            "闰月与本月使用同一个月数，所以有些日期会得到同一卦。",
+            "只有一个地理网格。按 ISO 周重抽样仍留下季节性和相邻周相关，百分位区间只是探索性描述。",
+            "同月对照只有一条固定置换，区间没有包含置换分布的随机性。",
+            "Open-Meteo 返回的是归档网格，不是气象站实测，而且请求没有固定模型。",
+            "空降水量保持为空，缺测条数不会被填成 0。",
+            "旧前瞻队列已排除。新的 prospective_v2 在公开提交时间写入并完成比较之前，不能称为已公开预注册。",
             "农历依赖 zhdate 0.1，边界日期对照过香港天文台换算表，不是独立的全历史校勘。",
-            "屏蔽检索不能消除语言模型对公开史实的记忆。这次没有做那种历史回放。",
-            "小样本或合成降水只证明链路。",
             "不用于医疗、博彩或投资决策。",
         ],
     }
@@ -441,7 +427,12 @@ def _split_counts(rows: list[dict[str, Any]]) -> dict[str, Any]:
 def _outcome(precipitation_mm: float | None, threshold: float) -> int | None:
     if precipitation_mm is None:
         return None
-    return 1 if float(precipitation_mm) >= threshold else 0
+    if isinstance(precipitation_mm, bool) or not isinstance(precipitation_mm, (int, float)):
+        raise ValueError("降水量必须是有限非负数或空值。空值不能填 0。")
+    value = float(precipitation_mm)
+    if not math.isfinite(value) or value < 0:
+        raise ValueError("降水量必须是有限非负数。空值不能填 0。")
+    return 1 if value >= threshold else 0
 
 
 def _assert_splits(events: list[dict[str, Any]], protocol: dict[str, Any]) -> None:

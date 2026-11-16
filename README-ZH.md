@@ -194,7 +194,7 @@ MiroFish 的仿真引擎由 **[OASIS](https://github.com/camel-ai/oasis)** 驱�
 
 ## 周易规则探索模块
 
-`research/` 是在本仓库中另加的探索性实验，不改动上面的 MiroFish 应用，也没有运行它的群体仿真。它检验一套事先写死的《梅花易数》年月日时规则，在一个可结算的二元天气问题上是否降低 Brier 分数。这不是预测保证，不能用于医疗、博彩或投资决策，也不表示玄学已被科学验证。说明、复现命令和结果位置见 [research/README.md](research/README.md)。
+`research/` 是另加的探索代码，不改动上面的 MiroFish 应用。**四臂没有运行，OASIS 没有接通，这不是一次已经完成的 MiroFish 增强实验。** 不能据此说预测更准。说明见 [research/README.md](research/README.md)。
 
 ## 📈 项目统计
 

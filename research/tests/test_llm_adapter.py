@@ -44,15 +44,24 @@ def _events():
     return events
 
 
-def test_arms_match_length_and_placebo_has_no_hexagram_name():
+def test_arms_share_keys_and_do_not_pretend_tokens_match():
     built = build_arm_messages(_events())
     for event in built:
         assert len(set(event["utf8_bytes"].values())) == 1
-        user = {arm: messages[1]["content"] for arm, messages in event["arms"].items()}
-        assert "泽火革" not in user["A"]
-        assert "泽火革" not in user["D"]
-        assert "NEUTRAL" in user["D"]
-        assert "泽火革" in user["B"] or "天风姤" in user["B"]
+        assert event["arm_a_is_original_mirofish"] is False
+        assert event["token_budget"]["tokens_equal"] is None
+        assert "等字节不是等 token" in event["token_budget"]["disclosure_zh"]
+        blocks = {}
+        for arm, messages in event["arms"].items():
+            text = messages[1]["content"]
+            blocks[arm] = json.loads(text.split("附加块:\n", 1)[1])
+        assert set(blocks["B"]) == set(blocks["D"]) == set(blocks["A"]) == set(blocks["C"])
+        assert "body" not in blocks["D"]
+        assert set(blocks["B"]["features"]) == set(blocks["D"]["features"])
+        assert "泽火革" not in json.dumps(blocks["A"], ensure_ascii=False)
+        assert "泽火革" not in json.dumps(blocks["D"], ensure_ascii=False)
+        assert blocks["A"]["kind"] == "chat_llm_baseline"
+        assert blocks["D"]["kind"] == "neutral_placebo"
 
 
 def test_runner_uses_one_row_per_event_and_equal_budget():
