@@ -282,9 +282,19 @@ def _summarize(
             block["role"] = "offline_reference_not_study_primary"
         else:
             block["role"] = "offline_secondary_holm_family"
-    cast_counts: dict[str, int] = {}
+    cast_counts: dict[tuple, int] = {}
     for row in scoring:
-        cast_counts[row["cast"]["cast_sha256"]] = cast_counts.get(row["cast"]["cast_sha256"], 0) + 1
+        # The full cast hash includes the civil timestamp, so it never collides.
+        # Count the structural cast: counts, lines, and moving line.
+        signature = (
+            row["cast"]["inputs"]["year_branch_number"],
+            row["cast"]["inputs"]["lunar_month_number"],
+            row["cast"]["inputs"]["lunar_day"],
+            row["cast"]["inputs"]["hour_branch_number"],
+            tuple(row["cast"]["lines_bottom_up"]),
+            row["cast"]["moving_line"],
+        )
+        cast_counts[signature] = cast_counts.get(signature, 0) + 1
     collisions = sum(count for count in cast_counts.values() if count > 1)
     unresolved = sum(1 for row in holdout if row["outcome"] not in (0, 1))
     n_dates = len(holdout)

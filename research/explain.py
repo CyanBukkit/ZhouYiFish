@@ -36,17 +36,23 @@ def _num(value: object) -> str:
     return str(value)
 
 
-def _contrast_paragraph(title: str, block: dict[str, Any]) -> str:
+def _p(value: object, replicates: int | None) -> str:
+    if isinstance(value, float) and value == 0.0 and replicates:
+        return f"0（{replicates} 次重抽样里没有更极端的结果，应理解为小于 {1 / replicates:.4g}，不是精确的零）"
+    return _num(value)
+
+
+def _contrast_paragraph(title: str, block: dict[str, Any], replicates: int | None) -> str:
     flag = str(block.get("flag"))
     extra = ""
     if block.get("covers_zero") and block.get("wider_than_margin"):
         extra = "区间宽度大于预设的最小实际增益，这次样本分辨不了该幅度的差别，属于证据不足。"
     holm = ""
     if "p_holm" in block:
-        holm = f" Holm 校正后的 p 为 {_num(block['p_holm'])}。"
+        holm = f" Holm 校正后的 p 为 {_p(block['p_holm'], replicates)}。"
     p_text = ""
     if "p_unadjusted" in block:
-        p_text = f" 未校正 p 为 {_num(block['p_unadjusted'])}。"
+        p_text = f" 未校正 p 为 {_p(block['p_unadjusted'], replicates)}。"
     return (
         f"### {title}\n\n"
         f"配对 Brier 差（前者减后者，越低越好）点估计 {_num(block['estimate'])}，"
@@ -116,10 +122,26 @@ def render_explanation(summary: dict[str, Any]) -> str:
             "",
             "这些对照执行的是规则引擎和评分器。它们不代替未运行的模型四臂。",
             "",
-            _contrast_paragraph("规则映射减常数基率（离线参照，不是研究主终点）", summary["contrasts"]["rule_minus_base_rate"]),
-            _contrast_paragraph("规则映射减农历月基线（Holm 家族）", summary["contrasts"]["rule_minus_calendar"]),
-            _contrast_paragraph("规则映射减同月符号对照（Holm 家族）", summary["contrasts"]["rule_minus_symbol_control"]),
-            _contrast_paragraph("农历月基线减常数基率（只作描述，不进 Holm 家族）", summary["contrasts"]["calendar_minus_base_rate"]),
+            _contrast_paragraph(
+                "规则映射减常数基率（离线参照，不是研究主终点）",
+                summary["contrasts"]["rule_minus_base_rate"],
+                summary.get("bootstrap_replicates"),
+            ),
+            _contrast_paragraph(
+                "规则映射减农历月基线（Holm 家族）",
+                summary["contrasts"]["rule_minus_calendar"],
+                summary.get("bootstrap_replicates"),
+            ),
+            _contrast_paragraph(
+                "规则映射减同月符号对照（Holm 家族）",
+                summary["contrasts"]["rule_minus_symbol_control"],
+                summary.get("bootstrap_replicates"),
+            ),
+            _contrast_paragraph(
+                "农历月基线减常数基率（只作描述，不进 Holm 家族）",
+                summary["contrasts"]["calendar_minus_base_rate"],
+                summary.get("bootstrap_replicates"),
+            ),
             "## 花费",
             "",
             (

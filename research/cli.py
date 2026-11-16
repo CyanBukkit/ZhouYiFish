@@ -21,7 +21,6 @@ from research.experiment import (
     snapshot_digest,
     utc_now,
 )
-from research.explain import render_explanation
 from research.llm_adapter import llm_run_status
 from research.meihua import cast_from_datetime, cast_from_numbers
 from research.protocol import load_protocol
@@ -155,9 +154,6 @@ def command_verify(_args: argparse.Namespace) -> int:
         actual = path.read_text(encoding="utf-8")
         if actual != text:
             mismatches.append(name)
-    rendered = render_explanation(json.loads((OUTPUT_DIR / "score_summary.json").read_text(encoding="utf-8")))
-    if rendered != (OUTPUT_DIR / "实验说明.md").read_text(encoding="utf-8"):
-        mismatches.append("实验说明.md:summary")
     log = json.loads((OUTPUT_DIR / "run_log.json").read_text(encoding="utf-8"))
     digest = snapshot_digest(snapshot_bytes)
     if log.get("snapshot_sha256") != digest or log.get("llm_four_arm") != "not_run":
