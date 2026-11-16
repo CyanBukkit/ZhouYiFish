@@ -1,0 +1,176 @@
+{
+  "protocol_id": "zhouyi-fish-meihua-precip-v1",
+  "rule_version": "meihua-juan1-ymd-hour-v1",
+  "frozen_before_scoring": true,
+  "source": {
+    "work": "梅花易数",
+    "volume": "卷一",
+    "transcription_url": "https://zh.wikisource.org/zh-hans/梅花易數/卷一",
+    "retrieved_note": "使用维基文库简体转录页。它不是校勘定本。页面叙事里出现「康节先生」，不能据此写成邵雍亲著已被证实。本协议不写邵雍确证亲著。",
+    "included": [
+      "先天卦数：乾一、兑二、离三、震四、巽五、坎六、艮七、坤八",
+      "年月日为上卦，年月日加时为下卦，年月日时总数取动爻",
+      "年支子一至亥十二，农历月数、日数、时支子一至亥十二",
+      "八除取卦；八整为坤",
+      "六除取动爻；一爻动则阴阳互变"
+    ],
+    "excluded": [
+      "揲蓍",
+      "后天卦数（坎一坤二震三巽四中五乾六兑七艮八离九）",
+      "体用五行生克",
+      "卦辞、爻辞和叙事断语",
+      "把互卦或象辞改写成结局标签",
+      "物数、声音、字数起卦",
+      "奇门遁甲",
+      "风水"
+    ]
+  },
+  "quotes_from_simplified_transcription": {
+    "bagua_division_section": "卦以八除",
+    "bagua_exact_quote": "如得八数整，即坤卦，更不必除也。",
+    "line_division_section": "爻以六除",
+    "line_division_quote": "凡起动爻，以重卦总数除六，以馀数作动爻。如不满六，止用此数为动爻，不必再除。如过六数，则除之一六，不尽再除二六、三六，直至除尽，以馀数作动爻。若一爻动，则看此一爻，是阳爻则变阴爻，阴爻则变阳爻。取爻当以时加之。",
+    "ymd_hour_section": "年月日时起例",
+    "ymd_hour_quote": "年月日为上卦。年月日加时总数为下卦。又以年月日时总数取爻。如子年一数，丑年二数，直至亥年十二数。月如正月一数，直至十二月，亦作十二数。日数如初一一数，直至三十日，为三十数。",
+    "worked_example_section": "观梅占",
+    "worked_example_quote": "辰年五数，十二月十二数，十七日十七数，共三十四数，除四八三十二，馀二，属兑，为上卦，加申时九数，总得四十三数，五八除四十，馀得三数，为离，作下卦。又上下总四十三数，以六除，六七四十二，馀一为动爻，是为泽火革。初爻变咸。"
+  },
+  "arithmetic": {
+    "upper_trigram": "S = year_branch + lunar_month_number + lunar_day; upper = S mod 8; raw remainder 0 maps to 8",
+    "lower_trigram": "lower = (S + hour_branch) mod 8; raw remainder 0 maps to 8",
+    "moving_line": "(S + hour_branch) mod 6; raw remainder 0 maps to 6",
+    "line_order": "six lines bottom-up, yin 0 yang 1; lower trigram is lines 1-3; upper trigram is lines 4-6; moving line flips that one line",
+    "preheaven_number_is_not_line_bits": true
+  },
+  "mod8_exact": {
+    "policy": "remainder_0_maps_to_8",
+    "status": "follows the checked sentence 如得八数整，即坤卦"
+  },
+  "mod6_exact": {
+    "policy": "remainder_0_maps_to_6",
+    "status": "protocol_boundary_not_a_transcription_quotation",
+    "note": "「爻以六除」写明以六除、用余数作动爻，并写到除尽后以余数作动爻，但没有单独写明余数为零时就是上爻。余数零记为第6爻，是本协议为了让函数在整除时仍有定义而作的边界约定，不是原文引句。"
+  },
+  "calendar_policy": {
+    "timezone": "Asia/Shanghai",
+    "time_standard": "IANA tz database via Python zoneinfo; store the actual UTC offset of each timestamp",
+    "day_boundary": "local civil date changes at 00:00; 23:00 still belongs to that civil date",
+    "hour_branch": "23:00-00:59 子1, 01:00-02:59 丑2, then every two hours through 21:00-22:59 亥12",
+    "year_boundary": "lunar year and its earthly branch change at Spring Festival (春节), not at 立春 and not at Gregorian 1 January",
+    "leap_month": "a leap month uses the same month number as the month it repeats; the leap flag is recorded and is not added into S",
+    "library": {
+      "name": "zhdate",
+      "required_version": "0.1",
+      "license": "GPL-3.0-or-later",
+      "project": "https://github.com/CutePandaSh/zhdate",
+      "supported_range": "lunar years 1900-2100 as declared by zhdate 0.1",
+      "verification": "Boundary dates used in tests were checked against Hong Kong Observatory Gregorian-Lunar conversion tables, not against zhdate alone."
+    },
+    "deterministic_cast_seed": null,
+    "note": "The time method is a function of the civil timestamp and this calendar policy. It does not take a seed. Repeating it is the same cast, not a new sample."
+  },
+  "random_control": {
+    "algorithm": "HMAC-SHA256-Fisher-Yates-v1",
+    "seed_utf8": "zhouyi-fish-protocol-v1",
+    "encoding": "UTF-8 key and domain; counter is uint64 big-endian; each draw uses the first 8 bytes of HMAC-SHA256 as a big-endian integer; rejection sampling below 2^64",
+    "symbol_domain": "symbol-control-v1",
+    "bootstrap_domain": "cluster-bootstrap-v1",
+    "stratum": "lunar month number on the scoring set, leap and non-leap together",
+    "preserves": "within each lunar month, the multiset of rule probabilities"
+  },
+  "task": {
+    "id": "shanghai-daily-precip-ge-1mm",
+    "question_template": "在Asia/Shanghai公历日期{date}，请求坐标(31.2304N,121.4737E)所对应的结算网格上，当日降水量合计是否达到或超过1.0毫米？",
+    "positive_class": 1,
+    "threshold_mm": 1.0,
+    "comparison": "greater_or_equal",
+    "requested_latitude": 31.2304,
+    "requested_longitude": 121.4737,
+    "location_note": "Public coordinate near People's Square, Shanghai. Not a residential address. The settled series is the grid cell returned in the frozen Open-Meteo snapshot.",
+    "prediction_time_local": "00:00:00 on the outcome date",
+    "information_allowed": ["prediction timestamp", "fixed public coordinate", "question text", "this protocol"],
+    "information_forbidden": ["precipitation", "any weather observation or forecast", "the outcome", "texts written after the prediction time"],
+    "pilot": {"start": "2022-01-01", "end": "2022-12-31", "role": "fit base rate and lunar-month rates only"},
+    "holdout": {"start": "2023-01-01", "end": "2023-12-31", "role": "single scoring window"},
+    "future_ledger": {"start": "2026-11-16", "end": "2026-12-15", "role": "lock predictions; do not fetch or invent outcomes"},
+    "inclusion": "every civil date in the window, one event, one subject (the returned grid cell)",
+    "exclusion": "none based on outcome or on the cast",
+    "missing": "a null precipitation value is unresolved: keep the row, do not impute, do not score it",
+    "invalid_snapshot": "if a requested date is absent, or the timezone/unit/offset check fails, the snapshot is rejected rather than repaired",
+    "settlement": {
+      "source": "Open-Meteo Historical Weather API",
+      "endpoint": "https://archive-api.open-meteo.com/v1/archive",
+      "variable": "daily precipitation_sum",
+      "unit": "mm",
+      "timezone_parameter": "Asia/Shanghai",
+      "required_utc_offset_seconds": 28800,
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "Weather data by Open-Meteo.com (https://open-meteo.com/)",
+      "single_source": true,
+      "dispute_policy": "no second source and no manual override; later revisions of the API are not applied after the snapshot is frozen"
+    },
+    "stopping": "one analysis of this holdout; do not extend the years, change the threshold, or refit the mapping after seeing the score",
+    "minimum_practical_brier_gain": 0.02,
+    "equivalence_test": "not pre-registered; a confidence interval that contains zero is not equivalence"
+  },
+  "probability_mapping": {
+    "id": "P-MAP-1",
+    "formula": "(count of yang lines in the original hexagram + 1) / 8",
+    "uses": ["lines_bottom_up of the original hexagram"],
+    "does_not_use": ["outcome", "hexagram name", "changed hexagram", "moving line", "imagery", "pilot labels"],
+    "range": [0.125, 0.875],
+    "status": "engineering map fixed before scoring; not a probability stated in 梅花易数"
+  },
+  "baselines": {
+    "base_rate": "pilot resolved-event mean; if that mean is 0 or 1 use (k+0.5)/(n+1) and record the smoothing",
+    "calendar_only": "pilot empirical rate by lunar month number (leap shares the number); month count below 5 falls back to the base rate; 0 or 1 with count at least 5 uses (k+0.5)/(n+1)",
+    "symbol_control": "within each holdout lunar month, permute P-MAP-1 probabilities with the frozen HMAC stream",
+    "why_calendar_baseline": "年月日时起卦 under a fixed hour is a calendar function. A gain over the constant base rate can be seasonal information."
+  },
+  "statistics": {
+    "study_primary": {
+      "contrast": "mean paired Brier of arm B minus arm A",
+      "direction": "lower Brier is better; a negative difference favors B",
+      "unit": "one prediction per event after aggregating seeds; agent count is not the sample size",
+      "dependence": "cluster bootstrap by ISO week of the Asia/Shanghai date; one subject",
+      "status_in_this_delivery": "not_run"
+    },
+    "offline_role": "execute the engine, public-data path, and scorer on the historical window; not a substitute for the study primary",
+    "offline_reference_contrast": "rule_minus_base_rate",
+    "holm_family": ["rule_minus_calendar", "rule_minus_symbol_control"],
+    "descriptive_only": ["calendar_minus_base_rate"],
+    "alpha": 0.05,
+    "bootstrap_replicates": 10000,
+    "bootstrap_ci": "nearest-rank percentile, ceil(p*n), two-sided 2.5 and 97.5",
+    "bootstrap_p": "two-sided recentered bootstrap: share of |bootstrap mean - observed| >= |observed|",
+    "estimand": "event-weighted mean of paired Brier differences; clusters are resampled with equal probability and events keep their weight",
+    "residual_dependence": "week clusters do not remove correlation between adjacent weeks; intervals can be too narrow"
+  },
+  "llm_four_arm": {
+    "status_in_this_delivery": "not_run",
+    "what_arm_a_would_be": "one JSON probability from the same OpenAI-compatible chat interface MiroFish uses; not the OASIS swarm, not Zep, and not a multi-round MiroFish simulation",
+    "arms": {
+      "A": "question, time, and location only, plus a non-informative pad",
+      "B": "A plus the real cast and structural features, without judgment text",
+      "C": "same template as B with the within-month permuted cast",
+      "D": "same keys as B with neutral values"
+    },
+    "temperature": 0,
+    "max_tokens": 256,
+    "calls_per_seed": 1,
+    "seeds_per_event": 1,
+    "aggregation": "arithmetic mean across seeds, then one row per event",
+    "json_retries": 0,
+    "tools": [],
+    "retrieval_note": "The prompt forbids tools. That sentence does not erase pretraining memory of public history.",
+    "equal_budget": "identical max_tokens, call counts, and UTF-8 byte length of the user message",
+    "credential_policy": "do not read .env or search for keys; a live run happens only when the operator passes a local config and the named environment variable is set",
+    "config_example": "research/llm_config.example.json"
+  },
+  "leakage": {
+    "historical_replay": "outcomes are already public; this run is retrospective engineering evidence",
+    "prospective_lock": "future_ledger rows are hashed before settlement and must stay unresolved",
+    "label_access": "the cast function rejects an outcome argument; baseline fits see pilot labels only"
+  }
+}

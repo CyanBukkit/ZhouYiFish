@@ -1,0 +1,6 @@
+{
+  "model": "REPLACE_ME",
+  "base_url": "https://example.invalid/v1",
+  "credential_env": "ZHOUYI_LLM_API_KEY",
+  "note": "不要把密钥写进这个文件。复现命令不会读取它，也不会读取仓库里的 .env。"
+}

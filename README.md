@@ -192,6 +192,10 @@ The MiroFish team is recruiting full-time/internship positions. If you're intere
 
 MiroFish's simulation engine is powered by **[OASIS (Open Agent Social Interaction Simulations)](https://github.com/camel-ai/oasis)**, We sincerely thank the CAMEL-AI team for their open-source contributions!
 
+## Zhouyi research module
+
+`research/` is an additional exploratory experiment. It does not change the MiroFish application above and does not run that swarm simulation. It tests whether one frozen Plum-Blossom time rule changes Brier score on a settleable binary weather question. There is no prediction guarantee. It is not for medical, gambling, or investment decisions, and it does not claim that divination has been scientifically validated. Read [research/README.md](research/README.md).
+
 ## 📈 Project Statistics
 
 <a href="https://github.com/666ghj/MiroFish">
