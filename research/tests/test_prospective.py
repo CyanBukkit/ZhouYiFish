@@ -98,6 +98,34 @@ def test_missing_precipitation_stays_missing_and_zero_is_a_real_zero():
         _outcome(-1, 1.0)
 
 
+def test_github_anchor_is_before_every_eligible_event_start():
+    anchor_path = ROOT / "research/experiments/prospective_v2/public_anchor.json"
+    eligibility_path = ROOT / "research/experiments/prospective_v2/eligibility.jsonl"
+    ledger_path = ROOT / "research/experiments/prospective_v2/ledger.jsonl"
+    settlement_path = ROOT / "research/experiments/prospective_v2/settlement.jsonl"
+    anchor = json.loads(anchor_path.read_text(encoding="utf-8"))
+    moment = datetime.fromisoformat(anchor["github_committer_date"].replace("Z", "+00:00"))
+    derived = [
+        apply_public_commit(json.loads(line), moment, anchor["source"])
+        for line in ledger_path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
+    stored = [json.loads(line) for line in eligibility_path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    assert stored == derived
+    assert len(stored) == 30
+    assert settlement_path.read_bytes() == b""
+    for row in stored:
+        public_time = datetime.fromisoformat(row["public_commit_time"])
+        start = datetime.fromisoformat(row["event_start"])
+        assert public_time < start
+        assert row["issued_prospectively"] is True
+        assert row["outcome"] is None and row["scored"] is False
+        assert row["local_content_hash"]["is_public_commit_time"] is False
+        assert row["public_commit_time"] != row["local_content_hash"]["input_sha256"]
+    with pytest.raises(Exception, match="不评分"):
+        assert_scorable(stored)
+
+
 def test_public_commit_equal_to_midnight_is_not_early_enough():
     start = datetime(2026, 11, 18, 0, 0, tzinfo=SHANGHAI)
     assert issued_before_event(start, start) is False
