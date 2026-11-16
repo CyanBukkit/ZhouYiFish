@@ -1,0 +1,481 @@
+{
+  "alpha": 0.05,
+  "baseline_fit": {
+    "base_rate": 0.3452054794520548,
+    "base_rate_smoothed": false,
+    "month_fallback_to_base": [],
+    "month_rates": {
+      "1": 0.4,
+      "10": 0.26666666666666666,
+      "11": 0.3225806451612903,
+      "12": 0.23684210526315788,
+      "2": 0.3448275862068966,
+      "3": 0.26666666666666666,
+      "4": 0.27586206896551724,
+      "5": 0.43333333333333335,
+      "6": 0.6333333333333333,
+      "7": 0.4482758620689655,
+      "8": 0.36666666666666664,
+      "9": 0.1724137931034483
+    },
+    "month_smoothed": [],
+    "pilot_resolved": 365
+  },
+  "bootstrap_replicates": 10000,
+  "contrasts": {
+    "calendar_minus_base_rate": {
+      "bootstrap_replicates": 10000,
+      "ci95_high": -0.0022399271856424264,
+      "ci95_low": -0.03739343571189124,
+      "ci_width": 0.035153508526248815,
+      "covers_zero": false,
+      "estimate": -0.0192051757510732,
+      "flag": "lower_brier_detectable_but_not_entirely_beyond_margin",
+      "n_clusters": 53,
+      "n_events": 365,
+      "role": "descriptive_not_in_holm_family",
+      "wider_than_margin": true
+    },
+    "rule_minus_base_rate": {
+      "bootstrap_replicates": 10000,
+      "ci95_high": 0.07013335053480947,
+      "ci95_low": 0.0176225143635066,
+      "ci_width": 0.05251083617130287,
+      "covers_zero": false,
+      "estimate": 0.04409129292550196,
+      "flag": "higher_brier_detectable_but_not_entirely_beyond_margin",
+      "n_clusters": 53,
+      "n_events": 365,
+      "p_unadjusted": 0.0012,
+      "role": "offline_reference_not_study_primary",
+      "wider_than_margin": true
+    },
+    "rule_minus_calendar": {
+      "bootstrap_replicates": 10000,
+      "ci95_high": 0.09224303826923622,
+      "ci95_low": 0.03364374022417281,
+      "ci_width": 0.058599298045063405,
+      "covers_zero": false,
+      "estimate": 0.06329646867657517,
+      "flag": "higher_brier_entire_ci_beyond_margin",
+      "n_clusters": 53,
+      "n_events": 365,
+      "p_holm": 0.0,
+      "p_unadjusted": 0.0,
+      "role": "offline_secondary_holm_family",
+      "wider_than_margin": true
+    },
+    "rule_minus_symbol_control": {
+      "bootstrap_replicates": 10000,
+      "ci95_high": 0.025470890410958905,
+      "ci95_low": -0.01331824512534819,
+      "ci_width": 0.0387891355363071,
+      "covers_zero": true,
+      "estimate": 0.0061643835616438354,
+      "flag": "ci_includes_zero_not_equivalence",
+      "n_clusters": 53,
+      "n_events": 365,
+      "p_holm": 0.5344,
+      "p_unadjusted": 0.5344,
+      "role": "offline_secondary_holm_family",
+      "wider_than_margin": true
+    }
+  },
+  "cost": {
+    "completion_tokens": 0,
+    "currency_usd": null,
+    "model_calls": 0,
+    "prompt_tokens": 0
+  },
+  "holdout": {
+    "cluster_count": 53,
+    "failure_rate": 0.0,
+    "identical_cast_collision_events": 58,
+    "n_dates": 365,
+    "n_resolved": 365,
+    "n_unresolved": 0,
+    "outcome_rate": 0.3780821917808219,
+    "subject_count": 1
+  },
+  "inventory": {
+    "not_run": [
+      "模型四臂 A/B/C/D",
+      "MiroFish 的 OASIS 群体仿真、Zep 与报告代理",
+      "奇门遁甲",
+      "风水",
+      "揲蓍",
+      "体用五行与卦辞断语"
+    ],
+    "pending_settlement": [
+      "2026-11-16 至 2026-12-15 的前瞻台账，结局为空，未打分"
+    ],
+    "ran": [
+      "梅花易数卷一年月日时起卦",
+      "香港天文台边界日期所核验的 zhdate 0.1 农历换算",
+      "Open-Meteo 日降水快照的解析与评分",
+      "先导期常数基率与农历月基线",
+      "同农历月符号对照",
+      "按 ISO 周的配对聚类 bootstrap",
+      "前瞻台账的预测锁定"
+    ]
+  },
+  "limitations_zh": [
+    "主终点四臂模型对照没有运行，不能写成已经验证规则增强。",
+    "离线数字只说明这条映射在该历史窗口上的 Brier，不是对周易或梅花的终审。",
+    "年月日时起卦在固定时点上是日历函数；赢过常数基率仍可能只是季节或日期信息。",
+    "预测时点固定在当地 0 点，时支恒为子，本任务识别不了时辰效应。",
+    "闰月与本月使用同一个月数，初一等日期会得到同一卦。这是协议，不是漏算。",
+    "只有一个地理主体。按 ISO 周聚类后，相邻周仍可能相关，区间可能偏窄。",
+    "历史天气已经公开。本次计算与协议写在同一次工作里，不是对外预注册之后的前瞻试验。",
+    "前瞻台账只锁预测。未发生的结局保持空白，不能补写。",
+    "农历依赖 zhdate 0.1，边界日期对照过香港天文台换算表，不是独立的全历史校勘。",
+    "屏蔽检索不能消除语言模型对公开史实的记忆。这次没有做那种历史回放。",
+    "小样本或合成降水只证明链路。",
+    "不用于医疗、博彩或投资决策。"
+  ],
+  "margin": 0.02,
+  "pilot": {
+    "failure_rate": 0.0,
+    "n_dates": 365,
+    "n_resolved": 365,
+    "n_unresolved": 0
+  },
+  "probabilities": {
+    "base_rate": {
+      "calibration_in_the_large": -0.0328767123287671,
+      "ece": 0.0328767123287671,
+      "frequentist_coverage_of_bootstrap_ci": "not_estimable_from_one_sample",
+      "mean_brier": 0.23621692625258026,
+      "mean_p": 0.3452054794520548,
+      "reliability": [
+        {
+          "bin_high": 0.1,
+          "bin_low": 0.0,
+          "mean_p": null,
+          "n": 0,
+          "outcome_rate": null
+        },
+        {
+          "bin_high": 0.2,
+          "bin_low": 0.1,
+          "mean_p": null,
+          "n": 0,
+          "outcome_rate": null
+        },
+        {
+          "bin_high": 0.3,
+          "bin_low": 0.2,
+          "mean_p": null,
+          "n": 0,
+          "outcome_rate": null
+        },
+        {
+          "bin_high": 0.4,
+          "bin_low": 0.3,
+          "mean_p": 0.3452054794520548,
+          "n": 365,
+          "outcome_rate": 0.3780821917808219
+        },
+        {
+          "bin_high": 0.5,
+          "bin_low": 0.4,
+          "mean_p": null,
+          "n": 0,
+          "outcome_rate": null
+        },
+        {
+          "bin_high": 0.6,
+          "bin_low": 0.5,
+          "mean_p": null,
+          "n": 0,
+          "outcome_rate": null
+        },
+        {
+          "bin_high": 0.7,
+          "bin_low": 0.6,
+          "mean_p": null,
+          "n": 0,
+          "outcome_rate": null
+        },
+        {
+          "bin_high": 0.8,
+          "bin_low": 0.7,
+          "mean_p": null,
+          "n": 0,
+          "outcome_rate": null
+        },
+        {
+          "bin_high": 0.9,
+          "bin_low": 0.8,
+          "mean_p": null,
+          "n": 0,
+          "outcome_rate": null
+        },
+        {
+          "bin_high": 1.0,
+          "bin_low": 0.9,
+          "mean_p": null,
+          "n": 0,
+          "outcome_rate": null
+        }
+      ]
+    },
+    "calendar": {
+      "calibration_in_the_large": -0.027748816477172034,
+      "ece": 0.037833893249435466,
+      "frequentist_coverage_of_bootstrap_ci": "not_estimable_from_one_sample",
+      "mean_brier": 0.217011750501507,
+      "mean_p": 0.3503333753036499,
+      "reliability": [
+        {
+          "bin_high": 0.1,
+          "bin_low": 0.0,
+          "mean_p": null,
+          "n": 0,
+          "outcome_rate": null
+        },
+        {
+          "bin_high": 0.2,
+          "bin_low": 0.1,
+          "mean_p": 0.1724137931034483,
+          "n": 29,
+          "outcome_rate": 0.1724137931034483
+        },
+        {
+          "bin_high": 0.3,
+          "bin_low": 0.2,
+          "mean_p": 0.26348072375295606,
+          "n": 110,
+          "outcome_rate": 0.2727272727272727
+        },
+        {
+          "bin_high": 0.4,
+          "bin_low": 0.3,
+          "mean_p": 0.34698018374325384,
+          "n": 108,
+          "outcome_rate": 0.3333333333333333
+        },
+        {
+          "bin_high": 0.5,
+          "bin_low": 0.4,
+          "mean_p": 0.42750871755133674,
+          "n": 89,
+          "outcome_rate": 0.550561797752809
+        },
+        {
+          "bin_high": 0.6,
+          "bin_low": 0.5,
+          "mean_p": null,
+          "n": 0,
+          "outcome_rate": null
+        },
+        {
+          "bin_high": 0.7,
+          "bin_low": 0.6,
+          "mean_p": 0.6333333333333333,
+          "n": 29,
+          "outcome_rate": 0.6206896551724138
+        },
+        {
+          "bin_high": 0.8,
+          "bin_low": 0.7,
+          "mean_p": null,
+          "n": 0,
+          "outcome_rate": null
+        },
+        {
+          "bin_high": 0.9,
+          "bin_low": 0.8,
+          "mean_p": null,
+          "n": 0,
+          "outcome_rate": null
+        },
+        {
+          "bin_high": 1.0,
+          "bin_low": 0.9,
+          "mean_p": null,
+          "n": 0,
+          "outcome_rate": null
+        }
+      ]
+    },
+    "rule": {
+      "calibration_in_the_large": 0.12465753424657533,
+      "ece": 0.17397260273972598,
+      "frequentist_coverage_of_bootstrap_ci": "not_estimable_from_one_sample",
+      "mean_brier": 0.2803082191780822,
+      "mean_p": 0.5027397260273972,
+      "reliability": [
+        {
+          "bin_high": 0.1,
+          "bin_low": 0.0,
+          "mean_p": null,
+          "n": 0,
+          "outcome_rate": null
+        },
+        {
+          "bin_high": 0.2,
+          "bin_low": 0.1,
+          "mean_p": null,
+          "n": 0,
+          "outcome_rate": null
+        },
+        {
+          "bin_high": 0.3,
+          "bin_low": 0.2,
+          "mean_p": 0.25,
+          "n": 46,
+          "outcome_rate": 0.3695652173913043
+        },
+        {
+          "bin_high": 0.4,
+          "bin_low": 0.3,
+          "mean_p": 0.375,
+          "n": 44,
+          "outcome_rate": 0.45454545454545453
+        },
+        {
+          "bin_high": 0.5,
+          "bin_low": 0.4,
+          "mean_p": null,
+          "n": 0,
+          "outcome_rate": null
+        },
+        {
+          "bin_high": 0.6,
+          "bin_low": 0.5,
+          "mean_p": 0.5,
+          "n": 179,
+          "outcome_rate": 0.4022346368715084
+        },
+        {
+          "bin_high": 0.7,
+          "bin_low": 0.6,
+          "mean_p": 0.625,
+          "n": 48,
+          "outcome_rate": 0.3125
+        },
+        {
+          "bin_high": 0.8,
+          "bin_low": 0.7,
+          "mean_p": 0.75,
+          "n": 48,
+          "outcome_rate": 0.2916666666666667
+        },
+        {
+          "bin_high": 0.9,
+          "bin_low": 0.8,
+          "mean_p": null,
+          "n": 0,
+          "outcome_rate": null
+        },
+        {
+          "bin_high": 1.0,
+          "bin_low": 0.9,
+          "mean_p": null,
+          "n": 0,
+          "outcome_rate": null
+        }
+      ]
+    },
+    "symbol_control": {
+      "calibration_in_the_large": 0.12465753424657533,
+      "ece": 0.17945205479452053,
+      "frequentist_coverage_of_bootstrap_ci": "not_estimable_from_one_sample",
+      "mean_brier": 0.27414383561643835,
+      "mean_p": 0.5027397260273972,
+      "reliability": [
+        {
+          "bin_high": 0.1,
+          "bin_low": 0.0,
+          "mean_p": null,
+          "n": 0,
+          "outcome_rate": null
+        },
+        {
+          "bin_high": 0.2,
+          "bin_low": 0.1,
+          "mean_p": null,
+          "n": 0,
+          "outcome_rate": null
+        },
+        {
+          "bin_high": 0.3,
+          "bin_low": 0.2,
+          "mean_p": 0.25,
+          "n": 46,
+          "outcome_rate": 0.41304347826086957
+        },
+        {
+          "bin_high": 0.4,
+          "bin_low": 0.3,
+          "mean_p": 0.375,
+          "n": 44,
+          "outcome_rate": 0.4318181818181818
+        },
+        {
+          "bin_high": 0.5,
+          "bin_low": 0.4,
+          "mean_p": null,
+          "n": 0,
+          "outcome_rate": null
+        },
+        {
+          "bin_high": 0.6,
+          "bin_low": 0.5,
+          "mean_p": 0.5,
+          "n": 179,
+          "outcome_rate": 0.3575418994413408
+        },
+        {
+          "bin_high": 0.7,
+          "bin_low": 0.6,
+          "mean_p": 0.625,
+          "n": 48,
+          "outcome_rate": 0.3541666666666667
+        },
+        {
+          "bin_high": 0.8,
+          "bin_low": 0.7,
+          "mean_p": 0.75,
+          "n": 48,
+          "outcome_rate": 0.3958333333333333
+        },
+        {
+          "bin_high": 0.9,
+          "bin_low": 0.8,
+          "mean_p": null,
+          "n": 0,
+          "outcome_rate": null
+        },
+        {
+          "bin_high": 1.0,
+          "bin_low": 0.9,
+          "mean_p": null,
+          "n": 0,
+          "outcome_rate": null
+        }
+      ]
+    }
+  },
+  "protocol_id": "zhouyi-fish-meihua-precip-v1",
+  "protocol_sha256": "6b27fcc0699a27d0614ac6566a105a1816091cc33db2ce5e9d5dd76a1c1aa809",
+  "rule_note_zh": "规则来自维基文库《梅花易数》卷一公开转录，不是校勘定本，也不把邵雍写成已证实的作者。观梅占算例核对为：辰年五数，十二月十二数，十七日十七数，共三十四数，除四八三十二，馀二，属兑，为上卦，加申时九数，总得四十三数，五八除四十，馀得三数，为离，作下卦。又上下总四十三数，以六除，六七四十二，馀一为动爻，是为泽火革。初爻变咸。八整为坤有该转录的句子。六整除记为上爻没有对应的原文句子，只是协议边界。概率用的是测试前固定的 (阳爻数+1)/8，不是书里的概率。",
+  "sample_class": "historical_open_meteo_retrospective",
+  "snapshot_sha256": "52eec08fa220cdd1166076dae675867feb05676d2a14f60a0cee0c9186b6b219",
+  "study_primary": {
+    "contrast": "mean paired Brier of arm B minus arm A",
+    "reason_zh": "没有可用的、明确提供给本次任务的模型凭据。未购买、未搜索凭据，也没有用随机数或 mock 回答填充四臂。臂 A 即使将来运行，也只是与 MiroFish 相同的聊天补全接口上的固定预算基线，不是 OASIS 群体仿真。",
+    "status": "not_run"
+  },
+  "synthetic_pipeline_only": false,
+  "task": {
+    "holdout_end": "2023-12-31",
+    "holdout_start": "2023-01-01",
+    "pilot_end": "2022-12-31",
+    "pilot_start": "2022-01-01",
+    "question_template": "在Asia/Shanghai公历日期{date}，请求坐标(31.2304N,121.4737E)所对应的结算网格上，当日降水量合计是否达到或超过1.0毫米？",
+    "settlement": "Weather data by Open-Meteo.com (https://open-meteo.com/)",
+    "threshold_mm": 1.0
+  }
+}
