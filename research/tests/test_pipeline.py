@@ -122,6 +122,20 @@ def test_synthetic_window_does_not_leak_labels_or_score_the_future():
     assert future_ledger()[0]["issued_prospectively"] is True
 
 
+def test_module_entrypoint_prints_the_protocol():
+    import subprocess
+    import sys
+
+    completed = subprocess.run(
+        [sys.executable, "-m", "research.cli", "protocol"],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert completed.returncode == 0
+    assert "zhouyi-fish-meihua-precip-v1" in completed.stdout
+
+
 def test_cli_has_no_window_override_and_cast_numbers_match_the_example():
     parser = build_parser()
     offline = next(action for action in parser._subparsers._group_actions if action.dest == "command")

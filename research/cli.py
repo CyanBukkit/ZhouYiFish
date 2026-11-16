@@ -211,3 +211,7 @@ def _git_rev() -> str | None:
 
 def _print(payload: dict) -> None:
     sys.stdout.write(dumps_json(payload))
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
