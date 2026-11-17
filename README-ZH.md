@@ -194,7 +194,7 @@ MiroFish 的仿真引擎由 **[OASIS](https://github.com/camel-ai/oasis)** 驱�
 
 ## 周易规则探索模块
 
-`research/` 是另加的探索代码，不改动上面的 MiroFish 应用。**四臂没有运行，OASIS 没有接通，这不是一次已经完成的 MiroFish 增强实验。** 不能据此说预测更准。说明见 [research/README.md](research/README.md)。
+`research/` 现在的研究对象是虚构人物沙盒里的合作、沟通和选择，不是天气。**四臂没有运行，OASIS 没有接通，这不是一次已经完成的 MiroFish 增强实验。** 没有本人同意的真实行为数据，不能说预测更准。说明见 [research/README.md](research/README.md)。
 
 ## 📈 项目统计
 

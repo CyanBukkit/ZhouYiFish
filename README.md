@@ -194,7 +194,7 @@ MiroFish's simulation engine is powered by **[OASIS (Open Agent Social Interacti
 
 ## Zhouyi research module
 
-`research/` is additional exploratory code. It does not change the MiroFish application above. The four chat arms were not run, OASIS is not connected, and this is not a completed MiroFish enhancement experiment. It does not show that the rule predicts better. Read [research/README.md](research/README.md).
+`research/` now targets a fictional human-persona sandbox, not weather. The four chat arms were not run, OASIS is not connected, and this is not a completed MiroFish enhancement experiment. There is no consented behavior record, so it does not show that a chart predicts better. Read [research/README.md](research/README.md).
 
 ## 📈 Project Statistics
 

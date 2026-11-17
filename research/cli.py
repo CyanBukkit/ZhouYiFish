@@ -63,6 +63,9 @@ def build_parser() -> argparse.ArgumentParser:
     serve = sub.add_parser("serve", help="本机只读起卦服务")
     serve.add_argument("--port", type=int, default=8765)
     serve.set_defaults(func=command_serve)
+
+    persona = sub.add_parser("persona-demo", help="写出虚构人物沙盒，不验证真实命中")
+    persona.set_defaults(func=command_persona)
     return parser
 
 
@@ -95,6 +98,14 @@ def command_llm(args: argparse.Namespace) -> int:
     _print(status)
     print(status["blocker"], file=sys.stderr)
     return 2
+
+
+def command_persona(_args: argparse.Namespace) -> int:
+    from research.sandbox_demo import write_demo
+
+    path = write_demo()
+    print(path, file=sys.stderr)
+    return 0
 
 
 def command_serve(args: argparse.Namespace) -> int:

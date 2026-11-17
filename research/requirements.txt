@@ -1,2 +1,3 @@
 zhdate==0.1
+sxtwl==2.0.7
 pytest>=8.0
