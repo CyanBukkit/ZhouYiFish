@@ -2,7 +2,7 @@
   "graph": {
     "edges": [
       {
-        "relation": "一起做社区记录",
+        "relation": "一起做社区档案管理员",
         "source": "sandbox-focal-01",
         "target": "sandbox-colleague-01"
       },
@@ -19,13 +19,13 @@
         "fictional": true,
         "id": "sandbox-focal-01",
         "kind": "focal",
-        "synthetic_occupation": "社区记录"
+        "synthetic_occupation": "社区档案管理员"
       },
       {
         "fictional": true,
         "id": "sandbox-colleague-01",
         "kind": "colleague",
-        "synthetic_occupation": "同一社区档案室的同事"
+        "synthetic_occupation": "社区档案室同事"
       },
       {
         "fictional": true,
@@ -161,8 +161,8 @@
     "living_place_label": "虚构街区的社区档案室，不是真实地址",
     "occupation_hypothesis": {
       "candidates": [
-        "后勤照料",
-        "社区记录"
+        "社区档案管理员",
+        "养老院生活助理"
       ],
       "citation": "研究沙盒自行编写的日干类象表，不是古籍引文。",
       "claim": "人为设定的候选，可编辑，不表示八字客观决定职业。",
@@ -180,10 +180,10 @@
       "is_bazi_fact": false,
       "note": "这是研究设定的虚构职业，不是八字推算出的事实。",
       "selected_from_candidates": [
-        "后勤照料",
-        "社区记录"
+        "社区档案管理员",
+        "养老院生活助理"
       ],
-      "title": "社区记录",
+      "title": "社区档案管理员",
       "usable_as_validation_label": false
     }
   },
@@ -203,9 +203,9 @@
     },
     "llm_called": false,
     "model_run": false,
-    "same_background": "人物编号：sandbox-focal-01。虚构。\n生活环境：虚构街区的社区档案室，不是真实地址。\n研究设定职业：社区记录。这不是八字事实。\n关系：一起做社区记录；同一楼层邻居。\n场景：是否把一份共享备忘录交给同事继续改。只讨论合作或拒绝。\n",
-    "with_bazi": "人物编号：sandbox-focal-01。虚构。\n生活环境：虚构街区的社区档案室，不是真实地址。\n研究设定职业：社区记录。这不是八字事实。\n关系：一起做社区记录；同一楼层邻居。\n场景：是否把一份共享备忘录交给同事继续改。只讨论合作或拒绝。\n本组附上八字：辛巳甲午己酉己巳。八字不决定职业。\n",
-    "without_bazi": "人物编号：sandbox-focal-01。虚构。\n生活环境：虚构街区的社区档案室，不是真实地址。\n研究设定职业：社区记录。这不是八字事实。\n关系：一起做社区记录；同一楼层邻居。\n场景：是否把一份共享备忘录交给同事继续改。只讨论合作或拒绝。\n本组不附八字。\n"
+    "same_background": "人物编号：sandbox-focal-01。虚构。\n生活环境：虚构街区的社区档案室，不是真实地址。\n研究设定职业：社区档案管理员。这不是八字事实。\n关系：一起做社区档案管理员；同一楼层邻居。\n场景：是否把一份共享备忘录交给同事继续改。只讨论合作或拒绝。\n",
+    "with_bazi": "人物编号：sandbox-focal-01。虚构。\n生活环境：虚构街区的社区档案室，不是真实地址。\n研究设定职业：社区档案管理员。这不是八字事实。\n关系：一起做社区档案管理员；同一楼层邻居。\n场景：是否把一份共享备忘录交给同事继续改。只讨论合作或拒绝。\n本组附上八字：辛巳甲午己酉己巳。八字不决定职业。\n",
+    "without_bazi": "人物编号：sandbox-focal-01。虚构。\n生活环境：虚构街区的社区档案室，不是真实地址。\n研究设定职业：社区档案管理员。这不是八字事实。\n关系：一起做社区档案管理员；同一楼层邻居。\n场景：是否把一份共享备忘录交给同事继续改。只讨论合作或拒绝。\n本组不附八字。\n"
   },
   "simulated_behavior": {
     "choice": "cooperate",

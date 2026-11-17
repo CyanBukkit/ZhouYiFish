@@ -1,3 +1,21 @@
+# ZhouYiFish：实验性人物背景研究
+
+ZhouYiFish 在保留上游 [MiroFish](https://github.com/666ghj/MiroFish)（AGPL-3.0）应用的同时，另做一项实验：用生辰四柱讨论虚构人物的背景、研究设定职业、生活网络、社交关系和低风险行为场景。八字不能决定职业，也还没有准确率提高的结果。
+
+| 类别 | 状态 |
+| --- | --- |
+| 虚构人物与四柱 | 已做工程演示。`research/sandbox/EXAMPLE.md` |
+| 传统类象假说 | 人为设定的职业候选，不是古籍引文，不是八字事实 |
+| 同背景有/无八字及打乱八字 | 离线输入已导出。`research/experiments/persona_sandbox_v1/result.json` |
+| 模型四臂与 OASIS | 未运行。没有明示给本任务的模型凭据就不会调用 |
+| 本人同意的未来行为 | 未提供，真实验证阻塞 |
+| 公开历史人物 | 只有带来源的案例，时区未换算就不排四柱，不是盲测 |
+| 天气试验 | 历史超范围审计，不是本项目的核心成果 |
+
+复现：`python3 -m pip install -r research/requirements.txt`，然后 `python3 -m research.cli persona-demo` 与 `python3 -m research.cli persona-experiment`。诊断命令 `python3 -m research.cli llm-diagnose` 只报告变量是否存在，不打印密钥。说明与限制见 [research/README.md](research/README.md)。
+
+下面保留上游 MiroFish 的原文说明。
+
 <div align="center">
 
 <img src="./static/image/MiroFish_logo_compressed.jpeg" alt="MiroFish Logo" width="75%"/>

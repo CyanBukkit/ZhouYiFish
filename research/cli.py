@@ -66,6 +66,10 @@ def build_parser() -> argparse.ArgumentParser:
 
     persona = sub.add_parser("persona-demo", help="写出虚构人物沙盒，不验证真实命中")
     persona.set_defaults(func=command_persona)
+    experiment = sub.add_parser("persona-experiment", help="运行离线人物沙盒检查，不调用模型")
+    experiment.set_defaults(func=command_persona_experiment)
+    diagnose = sub.add_parser("llm-diagnose", help="检查是否有明确提供的模型变量，不打印密钥")
+    diagnose.set_defaults(func=command_llm_diagnose)
     return parser
 
 
@@ -98,6 +102,22 @@ def command_llm(args: argparse.Namespace) -> int:
     _print(status)
     print(status["blocker"], file=sys.stderr)
     return 2
+
+
+def command_persona_experiment(_args: argparse.Namespace) -> int:
+    from research.persona_experiment import write_persona_experiment
+
+    path = write_persona_experiment()
+    print(path, file=sys.stderr)
+    return 0
+
+
+def command_llm_diagnose(_args: argparse.Namespace) -> int:
+    from research.llm_adapter import llm_diagnose
+
+    status = llm_diagnose()
+    _print(status)
+    return 0 if status["credential_present"] else 2
 
 
 def command_persona(_args: argparse.Namespace) -> int:
