@@ -62,6 +62,9 @@
 .zy-table { width: 100%; border-collapse: collapse; }
 .zy-table td, .zy-table th { text-align: left; border-bottom: 1px solid #eadfD0; padding: 0.4rem; vertical-align: top; }
 .zy-log { white-space: pre-wrap; font-family: "IBM Plex Mono", "Noto Sans SC", monospace; font-size: 0.86rem; }
+.zy-timeline { display: flex; gap: 0.4rem; overflow-x: auto; padding-bottom: 0.4rem; }
+.zy details { margin: 0.7rem 0; }
+.zy summary { cursor: pointer; font-weight: 600; }
 @media (max-width: 800px) {
   .zy-grid, .zy-split { grid-template-columns: 1fr; }
   .zy-nav { flex-wrap: wrap; }

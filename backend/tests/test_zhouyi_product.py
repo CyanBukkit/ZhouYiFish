@@ -171,6 +171,42 @@ def test_export_mentions_place_policy(client):
     assert "辛巳甲午己酉己巳" in text
 
 
+def test_rule_chain_persists_recalculates_and_does_not_leak(client):
+    strong = client.post("/api/zhouyi/examples/sandbox-qiang").get_json()["data"]
+    weak = client.post("/api/zhouyi/examples/sandbox-ruo").get_json()["data"]
+    assert strong["chart"]["reading"]["steps"]["strength"]["verdict"] == "strong_candidate"
+    assert strong["chart"]["reading"]["steps"]["luck"]["direction"] == "backward"
+    assert weak["chart"]["reading"]["steps"]["structure"]["established"]["name"] == "七杀格"
+    assert weak["chart"]["pillars"] != strong["chart"]["pillars"]
+    persona_id = client.post("/api/zhouyi/examples/sandbox-jia").get_json()["data"]["persona"]["id"]
+    first = client.get(f"/api/zhouyi/personas/{persona_id}").get_json()["data"]
+    assert first["chart"]["reading"]["rule_version"] == "yhzp-month-command-v1"
+    assert first["chart"]["reading"]["steps"]["luck"]["direction"] == "forward"
+    changed = client.patch(
+        f"/api/zhouyi/personas/{persona_id}",
+        json={"luck_mode": "manual", "luck_direction": "backward", "liunian_year": 2012},
+    ).get_json()["data"]
+    assert changed["chart"]["reading"]["input_digest"] != first["chart"]["reading"]["input_digest"]
+    assert changed["chart"]["reading"]["steps"]["luck"]["cycles"][0]["pillar"] == "癸巳"
+    assert changed["chart"]["reading"]["steps"]["luck"]["liunian"]["year"] == 2012
+    again = client.get(f"/api/zhouyi/personas/{persona_id}").get_json()["data"]
+    assert again["chart"]["reading"]["input_digest"] == changed["chart"]["reading"]["input_digest"]
+    markdown = client.get(f"/api/zhouyi/personas/{persona_id}/export.md").get_data(as_text=True)
+    assert "旺衰" in markdown and "大运" in markdown and "yhzp-month-command-v1" in markdown
+    experiment = client.post(
+        "/api/zhouyi/experiments",
+        json={"persona_id": persona_id, "scenario": "是否报名参加社区读书会", "budget": 4},
+        headers={"X-Zhouyi-Fixture": "1"},
+    ).get_json()["data"]["result"]["arms"]
+    assert "旺衰" not in experiment["without_bazi"]["prompt"]
+    assert "辛巳甲午己酉己巳" not in experiment["without_bazi"]["prompt"]
+    assert "旺衰" in experiment["with_bazi"]["prompt"]
+    assert "不得改写" in experiment["with_bazi"]["prompt"]
+    refused = client.post("/api/zhouyi/personas", json={"display_name": "坏时区", "timezone": "Not/AZone", "birth_date": "2001-06-15", "birth_time": "10:30"})
+    chart = client.post(f"/api/zhouyi/personas/{refused.get_json()['data']['id']}/chart")
+    assert chart.status_code == 400
+
+
 def test_control_chart_refuses_self_pair():
     chosen = control_chart("sandbox-focal-01", "辛巳甲午己酉己巳", [])
     assert chosen["own_chart"] is False

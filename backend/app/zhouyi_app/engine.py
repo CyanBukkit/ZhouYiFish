@@ -5,10 +5,18 @@
 from __future__ import annotations
 
 import json
+import sys
 import time
 import urllib.error
 import urllib.request
+from pathlib import Path
 from typing import Any, Protocol
+
+ROOT = Path(__file__).resolve().parents[3]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from research.bazi_rules import chain_text
 
 from .settings import redact, runtime
 
@@ -209,7 +217,8 @@ def build_arms(persona: dict[str, Any], chart: dict[str, Any], relations: list[d
     if not pillars:
         raise ValueError("四柱不完整，不能做附八字对照。")
     facts = _facts_block(persona, relations)
-    with_block = facts + f"本组附上八字：{pillars}。八字不决定职业。\n场景：{scenario}。\n"
+    reading = chain_text(chart.get("reading"))
+    with_block = facts + f"本组附上八字：{pillars}。八字不决定职业。\n{reading}场景：{scenario}。\n"
     control = control_chart(persona["id"], str(pillars), others)
     arms: dict[str, Any] = {
         "without_bazi": {
@@ -241,10 +250,12 @@ def build_arms(persona: dict[str, Any], chart: dict[str, Any], relations: list[d
         }
     for name, arm in arms.items():
         prompt = arm.get("prompt") or ""
-        if name == "without_bazi" and pillars in prompt:
-            raise RuntimeError("无八字臂泄漏了四柱。")
-        if name == "neutral" and pillars in prompt:
-            raise RuntimeError("中性臂泄漏了四柱。")
+        if name == "without_bazi" and (pillars in prompt or "旺衰" in prompt or "大运" in prompt):
+            raise RuntimeError("无八字臂泄漏了四柱或规则链。")
+        if name == "shuffled_bazi" and "旺衰" in prompt:
+            raise RuntimeError("打乱臂不能附上本人的规则链。")
+        if name == "neutral" and (pillars in prompt or "旺衰" in prompt):
+            raise RuntimeError("中性臂泄漏了四柱或规则链。")
     return {
         "shuffle_version": SHUFFLE_VERSION,
         "v1_archive": "research/experiments/persona_sandbox_v1/result.json",
@@ -284,8 +295,8 @@ def run_rounds(store: Any, task_id: str, persona: dict[str, Any], chart: dict[st
             fail("已达到本次预算，停止继续调用。")
             return
         messages = [
-            {"role": "system", "content": "你参加的是实验性圆桌，不是原版 OASIS。只谈低风险合作或沟通。八字不决定职业。不要给出医疗、博彩或投资建议。"},
-            {"role": "user", "content": _facts_block(persona, relations) + f"角色：{name}（{kind}）。场景：{scenario}。用两三句中文说明这个角色会怎么回应。"},
+            {"role": "system", "content": "你参加的是实验性圆桌，不是原版 OASIS。只谈低风险合作或沟通。八字不决定职业。不要给出医疗、博彩或投资建议。不得改写已经算出的四柱、十神、格局候选和大运干支。"},
+            {"role": "user", "content": _facts_block(persona, relations) + chain_text(chart.get("reading")) + f"角色：{name}（{kind}）。场景：{scenario}。用两三句中文说明这个角色会怎么回应。"},
         ]
         outcome = client.complete(model=model, messages=messages, max_tokens=180)
         used += 1
@@ -419,7 +430,10 @@ def _result(persona: dict[str, Any], chart: dict[str, Any], relations: list[dict
             "living_background": persona.get("living_background") or "",
             "relations": relations,
             "pillars": chart.get("pillars"),
+            "rule_version": (chart.get("reading") or {}).get("rule_version"),
+            "strength_verdict": ((chart.get("reading") or {}).get("steps") or {}).get("strength", {}).get("verdict"),
             "chart_does_not_determine_occupation": True,
+            "model_must_not_override_calculation": True,
         },
         "steps": steps,
         "summary": summary,

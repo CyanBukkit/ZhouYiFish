@@ -56,6 +56,34 @@ def _persona_fields(payload: dict[str, Any], current: dict[str, Any] | None = No
         "known_occupation": str(payload.get("known_occupation", source.get("known_occupation", ""))).strip()[:200],
         "living_background": str(payload.get("living_background", source.get("living_background", ""))).strip()[:1000],
         "notes": str(payload.get("notes", source.get("notes", ""))).strip()[:1000],
+        **_luck_fields(payload, source),
+    }
+
+
+def _luck_fields(payload: dict[str, Any], source: dict[str, Any]) -> dict[str, Any]:
+    luck_mode = str(payload.get("luck_mode", source.get("luck_mode", "")) or "").strip()
+    luck_sex = str(payload.get("luck_sex", source.get("luck_sex", "")) or "").strip()
+    luck_direction = str(payload.get("luck_direction", source.get("luck_direction", "")) or "").strip()
+    if luck_mode not in {"", "manual", "traditional"}:
+        raise ValueError("排运方式只能是手选顺逆或传统性别规则。")
+    if luck_sex not in {"", "male", "female"}:
+        raise ValueError("传统排运只能明确选择男或女。")
+    if luck_direction not in {"", "forward", "backward"}:
+        raise ValueError("顺逆只能是顺或逆。")
+    raw_year = payload["liunian_year"] if "liunian_year" in payload else source.get("liunian_year")
+    liunian_year = None
+    if raw_year not in ("", None):
+        try:
+            liunian_year = int(raw_year)
+        except (TypeError, ValueError) as exc:
+            raise ValueError("流年必须是公历年。") from exc
+        if not 1900 <= liunian_year <= 2200:
+            raise ValueError("流年超出本剖面可排的公历年范围。")
+    return {
+        "luck_mode": luck_mode,
+        "luck_sex": luck_sex,
+        "luck_direction": luck_direction,
+        "liunian_year": liunian_year,
     }
 
 
@@ -164,7 +192,6 @@ def create_persona():
 
 @bp.post("/examples/sandbox-jia")
 def load_example():
-    store = get_store()
     fields = {
         "display_name": "沙盒甲",
         "fictional": True,
@@ -174,17 +201,67 @@ def load_example():
         "birth_place": "虚构文化馆登记台",
         "known_occupation": "",
         "living_background": "虚构文化馆的登记台，不是真实地址。",
-        "notes": "内置虚构样例。职业候选来自日干表，不是这个人的真实职业。",
+        "notes": "内置虚构样例。职业候选来自日干表，不是这个人的真实职业。排运用手选顺行，不从姓名推断。",
+        "luck_mode": "manual",
+        "luck_direction": "forward",
+        "liunian_year": 2010,
     }
-    store.upsert_persona(fields, "sandbox-example-jia")
-    failed = _cast("sandbox-example-jia")
+    return _load_example(
+        "sandbox-example-jia",
+        fields,
+        (("沙盒同事", "一起处理登记台的文书", "scene_role"), ("同层邻居", "住在虚构登记台的邻户", "scene_role")),
+    )
+
+
+@bp.post("/examples/sandbox-qiang")
+def load_strong_example():
+    fields = {
+        "display_name": "沙盒强",
+        "fictional": True,
+        "birth_date": "1983-02-05",
+        "birth_time": "00:00",
+        "timezone": "Asia/Shanghai",
+        "birth_place": "虚构样本，不代表真人",
+        "known_occupation": "",
+        "living_background": "只为对照旺衰，不是传记。",
+        "notes": "样例明确选择传统规则且性别为男。年干癸为阴，阴年男逆。不是从姓名猜的。",
+        "luck_mode": "traditional",
+        "luck_sex": "male",
+        "liunian_year": 2000,
+    }
+    return _load_example("sandbox-example-qiang", fields, (("场景同事", "对照用场景角色", "scene_role"),))
+
+
+@bp.post("/examples/sandbox-ruo")
+def load_weak_example():
+    fields = {
+        "display_name": "沙盒弱",
+        "fictional": True,
+        "birth_date": "1981-08-24",
+        "birth_time": "11:00",
+        "timezone": "Asia/Shanghai",
+        "birth_place": "虚构样本，不代表真人",
+        "known_occupation": "",
+        "living_background": "只为对照旺衰，不是传记。",
+        "notes": "样例手选逆排。职业栏留空。",
+        "luck_mode": "manual",
+        "luck_direction": "backward",
+        "liunian_year": 1990,
+    }
+    return _load_example("sandbox-example-ruo", fields, (("场景同事", "对照用场景角色", "scene_role"),))
+
+
+def _load_example(persona_id: str, fields: dict[str, object], relations: tuple[tuple[str, str, str], ...]):
+    store = get_store()
+    store.upsert_persona(fields, persona_id)
+    failed = _cast(persona_id)
     if failed:
         return failed
-    for relation in store.list_relations("sandbox-example-jia"):
+    for relation in store.list_relations(persona_id):
         store.delete_relation(relation["id"])
-    store.add_relation("sandbox-example-jia", "沙盒同事", "一起处理登记台的文书", "scene_role")
-    store.add_relation("sandbox-example-jia", "同层邻居", "住在虚构登记台的邻户", "scene_role")
-    return _ok(_bundle("sandbox-example-jia"))
+    for name, relation, kind in relations:
+        store.add_relation(persona_id, name, relation, kind)
+    return _ok(_bundle(persona_id))
 
 
 @bp.get("/personas/<persona_id>")
@@ -209,8 +286,9 @@ def update_persona(persona_id: str):
         or fields["birth_time"] != current["birth_time"]
         or fields["timezone"] != current["timezone"]
     )
+    luck_changed = any(fields[key] != current.get(key) for key in ("luck_mode", "luck_sex", "luck_direction", "liunian_year"))
     get_store().upsert_persona(fields, persona_id)
-    if birth_changed:
+    if birth_changed or luck_changed:
         cast_error = _cast(persona_id)
         if cast_error:
             return cast_error
@@ -224,6 +302,22 @@ def delete_persona(persona_id: str):
     except KeyError:
         return _json_error("没有这个人物档案。", 404)
     return _ok({"deleted": persona_id})
+
+
+@bp.post("/personas/<persona_id>/liunian")
+def set_liunian(persona_id: str):
+    current, error = _missing(persona_id)
+    if error:
+        return error
+    try:
+        fields = _persona_fields({"liunian_year": _body().get("year"), **{key: current[key] for key in current if key != "liunian_year"}}, current)
+    except ValueError as exc:
+        return _json_error(str(exc))
+    get_store().upsert_persona(fields, persona_id)
+    failed = _cast(persona_id)
+    if failed:
+        return failed
+    return _ok(_bundle(persona_id))
 
 
 @bp.post("/personas/<persona_id>/chart")
@@ -540,6 +634,22 @@ def _markdown_persona(persona_id: str) -> str:
     ]
     for item in bundle["hypotheses"]:
         lines.append(f"- {item['text']}")
+    reading = (bundle["chart"] or {}).get("reading") or {}
+    lines.extend(["", f"## 规则链 {reading.get('rule_version') or '未计算'}", "", reading.get("claim") or ""])
+    steps = (reading.get("steps") or {})
+    if steps:
+        strength = steps["strength"]
+        lines.append(f"- 旺衰：{strength['verdict_label']}。{strength['reason']}")
+        established = (steps["structure"].get("established") or {}).get("name") or "无成格"
+        lines.append(f"- 格局：{established}")
+        useful = steps["useful"]
+        lines.append(f"- 喜：{'、'.join(useful['favorable']) or '无单一喜项'}；忌：{'、'.join(useful['unfavorable']) or '无单一忌项'}")
+        luck = steps["luck"]
+        lines.append(f"- 大运：{luck.get('direction_label') or luck.get('reason')}")
+        if luck.get("cycles"):
+            lines.append("- 运程：" + "、".join(item["pillar"] for item in luck["cycles"]))
+        if luck.get("liunian"):
+            lines.append(f"- 流年：{luck['liunian']['year']} {luck['liunian']['pillar']}")
     lines.append("")
     lines.append("## 关系")
     for item in bundle["relations"]:

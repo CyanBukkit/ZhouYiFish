@@ -11,6 +11,27 @@
         <label>出生地 <input v-model="form.birth_place" placeholder="只存档，不参与真太阳时" /></label>
         <label>已知职业 <input v-model="form.known_occupation" placeholder="只写你已经知道的，不要填八字推出的职业" /></label>
         <label>生活背景 <textarea v-model="form.living_background" rows="3" /></label>
+        <label>排运
+          <select v-model="form.luck_mode">
+            <option value="">待补齐</option>
+            <option value="manual">手选顺逆</option>
+            <option value="traditional">传统性别规则</option>
+          </select>
+        </label>
+        <label>顺逆
+          <select v-model="form.luck_direction">
+            <option value="">未选</option>
+            <option value="forward">顺</option>
+            <option value="backward">逆</option>
+          </select>
+        </label>
+        <label>传统规则所用性别
+          <select v-model="form.luck_sex">
+            <option value="">不选</option>
+            <option value="male">男</option>
+            <option value="female">女</option>
+          </select>
+        </label>
         <label><input type="checkbox" v-model="form.fictional" /> 这是虚构档案</label>
         <button :disabled="busy">保存并排盘</button>
         <p v-if="error" class="zy-error">{{ error }}</p>
@@ -47,6 +68,9 @@ const form = reactive({
   known_occupation: '',
   living_background: '',
   fictional: true,
+  luck_mode: '',
+  luck_direction: '',
+  luck_sex: '',
 })
 
 async function refresh() {
