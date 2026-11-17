@@ -7,7 +7,8 @@ ZhouYiFish keeps the upstream [MiroFish](https://github.com/666ghj/MiroFish) app
 | Fictional people and four pillars | Engineering demo in `research/sandbox/EXAMPLE.md` |
 | Traditional imagery | A human-written candidate list, not a classical quotation and not a fact |
 | Same background with, without, and shuffled charts | Offline inputs in `research/experiments/persona_sandbox_v1/result.json` |
-| Four model arms and OASIS | Not run. No model call is made unless this task is given an explicit credential |
+| Four model arms and OASIS | Comparison not run. A later user-host probe is recorded separately and did not score |
+| 2026-11-17 run records | Two independent checks: four HTTP 500 probes on the user machine, and a cloud UI failure. [docs/runs/2026-11-17/README.md](docs/runs/2026-11-17/README.md) |
 | Consented future behavior | Not provided, so real validation is blocked |
 | Public historical people | Sourced examples only. No four pillars when historical time conversion is unsettled. Not a blind test |
 | Weather trial | Historical out-of-scope audit, not the core result |

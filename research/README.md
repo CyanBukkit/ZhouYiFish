@@ -6,6 +6,8 @@
 
 **四臂模型实验没有运行。OASIS 群体仿真没有接通。** 本目录不是一次已经完成的 MiroFish 增强实验。臂 A 若将来运行，只是聊天补全基线，不是原版 MiroFish。没有证据可以说规则或八字让预测更准。换成人物对象也不会因此更准。
 
+2026-11-17 有两套独立记录，见 [docs/runs/2026-11-17/README.md](../docs/runs/2026-11-17/README.md)。用户电脑对两个指定模型各做了 1 次短探针和 1 次重试，4 次都是 HTTP 500，没有 completion 或 usage，54 项人物对照未跑。那次不是前端端到端，也没有评估模型能力或预测精度。云端只打开了原 MiroFish 首页；后端因缺少 LLM 与 Zep 密钥在监听前退出，截图是失败页，不是成功图谱。冻结打乱表里 `sandbox-focal-01` 的 `own_chart` 为 true，见 [persona_sandbox_v1/SHUFFLE_LIMIT.md](experiments/persona_sandbox_v1/SHUFFLE_LIMIT.md)。已用输入没有回改。
+
 天气网格试验留在 `research/experiments/offline_v1/`，已标为超出范围。它不回答人的行为问题，也不再自动结算。
 
 虚构演示：

@@ -7,7 +7,8 @@ ZhouYiFish 在保留上游 [MiroFish](https://github.com/666ghj/MiroFish)（AGPL
 | 虚构人物与四柱 | 已做工程演示。`research/sandbox/EXAMPLE.md` |
 | 传统类象假说 | 人为设定的职业候选，不是古籍引文，不是八字事实 |
 | 同背景有/无八字及打乱八字 | 离线输入已导出。`research/experiments/persona_sandbox_v1/result.json` |
-| 模型四臂与 OASIS | 未运行。没有明示给本任务的模型凭据就不会调用 |
+| 模型四臂与 OASIS | 对照未跑。之后在用户电脑上的短探针另有记录，没有评分 |
+| 2026-11-17 运行记录 | 两套独立检查：用户电脑 4 次 HTTP 500，云端页面打开后图谱失败。[docs/runs/2026-11-17/README.md](docs/runs/2026-11-17/README.md) |
 | 本人同意的未来行为 | 未提供，真实验证阻塞 |
 | 公开历史人物 | 只有带来源的案例，时区未换算就不排四柱，不是盲测 |
 | 天气试验 | 历史超范围审计，不是本项目的核心成果 |

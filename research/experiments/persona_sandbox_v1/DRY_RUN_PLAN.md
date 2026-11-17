@@ -12,3 +12,5 @@
 6. 没有本人同意的未来行为标签时，输出只能存档，不能写成准确率。
 
 当前诊断不会读取或打印密钥。编码代理的这次对话也不是受控实验模型。
+
+2026-11-17 在用户电脑上用本目录已导出的 prompt 做过聊天补全短探针。两个模型共 4 次 HTTP 500，对照没有开始，本目录的 `behavior_output` 仍是空。那次记录见 `docs/runs/2026-11-17-operator-host/`。冻结 shuffle 中 `sandbox-focal-01` 为 `own_chart: true`，见 `SHUFFLE_LIMIT.md`。不要为了去掉这个自配对而重写 `result.json`。
