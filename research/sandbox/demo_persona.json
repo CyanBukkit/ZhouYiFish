@@ -1,0 +1,218 @@
+{
+  "graph": {
+    "edges": [
+      {
+        "relation": "一起做社区记录",
+        "source": "sandbox-focal-01",
+        "target": "sandbox-colleague-01"
+      },
+      {
+        "relation": "同一楼层邻居",
+        "source": "sandbox-focal-01",
+        "target": "sandbox-neighbor-01"
+      }
+    ],
+    "fictional": true,
+    "field_class": "synthetic",
+    "nodes": [
+      {
+        "fictional": true,
+        "id": "sandbox-focal-01",
+        "kind": "focal",
+        "synthetic_occupation": "社区记录"
+      },
+      {
+        "fictional": true,
+        "id": "sandbox-colleague-01",
+        "kind": "colleague",
+        "synthetic_occupation": "同一社区档案室的同事"
+      },
+      {
+        "fictional": true,
+        "id": "sandbox-neighbor-01",
+        "kind": "neighbor",
+        "synthetic_occupation": null
+      }
+    ],
+    "usable_as_validation_label": false
+  },
+  "historical_cases": {
+    "accuracy_scored": false,
+    "blind_test": false,
+    "non_divination_control": [
+      {
+        "person_id": "public-einstein",
+        "place": "Ulm, Bahnhofstrasse 135",
+        "uses_chart": false,
+        "year": "1879"
+      },
+      {
+        "person_id": "public-churchill",
+        "place": "Blenheim Palace, Oxfordshire",
+        "uses_chart": false,
+        "year": "1874"
+      },
+      {
+        "person_id": "public-denola",
+        "place": "Paris, 11th arrondissement",
+        "uses_chart": false,
+        "year": "1865"
+      },
+      {
+        "person_id": "public-thomas-clement",
+        "place": "Luxembourg",
+        "uses_chart": false,
+        "year": "1886"
+      }
+    ],
+    "real_chart": [
+      {
+        "career_facts": [
+          "1901年没有找到教职，担任瑞士专利局技术助理。",
+          "1914年任柏林凯泽·威廉物理研究所所长。",
+          "1933年放弃德国公民身份并前往美国，在普林斯顿任理论物理教授。",
+          "1955年4月18日在新泽西州普林斯顿逝世。"
+        ],
+        "chart_status": "time_quoted_conversion_unsettled",
+        "person_id": "public-einstein"
+      },
+      {
+        "career_facts": [
+          "1895年加入皇家骑兵，并做过兼职记者。",
+          "任海军大臣期间主导加里波利战役，因批评辞职并到西线作战。",
+          "1929年大选后失去席位，随后约十一年不在政府内任职。",
+          "1940年至1945年任首相，1945年大选失败下台；1951年至1955年再次任首相，1955年因健康辞职。",
+          "1965年1月24日在伦敦逝世。"
+        ],
+        "chart_status": "time_quoted_conversion_unsettled",
+        "person_id": "public-churchill"
+      },
+      {
+        "career_facts": [
+          "从剧院进入百代公司，1908年起拍摄历史片和通俗小说改编。",
+          "1920年后停止拍片，退居老年演员住所。",
+          "1944年3月3日在讷伊逝世。"
+        ],
+        "chart_status": "hour_not_independently_confirmed",
+        "person_id": "public-denola"
+      },
+      {
+        "career_facts": [
+          "1919年成为卢森堡议会第一位女议员，1919至1931年间是唯一的女议员。",
+          "1920年提出两性民事与经济平等法案，未通过。",
+          "离开社会党后，1931年未再当选。"
+        ],
+        "chart_status": "hour_not_independently_confirmed",
+        "person_id": "public-thomas-clement"
+      }
+    ],
+    "sample_supports_validity_claim": false,
+    "shuffle_is_full_distribution": false,
+    "shuffled_pairing": [
+      {
+        "career_facts_from": "public-thomas-clement",
+        "chart_from": "public-einstein"
+      },
+      {
+        "career_facts_from": "public-churchill",
+        "chart_from": "public-churchill"
+      },
+      {
+        "career_facts_from": "public-einstein",
+        "chart_from": "public-denola"
+      },
+      {
+        "career_facts_from": "public-denola",
+        "chart_from": "public-thomas-clement"
+      }
+    ]
+  },
+  "object": "fictional_human_persona_sandbox",
+  "persona": {
+    "birth": {
+      "clock": "2001-06-15T10:30:00+08:00",
+      "fictional": true,
+      "note": "拟定时刻，不是任何人的出生资料。"
+    },
+    "chart": {
+      "day_pillar": "己酉",
+      "does_not_determine_occupation": true,
+      "hour_pillar": "己巳",
+      "input_utc8": "2001-06-15T10:30:00+08:00",
+      "lunar_month_used_as_bazi_month": false,
+      "month_pillar": "甲午",
+      "pillars": "辛巳甲午己酉己巳",
+      "policy": {
+        "day_boundary": "zi_zheng_00:00_in_the_input_timezone_converted_to_UTC+8",
+        "day_cycle_check": "sxtwl sexagenary day, no second published day-ganzhi table in this repo",
+        "hour_time": "standard_clock_not_true_solar_time",
+        "library": "sxtwl==2.0.7",
+        "month_boundary": "jie_instant_not_zhongqi_and_not_lunar_month",
+        "not_implemented_day_school": "zi_chu_23:00_changes_the_day_pillar",
+        "solar_term_check": "2024 HKO terms within one minute; not every historical year",
+        "year_boundary": "lichun_instant_not_spring_festival_and_not_civil_date"
+      },
+      "status": "complete_under_stated_policy",
+      "true_solar_time_applied": false,
+      "year_pillar": "辛巳"
+    },
+    "display_name": "沙盒甲",
+    "fictional": true,
+    "living_place_label": "虚构街区的社区档案室，不是真实地址",
+    "occupation_hypothesis": {
+      "candidates": [
+        "后勤照料",
+        "社区记录"
+      ],
+      "citation": "研究沙盒自行编写的日干类象表，不是古籍引文。",
+      "claim": "人为设定的候选，可编辑，不表示八字客观决定职业。",
+      "field_class": "hypothesis",
+      "is_bazi_fact": false,
+      "source": "sandbox_protocol_v1_human_set_table",
+      "usable_as_validation_label": false
+    },
+    "occupation_label": null,
+    "persona_id": "sandbox-focal-01",
+    "real_identity": null,
+    "synthetic_occupation": {
+      "editor": "sandbox_protocol_v1",
+      "field_class": "synthetic_research_setting",
+      "is_bazi_fact": false,
+      "note": "这是研究设定的虚构职业，不是八字推算出的事实。",
+      "selected_from_candidates": [
+        "后勤照料",
+        "社区记录"
+      ],
+      "title": "社区记录",
+      "usable_as_validation_label": false
+    }
+  },
+  "real_validation": {
+    "four_arm_model_run": false,
+    "oasis_connected": false,
+    "reason": "没有本人同意、可核验的真实职业或未来行为记录。不收集未授权的出生时间，也不用虚构人物或历史名人补成验证样本。",
+    "records_in_repo": 0,
+    "status": "blocked"
+  },
+  "same_background_inputs": {
+    "field_classes": {
+      "behavior": "not_generated",
+      "birth_and_chart": "fictional",
+      "graph": "synthetic",
+      "occupation": "synthetic_research_setting"
+    },
+    "llm_called": false,
+    "model_run": false,
+    "same_background": "人物编号：sandbox-focal-01。虚构。\n生活环境：虚构街区的社区档案室，不是真实地址。\n研究设定职业：社区记录。这不是八字事实。\n关系：一起做社区记录；同一楼层邻居。\n场景：是否把一份共享备忘录交给同事继续改。只讨论合作或拒绝。\n",
+    "with_bazi": "人物编号：sandbox-focal-01。虚构。\n生活环境：虚构街区的社区档案室，不是真实地址。\n研究设定职业：社区记录。这不是八字事实。\n关系：一起做社区记录；同一楼层邻居。\n场景：是否把一份共享备忘录交给同事继续改。只讨论合作或拒绝。\n本组附上八字：辛巳甲午己酉己巳。八字不决定职业。\n",
+    "without_bazi": "人物编号：sandbox-focal-01。虚构。\n生活环境：虚构街区的社区档案室，不是真实地址。\n研究设定职业：社区记录。这不是八字事实。\n关系：一起做社区记录；同一楼层邻居。\n场景：是否把一份共享备忘录交给同事继续改。只讨论合作或拒绝。\n本组不附八字。\n"
+  },
+  "simulated_behavior": {
+    "choice": "cooperate",
+    "persona_id": "sandbox-focal-01",
+    "scenario": "是否把一份共享备忘录交给同事继续改",
+    "simulated_role_output": true,
+    "usable_as_human_ground_truth": false
+  },
+  "weather_answers_this_question": false
+}

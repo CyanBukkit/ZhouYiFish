@@ -1,0 +1,181 @@
+{
+  "status": "exploratory_examples_not_a_sample",
+  "not_a_blind_test": "姓名写在记录里。模型若看到姓名或生日，可能认出人物并记住职业。这些例子不是盲测，也不估计增益。",
+  "best_worst_ranking": "not_applied",
+  "ranking_reason": "职业路径只按各来源里的任职、作品或选举结果记录。不设人格高低，也不把成就或挫折叫命好命差。",
+  "bazi_emitted": false,
+  "bazi_reason": "引用的钟点属于历史地方时或家族信件。未做真太阳时、铁路时或夏令时换算，因此不输出四柱。",
+  "sources_checked": [
+    "https://www.astro.com/astro-databank/Einstein,_Albert 直接打开返回 403，没有抄录该库。",
+    "巴黎档案和卢森堡出生证原件没有在本次打开。Astro-Databank 的 Rodden AA 只当作二手线索，不当作已核验证件。",
+    "诺贝尔奖传记、英国政府前首相页、丘吉尔学会、国民信托、卢森堡政府文化页、法国国家图书馆和个人页对证书文字的转述。"
+  ],
+  "time_sourced_cases": [
+    {
+      "person_id": "public-einstein",
+      "name": "Albert Einstein",
+      "deceased": true,
+      "death": "1955-04-18, Princeton",
+      "occupation_domain": "physics",
+      "birth_time_source": {
+        "quoted_time": "1879-03-14 11:30 in the morning",
+        "place": "Ulm, Bahnhofstrasse 135",
+        "url": "https://dipc.ehu.eus/en/science-society/albert-einstein/the-man/biography/childhood-and-teenage-years",
+        "what_it_is": "研究中心网页转述出生时刻，不是本次查看的出生证原件。",
+        "second_mention": "https://www.fefox.com/RESOURCES/Einstein_biography_4.html 转述乌尔姆登记第224号写有11:30 a.m.。个人网页，不是档案馆原件。",
+        "certificate_not_opened": "https://artsandculture.google.com/story/albert-einstein-german-swiss-and-american-einstein-archive/4QWRAvk1sh4A8A 显示爱因斯坦档案馆藏有1879-03-15的出生证图像，本次摘录没有读到钟点那一行。",
+        "credibility": "secondary_transcription"
+      },
+      "timezone_note": "1879年乌尔姆的钟点不是现在的 Europe/Berlin。地方平时与后来的标准时没有在这里换算。",
+      "dst_note": "该日没有现代夏令时制度可套用。仍不把11:30写成某一时区的绝对时刻。",
+      "chart_status": "time_quoted_conversion_unsettled",
+      "career_source": {
+        "url": "https://www.nobelprize.org/prizes/physics/1921/einstein/biographical/",
+        "facts": [
+          "1901年没有找到教职，担任瑞士专利局技术助理。",
+          "1914年任柏林凯泽·威廉物理研究所所长。",
+          "1933年放弃德国公民身份并前往美国，在普林斯顿任理论物理教授。",
+          "1955年4月18日在新泽西州普林斯顿逝世。"
+        ]
+      },
+      "path_note": "同一份诺贝尔奖传记里既有早期未获教职，也有后来的教授职位和1933年离德。这不是对人的高低评价。"
+    },
+    {
+      "person_id": "public-churchill",
+      "name": "Winston Churchill",
+      "deceased": true,
+      "death": "1965-01-24, London",
+      "occupation_domain": "politics_and_writing",
+      "birth_time_source": {
+        "quoted_time": "1874-11-30 1:30 in the morning",
+        "place": "Blenheim Palace, Oxfordshire",
+        "url": "https://winstonchurchill.org/churchill-bulletin/bulletin-198-nov-2024/sesquicentennial/",
+        "what_it_is": "丘吉尔学会引用伦道夫·丘吉尔当天写给克拉拉·杰罗姆的信，信中说孩子在当天凌晨1:30出生。不是本次查看的出生登记册。",
+        "second_mention": "https://www.nationaltrust.org.uk/visit/kent/chartwell/chartwell-150-years-winston-churchill 也写1:30am。",
+        "register_hour_not_seen": "同一学会文章说出生于12月23日在伍德斯托克登记，但没有引用登记册上的钟点。",
+        "credibility": "contemporary_family_letter_quoted_by_secondary_publisher"
+      },
+      "timezone_note": "1874年牛津郡的凌晨1:30不一定等于后来的格林尼治平时。未做地方平时换算。",
+      "dst_note": "1874年无夏令时。",
+      "chart_status": "time_quoted_conversion_unsettled",
+      "career_source": {
+        "url": "https://www.gov.uk/government/history/past-prime-ministers/winston-churchill",
+        "facts": [
+          "1895年加入皇家骑兵，并做过兼职记者。",
+          "任海军大臣期间主导加里波利战役，因批评辞职并到西线作战。",
+          "1929年大选后失去席位，随后约十一年不在政府内任职。",
+          "1940年至1945年任首相，1945年大选失败下台；1951年至1955年再次任首相，1955年因健康辞职。",
+          "1965年1月24日在伦敦逝世。"
+        ]
+      },
+      "path_note": "政府页同时记录战时首相职位、加里波利后的辞职和1945年选举失败。这里不把这些叫成功人格或失败人格。"
+    },
+    {
+      "person_id": "public-denola",
+      "name": "Georges Denola",
+      "deceased": true,
+      "death": "1944-03-03, Neuilly-sur-Seine",
+      "occupation_domain": "film_and_theatre",
+      "birth_time_source": {
+        "quoted_time": "1865-08-29 17:00, quoted as cinq heures du soir",
+        "place": "Paris, 11th arrondissement",
+        "url": "https://www.astro.com/astro-databank/Denola,_Georges",
+        "what_it_is": "检索摘要中的 Astro-Databank 来源注称巴黎第11区出生证第3229号写有下午5时，Rodden AA。本次直接打开该页返回403，没有看见证书。",
+        "independent_date_source": "https://catalogue.bnf.fr/ark:/12148/cb14676312g 法国国家图书馆记录1865-08-29生于巴黎11区，并指向巴黎档案同一出生证编号，但没有引用钟点。",
+        "credibility": "hour_is_single_secondary_transcription"
+      },
+      "timezone_note": "摘要写的是地方平时 LMT，不是现代巴黎标准时。未换算。",
+      "dst_note": "1865年无夏令时。",
+      "chart_status": "hour_not_independently_confirmed",
+      "career_source": {
+        "url": "https://fr.wikipedia.org/wiki/Georges_Denola",
+        "facts": [
+          "从剧院进入百代公司，1908年起拍摄历史片和通俗小说改编。",
+          "1920年后停止拍片，退居老年演员住所。",
+          "1944年3月3日在讷伊逝世。"
+        ]
+      },
+      "path_note": "维基百科记载了拍片阶段和1920年后停止拍片。停止拍片不是人格失败标签。"
+    },
+    {
+      "person_id": "public-thomas-clement",
+      "name": "Marguerite Thomas-Clement",
+      "deceased": true,
+      "death": "1979-04-11, Noerdange, as given by French Wikipedia; the government page used here states 1886-1979 without the day",
+      "occupation_domain": "teaching_and_parliament",
+      "birth_time_source": {
+        "quoted_time": "1886-05-17 10:00, as claimed in a search excerpt",
+        "place": "Luxembourg",
+        "url": "https://www.astro.com/astro-databank/Thomas-Clement,_Marguerite",
+        "what_it_is": "检索摘要称出生证第225号写上午10时，Rodden AA，地方平时。直接打开返回403，证书未核。",
+        "independent_date_source": "https://luxembourg.public.lu/fr/societe-et-culture/histoire/femmes-pionnieres-luxembourgeoises.html 写1886–1979，没有钟点。法文维基正文写1886-05-17，信息框又写1887-05-17，日期存在冲突，本记录采用政府文化页的1886年，不采信未核的钟点。",
+        "credibility": "hour_is_single_secondary_transcription"
+      },
+      "timezone_note": "摘要中的地方平时没有换算成现代欧洲时间。",
+      "dst_note": "1886年无夏令时。",
+      "chart_status": "hour_not_independently_confirmed",
+      "career_source": {
+        "url": "https://luxembourg.public.lu/fr/societe-et-culture/histoire/femmes-pionnieres-luxembourgeoises.html",
+        "facts": [
+          "1919年成为卢森堡议会第一位女议员，1919至1931年间是唯一的女议员。",
+          "1920年提出两性民事与经济平等法案，未通过。",
+          "离开社会党后，1931年未再当选。"
+        ]
+      },
+      "path_note": "政府文化页同时写当选和1931年未再当选。未当选不是人格高低。"
+    }
+  ],
+  "date_only_cases": [
+    {
+      "person_id": "public-lu-xun",
+      "name": "周树人（鲁迅）",
+      "deceased": true,
+      "hour": null,
+      "chart_status": "not_applicable_missing_hour",
+      "birth_date_source": {
+        "url": "http://www.chinawriter.com.cn/n1/2021/0830/c440984-32212719.html",
+        "text": "许寿裳年谱：光绪七年八月初三，绍兴。"
+      },
+      "career_source": {
+        "url": "http://www.chinawriter.com.cn/n1/2021/0830/c440984-32212719.html",
+        "facts": ["十二岁入三味书屋。", "1936年10月19日逝世。"]
+      },
+      "gregorian_date": "1881-09-25",
+      "place": "浙江绍兴"
+    },
+    {
+      "person_id": "public-hu-shi",
+      "name": "胡适",
+      "deceased": true,
+      "hour": null,
+      "chart_status": "not_applicable_missing_hour",
+      "birth_date_source": {
+        "url": "https://www.chinawriter.com.cn/n1/2025/0610/c404063-40497644.html",
+        "text": "报道引《四十自述》：光绪十七年十一月十七日（1891-12-17）。"
+      },
+      "career_source": {
+        "url": "https://www.chinawriter.com.cn/n1/2025/0610/c404063-40497644.html",
+        "facts": ["1962年2月24日在院士会议后逝世。"]
+      },
+      "gregorian_date": "1891-12-17",
+      "place": "上海"
+    },
+    {
+      "person_id": "public-hua-luogeng",
+      "name": "华罗庚",
+      "deceased": true,
+      "hour": null,
+      "chart_status": "not_applicable_missing_hour",
+      "birth_date_source": {
+        "url": "https://www.cas.cn/zt/rwzt/jnhlgdcybzn/spys/201011/t20101111_3009235.html",
+        "text": "中国科学院生平：1910-11-12，江苏金坛。无时辰。"
+      },
+      "career_source": {
+        "url": "https://www.cas.cn/zt/rwzt/jnhlgdcybzn/spys/201011/t20101111_3009235.html",
+        "facts": ["离校后在杂货铺学徒。", "1931年到清华大学。", "1985-06-12在东京逝世。"]
+      },
+      "gregorian_date": "1910-11-12",
+      "place": "江苏金坛"
+    }
+  ]
+}

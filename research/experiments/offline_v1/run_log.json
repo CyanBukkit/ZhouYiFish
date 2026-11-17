@@ -1,0 +1,11 @@
+{
+  "computed_at": "2026-11-16T16:07:55+00:00",
+  "git_rev": "b3901d8aa85fe8984ce49a9ee27ac1e3506b8beb",
+  "llm_four_arm": "not_run",
+  "platform": "Linux-6.12.113+-x86_64-with-glibc2.39",
+  "protocol_sha256": "6b27fcc0699a27d0614ac6566a105a1816091cc33db2ce5e9d5dd76a1c1aa809",
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "sample_class": "historical_open_meteo_retrospective",
+  "snapshot_sha256": "52eec08fa220cdd1166076dae675867feb05676d2a14f60a0cee0c9186b6b219",
+  "wall_clock_seconds": 3.7623603350000394
+}

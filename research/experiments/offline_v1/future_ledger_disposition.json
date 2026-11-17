@@ -1,0 +1,400 @@
+{
+  "computed_at_read_from_run_log": "2026-11-16T16:07:55+00:00",
+  "computed_at_shanghai": "2026-11-17T00:07:55+08:00",
+  "queue_status": "invalid_excluded",
+  "rows": [
+    {
+      "event_id": "shanghai-precip-ge1mm-2026-11-16",
+      "event_start": "2026-11-16T00:00:00+08:00",
+      "excluded": true,
+      "outcome_in_old_file": null,
+      "reasons": [
+        "该当地日在 offline_v1 的 computed_at 之前已经结束。",
+        "issued_prospectively 由当时的生成器写成常数 true，没有比较公开提交时间与 event_start。",
+        "input_sha256 和 prediction_sha256 是本地内容哈希，不是服务器可验证的提交时间。",
+        "结算写在同一行里，而不是另表追加。"
+      ],
+      "status": "invalid"
+    },
+    {
+      "event_id": "shanghai-precip-ge1mm-2026-11-17",
+      "event_start": "2026-11-17T00:00:00+08:00",
+      "excluded": true,
+      "outcome_in_old_file": null,
+      "reasons": [
+        "该当地日在 offline_v1 的 computed_at 时已经开始，不是完整的事前日。",
+        "issued_prospectively 由当时的生成器写成常数 true，没有比较公开提交时间与 event_start。",
+        "input_sha256 和 prediction_sha256 是本地内容哈希，不是服务器可验证的提交时间。",
+        "结算写在同一行里，而不是另表追加。"
+      ],
+      "status": "invalid"
+    },
+    {
+      "event_id": "shanghai-precip-ge1mm-2026-11-18",
+      "event_start": "2026-11-18T00:00:00+08:00",
+      "excluded": true,
+      "outcome_in_old_file": null,
+      "reasons": [
+        "当地日的 0 点晚于当时的 computed_at，但这份旧队列的发行标记无效，所以整行退出前瞻。",
+        "issued_prospectively 由当时的生成器写成常数 true，没有比较公开提交时间与 event_start。",
+        "input_sha256 和 prediction_sha256 是本地内容哈希，不是服务器可验证的提交时间。",
+        "结算写在同一行里，而不是另表追加。"
+      ],
+      "status": "invalid"
+    },
+    {
+      "event_id": "shanghai-precip-ge1mm-2026-11-19",
+      "event_start": "2026-11-19T00:00:00+08:00",
+      "excluded": true,
+      "outcome_in_old_file": null,
+      "reasons": [
+        "当地日的 0 点晚于当时的 computed_at，但这份旧队列的发行标记无效，所以整行退出前瞻。",
+        "issued_prospectively 由当时的生成器写成常数 true，没有比较公开提交时间与 event_start。",
+        "input_sha256 和 prediction_sha256 是本地内容哈希，不是服务器可验证的提交时间。",
+        "结算写在同一行里，而不是另表追加。"
+      ],
+      "status": "invalid"
+    },
+    {
+      "event_id": "shanghai-precip-ge1mm-2026-11-20",
+      "event_start": "2026-11-20T00:00:00+08:00",
+      "excluded": true,
+      "outcome_in_old_file": null,
+      "reasons": [
+        "当地日的 0 点晚于当时的 computed_at，但这份旧队列的发行标记无效，所以整行退出前瞻。",
+        "issued_prospectively 由当时的生成器写成常数 true，没有比较公开提交时间与 event_start。",
+        "input_sha256 和 prediction_sha256 是本地内容哈希，不是服务器可验证的提交时间。",
+        "结算写在同一行里，而不是另表追加。"
+      ],
+      "status": "invalid"
+    },
+    {
+      "event_id": "shanghai-precip-ge1mm-2026-11-21",
+      "event_start": "2026-11-21T00:00:00+08:00",
+      "excluded": true,
+      "outcome_in_old_file": null,
+      "reasons": [
+        "当地日的 0 点晚于当时的 computed_at，但这份旧队列的发行标记无效，所以整行退出前瞻。",
+        "issued_prospectively 由当时的生成器写成常数 true，没有比较公开提交时间与 event_start。",
+        "input_sha256 和 prediction_sha256 是本地内容哈希，不是服务器可验证的提交时间。",
+        "结算写在同一行里，而不是另表追加。"
+      ],
+      "status": "invalid"
+    },
+    {
+      "event_id": "shanghai-precip-ge1mm-2026-11-22",
+      "event_start": "2026-11-22T00:00:00+08:00",
+      "excluded": true,
+      "outcome_in_old_file": null,
+      "reasons": [
+        "当地日的 0 点晚于当时的 computed_at，但这份旧队列的发行标记无效，所以整行退出前瞻。",
+        "issued_prospectively 由当时的生成器写成常数 true，没有比较公开提交时间与 event_start。",
+        "input_sha256 和 prediction_sha256 是本地内容哈希，不是服务器可验证的提交时间。",
+        "结算写在同一行里，而不是另表追加。"
+      ],
+      "status": "invalid"
+    },
+    {
+      "event_id": "shanghai-precip-ge1mm-2026-11-23",
+      "event_start": "2026-11-23T00:00:00+08:00",
+      "excluded": true,
+      "outcome_in_old_file": null,
+      "reasons": [
+        "当地日的 0 点晚于当时的 computed_at，但这份旧队列的发行标记无效，所以整行退出前瞻。",
+        "issued_prospectively 由当时的生成器写成常数 true，没有比较公开提交时间与 event_start。",
+        "input_sha256 和 prediction_sha256 是本地内容哈希，不是服务器可验证的提交时间。",
+        "结算写在同一行里，而不是另表追加。"
+      ],
+      "status": "invalid"
+    },
+    {
+      "event_id": "shanghai-precip-ge1mm-2026-11-24",
+      "event_start": "2026-11-24T00:00:00+08:00",
+      "excluded": true,
+      "outcome_in_old_file": null,
+      "reasons": [
+        "当地日的 0 点晚于当时的 computed_at，但这份旧队列的发行标记无效，所以整行退出前瞻。",
+        "issued_prospectively 由当时的生成器写成常数 true，没有比较公开提交时间与 event_start。",
+        "input_sha256 和 prediction_sha256 是本地内容哈希，不是服务器可验证的提交时间。",
+        "结算写在同一行里，而不是另表追加。"
+      ],
+      "status": "invalid"
+    },
+    {
+      "event_id": "shanghai-precip-ge1mm-2026-11-25",
+      "event_start": "2026-11-25T00:00:00+08:00",
+      "excluded": true,
+      "outcome_in_old_file": null,
+      "reasons": [
+        "当地日的 0 点晚于当时的 computed_at，但这份旧队列的发行标记无效，所以整行退出前瞻。",
+        "issued_prospectively 由当时的生成器写成常数 true，没有比较公开提交时间与 event_start。",
+        "input_sha256 和 prediction_sha256 是本地内容哈希，不是服务器可验证的提交时间。",
+        "结算写在同一行里，而不是另表追加。"
+      ],
+      "status": "invalid"
+    },
+    {
+      "event_id": "shanghai-precip-ge1mm-2026-11-26",
+      "event_start": "2026-11-26T00:00:00+08:00",
+      "excluded": true,
+      "outcome_in_old_file": null,
+      "reasons": [
+        "当地日的 0 点晚于当时的 computed_at，但这份旧队列的发行标记无效，所以整行退出前瞻。",
+        "issued_prospectively 由当时的生成器写成常数 true，没有比较公开提交时间与 event_start。",
+        "input_sha256 和 prediction_sha256 是本地内容哈希，不是服务器可验证的提交时间。",
+        "结算写在同一行里，而不是另表追加。"
+      ],
+      "status": "invalid"
+    },
+    {
+      "event_id": "shanghai-precip-ge1mm-2026-11-27",
+      "event_start": "2026-11-27T00:00:00+08:00",
+      "excluded": true,
+      "outcome_in_old_file": null,
+      "reasons": [
+        "当地日的 0 点晚于当时的 computed_at，但这份旧队列的发行标记无效，所以整行退出前瞻。",
+        "issued_prospectively 由当时的生成器写成常数 true，没有比较公开提交时间与 event_start。",
+        "input_sha256 和 prediction_sha256 是本地内容哈希，不是服务器可验证的提交时间。",
+        "结算写在同一行里，而不是另表追加。"
+      ],
+      "status": "invalid"
+    },
+    {
+      "event_id": "shanghai-precip-ge1mm-2026-11-28",
+      "event_start": "2026-11-28T00:00:00+08:00",
+      "excluded": true,
+      "outcome_in_old_file": null,
+      "reasons": [
+        "当地日的 0 点晚于当时的 computed_at，但这份旧队列的发行标记无效，所以整行退出前瞻。",
+        "issued_prospectively 由当时的生成器写成常数 true，没有比较公开提交时间与 event_start。",
+        "input_sha256 和 prediction_sha256 是本地内容哈希，不是服务器可验证的提交时间。",
+        "结算写在同一行里，而不是另表追加。"
+      ],
+      "status": "invalid"
+    },
+    {
+      "event_id": "shanghai-precip-ge1mm-2026-11-29",
+      "event_start": "2026-11-29T00:00:00+08:00",
+      "excluded": true,
+      "outcome_in_old_file": null,
+      "reasons": [
+        "当地日的 0 点晚于当时的 computed_at，但这份旧队列的发行标记无效，所以整行退出前瞻。",
+        "issued_prospectively 由当时的生成器写成常数 true，没有比较公开提交时间与 event_start。",
+        "input_sha256 和 prediction_sha256 是本地内容哈希，不是服务器可验证的提交时间。",
+        "结算写在同一行里，而不是另表追加。"
+      ],
+      "status": "invalid"
+    },
+    {
+      "event_id": "shanghai-precip-ge1mm-2026-11-30",
+      "event_start": "2026-11-30T00:00:00+08:00",
+      "excluded": true,
+      "outcome_in_old_file": null,
+      "reasons": [
+        "当地日的 0 点晚于当时的 computed_at，但这份旧队列的发行标记无效，所以整行退出前瞻。",
+        "issued_prospectively 由当时的生成器写成常数 true，没有比较公开提交时间与 event_start。",
+        "input_sha256 和 prediction_sha256 是本地内容哈希，不是服务器可验证的提交时间。",
+        "结算写在同一行里，而不是另表追加。"
+      ],
+      "status": "invalid"
+    },
+    {
+      "event_id": "shanghai-precip-ge1mm-2026-12-01",
+      "event_start": "2026-12-01T00:00:00+08:00",
+      "excluded": true,
+      "outcome_in_old_file": null,
+      "reasons": [
+        "当地日的 0 点晚于当时的 computed_at，但这份旧队列的发行标记无效，所以整行退出前瞻。",
+        "issued_prospectively 由当时的生成器写成常数 true，没有比较公开提交时间与 event_start。",
+        "input_sha256 和 prediction_sha256 是本地内容哈希，不是服务器可验证的提交时间。",
+        "结算写在同一行里，而不是另表追加。"
+      ],
+      "status": "invalid"
+    },
+    {
+      "event_id": "shanghai-precip-ge1mm-2026-12-02",
+      "event_start": "2026-12-02T00:00:00+08:00",
+      "excluded": true,
+      "outcome_in_old_file": null,
+      "reasons": [
+        "当地日的 0 点晚于当时的 computed_at，但这份旧队列的发行标记无效，所以整行退出前瞻。",
+        "issued_prospectively 由当时的生成器写成常数 true，没有比较公开提交时间与 event_start。",
+        "input_sha256 和 prediction_sha256 是本地内容哈希，不是服务器可验证的提交时间。",
+        "结算写在同一行里，而不是另表追加。"
+      ],
+      "status": "invalid"
+    },
+    {
+      "event_id": "shanghai-precip-ge1mm-2026-12-03",
+      "event_start": "2026-12-03T00:00:00+08:00",
+      "excluded": true,
+      "outcome_in_old_file": null,
+      "reasons": [
+        "当地日的 0 点晚于当时的 computed_at，但这份旧队列的发行标记无效，所以整行退出前瞻。",
+        "issued_prospectively 由当时的生成器写成常数 true，没有比较公开提交时间与 event_start。",
+        "input_sha256 和 prediction_sha256 是本地内容哈希，不是服务器可验证的提交时间。",
+        "结算写在同一行里，而不是另表追加。"
+      ],
+      "status": "invalid"
+    },
+    {
+      "event_id": "shanghai-precip-ge1mm-2026-12-04",
+      "event_start": "2026-12-04T00:00:00+08:00",
+      "excluded": true,
+      "outcome_in_old_file": null,
+      "reasons": [
+        "当地日的 0 点晚于当时的 computed_at，但这份旧队列的发行标记无效，所以整行退出前瞻。",
+        "issued_prospectively 由当时的生成器写成常数 true，没有比较公开提交时间与 event_start。",
+        "input_sha256 和 prediction_sha256 是本地内容哈希，不是服务器可验证的提交时间。",
+        "结算写在同一行里，而不是另表追加。"
+      ],
+      "status": "invalid"
+    },
+    {
+      "event_id": "shanghai-precip-ge1mm-2026-12-05",
+      "event_start": "2026-12-05T00:00:00+08:00",
+      "excluded": true,
+      "outcome_in_old_file": null,
+      "reasons": [
+        "当地日的 0 点晚于当时的 computed_at，但这份旧队列的发行标记无效，所以整行退出前瞻。",
+        "issued_prospectively 由当时的生成器写成常数 true，没有比较公开提交时间与 event_start。",
+        "input_sha256 和 prediction_sha256 是本地内容哈希，不是服务器可验证的提交时间。",
+        "结算写在同一行里，而不是另表追加。"
+      ],
+      "status": "invalid"
+    },
+    {
+      "event_id": "shanghai-precip-ge1mm-2026-12-06",
+      "event_start": "2026-12-06T00:00:00+08:00",
+      "excluded": true,
+      "outcome_in_old_file": null,
+      "reasons": [
+        "当地日的 0 点晚于当时的 computed_at，但这份旧队列的发行标记无效，所以整行退出前瞻。",
+        "issued_prospectively 由当时的生成器写成常数 true，没有比较公开提交时间与 event_start。",
+        "input_sha256 和 prediction_sha256 是本地内容哈希，不是服务器可验证的提交时间。",
+        "结算写在同一行里，而不是另表追加。"
+      ],
+      "status": "invalid"
+    },
+    {
+      "event_id": "shanghai-precip-ge1mm-2026-12-07",
+      "event_start": "2026-12-07T00:00:00+08:00",
+      "excluded": true,
+      "outcome_in_old_file": null,
+      "reasons": [
+        "当地日的 0 点晚于当时的 computed_at，但这份旧队列的发行标记无效，所以整行退出前瞻。",
+        "issued_prospectively 由当时的生成器写成常数 true，没有比较公开提交时间与 event_start。",
+        "input_sha256 和 prediction_sha256 是本地内容哈希，不是服务器可验证的提交时间。",
+        "结算写在同一行里，而不是另表追加。"
+      ],
+      "status": "invalid"
+    },
+    {
+      "event_id": "shanghai-precip-ge1mm-2026-12-08",
+      "event_start": "2026-12-08T00:00:00+08:00",
+      "excluded": true,
+      "outcome_in_old_file": null,
+      "reasons": [
+        "当地日的 0 点晚于当时的 computed_at，但这份旧队列的发行标记无效，所以整行退出前瞻。",
+        "issued_prospectively 由当时的生成器写成常数 true，没有比较公开提交时间与 event_start。",
+        "input_sha256 和 prediction_sha256 是本地内容哈希，不是服务器可验证的提交时间。",
+        "结算写在同一行里，而不是另表追加。"
+      ],
+      "status": "invalid"
+    },
+    {
+      "event_id": "shanghai-precip-ge1mm-2026-12-09",
+      "event_start": "2026-12-09T00:00:00+08:00",
+      "excluded": true,
+      "outcome_in_old_file": null,
+      "reasons": [
+        "当地日的 0 点晚于当时的 computed_at，但这份旧队列的发行标记无效，所以整行退出前瞻。",
+        "issued_prospectively 由当时的生成器写成常数 true，没有比较公开提交时间与 event_start。",
+        "input_sha256 和 prediction_sha256 是本地内容哈希，不是服务器可验证的提交时间。",
+        "结算写在同一行里，而不是另表追加。"
+      ],
+      "status": "invalid"
+    },
+    {
+      "event_id": "shanghai-precip-ge1mm-2026-12-10",
+      "event_start": "2026-12-10T00:00:00+08:00",
+      "excluded": true,
+      "outcome_in_old_file": null,
+      "reasons": [
+        "当地日的 0 点晚于当时的 computed_at，但这份旧队列的发行标记无效，所以整行退出前瞻。",
+        "issued_prospectively 由当时的生成器写成常数 true，没有比较公开提交时间与 event_start。",
+        "input_sha256 和 prediction_sha256 是本地内容哈希，不是服务器可验证的提交时间。",
+        "结算写在同一行里，而不是另表追加。"
+      ],
+      "status": "invalid"
+    },
+    {
+      "event_id": "shanghai-precip-ge1mm-2026-12-11",
+      "event_start": "2026-12-11T00:00:00+08:00",
+      "excluded": true,
+      "outcome_in_old_file": null,
+      "reasons": [
+        "当地日的 0 点晚于当时的 computed_at，但这份旧队列的发行标记无效，所以整行退出前瞻。",
+        "issued_prospectively 由当时的生成器写成常数 true，没有比较公开提交时间与 event_start。",
+        "input_sha256 和 prediction_sha256 是本地内容哈希，不是服务器可验证的提交时间。",
+        "结算写在同一行里，而不是另表追加。"
+      ],
+      "status": "invalid"
+    },
+    {
+      "event_id": "shanghai-precip-ge1mm-2026-12-12",
+      "event_start": "2026-12-12T00:00:00+08:00",
+      "excluded": true,
+      "outcome_in_old_file": null,
+      "reasons": [
+        "当地日的 0 点晚于当时的 computed_at，但这份旧队列的发行标记无效，所以整行退出前瞻。",
+        "issued_prospectively 由当时的生成器写成常数 true，没有比较公开提交时间与 event_start。",
+        "input_sha256 和 prediction_sha256 是本地内容哈希，不是服务器可验证的提交时间。",
+        "结算写在同一行里，而不是另表追加。"
+      ],
+      "status": "invalid"
+    },
+    {
+      "event_id": "shanghai-precip-ge1mm-2026-12-13",
+      "event_start": "2026-12-13T00:00:00+08:00",
+      "excluded": true,
+      "outcome_in_old_file": null,
+      "reasons": [
+        "当地日的 0 点晚于当时的 computed_at，但这份旧队列的发行标记无效，所以整行退出前瞻。",
+        "issued_prospectively 由当时的生成器写成常数 true，没有比较公开提交时间与 event_start。",
+        "input_sha256 和 prediction_sha256 是本地内容哈希，不是服务器可验证的提交时间。",
+        "结算写在同一行里，而不是另表追加。"
+      ],
+      "status": "invalid"
+    },
+    {
+      "event_id": "shanghai-precip-ge1mm-2026-12-14",
+      "event_start": "2026-12-14T00:00:00+08:00",
+      "excluded": true,
+      "outcome_in_old_file": null,
+      "reasons": [
+        "当地日的 0 点晚于当时的 computed_at，但这份旧队列的发行标记无效，所以整行退出前瞻。",
+        "issued_prospectively 由当时的生成器写成常数 true，没有比较公开提交时间与 event_start。",
+        "input_sha256 和 prediction_sha256 是本地内容哈希，不是服务器可验证的提交时间。",
+        "结算写在同一行里，而不是另表追加。"
+      ],
+      "status": "invalid"
+    },
+    {
+      "event_id": "shanghai-precip-ge1mm-2026-12-15",
+      "event_start": "2026-12-15T00:00:00+08:00",
+      "excluded": true,
+      "outcome_in_old_file": null,
+      "reasons": [
+        "当地日的 0 点晚于当时的 computed_at，但这份旧队列的发行标记无效，所以整行退出前瞻。",
+        "issued_prospectively 由当时的生成器写成常数 true，没有比较公开提交时间与 event_start。",
+        "input_sha256 和 prediction_sha256 是本地内容哈希，不是服务器可验证的提交时间。",
+        "结算写在同一行里，而不是另表追加。"
+      ],
+      "status": "invalid"
+    }
+  ],
+  "source_bytes_unchanged": true,
+  "source_file": "research/experiments/offline_v1/future_ledger.jsonl",
+  "source_sha256": "3dfc904d94382894712549a4c89a1b3c583cc12a08a432c3d5351d5a31cd2860"
+}

@@ -1,0 +1,9 @@
+{
+  "github_author_date": "2026-11-16T16:22:28Z",
+  "github_committer_date": "2026-11-16T16:22:28Z",
+  "github_html": "https://github.com/CyanBukkit/ZhouYiFish/commit/9f9bc8f6758077ebd4995ec77b45b597eb9008fe",
+  "introducing_commit": "9f9bc8f6758077ebd4995ec77b45b597eb9008fe",
+  "note": "这是 GitHub 返回的提交时间，用来和 event_start 比较。它不是本地内容哈希，也没有回写 ledger.jsonl 或 offline_v1 的 run_log。",
+  "source": "GitHub API repos/CyanBukkit/ZhouYiFish/commits/9f9bc8f6758077ebd4995ec77b45b597eb9008fe",
+  "verification_verified": true
+}

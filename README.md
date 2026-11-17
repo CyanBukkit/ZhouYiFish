@@ -192,6 +192,10 @@ The MiroFish team is recruiting full-time/internship positions. If you're intere
 
 MiroFish's simulation engine is powered by **[OASIS (Open Agent Social Interaction Simulations)](https://github.com/camel-ai/oasis)**, We sincerely thank the CAMEL-AI team for their open-source contributions!
 
+## Zhouyi research module
+
+`research/` now targets a fictional human-persona sandbox, not weather. The four chat arms were not run, OASIS is not connected, and this is not a completed MiroFish enhancement experiment. There is no consented behavior record, so it does not show that a chart predicts better. Read [research/README.md](research/README.md).
+
 ## 📈 Project Statistics
 
 <a href="https://github.com/666ghj/MiroFish">

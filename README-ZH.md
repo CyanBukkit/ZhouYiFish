@@ -192,6 +192,10 @@ MiroFish团队长期招募全职/实习，如果你对多Agent应用感兴趣，
 
 MiroFish 的仿真引擎由 **[OASIS](https://github.com/camel-ai/oasis)** 驱动，我们衷心感谢 CAMEL-AI 团队的开源贡献！
 
+## 周易规则探索模块
+
+`research/` 现在的研究对象是虚构人物沙盒里的合作、沟通和选择，不是天气。**四臂没有运行，OASIS 没有接通，这不是一次已经完成的 MiroFish 增强实验。** 没有本人同意的真实行为数据，不能说预测更准。说明见 [research/README.md](research/README.md)。
+
 ## 📈 项目统计
 
 <a href="https://github.com/666ghj/MiroFish">
