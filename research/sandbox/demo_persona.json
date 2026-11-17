@@ -2,7 +2,7 @@
   "graph": {
     "edges": [
       {
-        "relation": "同一工作小组",
+        "relation": "一起做社区记录",
         "source": "sandbox-focal-01",
         "target": "sandbox-colleague-01"
       },
@@ -13,21 +13,25 @@
       }
     ],
     "fictional": true,
+    "field_class": "synthetic",
     "nodes": [
       {
         "fictional": true,
         "id": "sandbox-focal-01",
-        "kind": "focal"
+        "kind": "focal",
+        "synthetic_occupation": "社区记录"
       },
       {
         "fictional": true,
         "id": "sandbox-colleague-01",
-        "kind": "colleague"
+        "kind": "colleague",
+        "synthetic_occupation": "同一社区档案室的同事"
       },
       {
         "fictional": true,
         "id": "sandbox-neighbor-01",
-        "kind": "neighbor"
+        "kind": "neighbor",
+        "synthetic_occupation": null
       }
     ],
     "usable_as_validation_label": false
@@ -37,61 +41,89 @@
     "blind_test": false,
     "non_divination_control": [
       {
-        "person_id": "public-lu-xun",
-        "place": "浙江绍兴",
-        "year": "1881"
+        "person_id": "public-einstein",
+        "place": "Ulm, Bahnhofstrasse 135",
+        "uses_chart": false,
+        "year": "1879"
       },
       {
-        "person_id": "public-hu-shi",
-        "place": "上海",
-        "year": "1891"
+        "person_id": "public-churchill",
+        "place": "Blenheim Palace, Oxfordshire",
+        "uses_chart": false,
+        "year": "1874"
       },
       {
-        "person_id": "public-hua-luogeng",
-        "place": "江苏金坛",
-        "year": "1910"
+        "person_id": "public-denola",
+        "place": "Paris, 11th arrondissement",
+        "uses_chart": false,
+        "year": "1865"
+      },
+      {
+        "person_id": "public-thomas-clement",
+        "place": "Luxembourg",
+        "uses_chart": false,
+        "year": "1886"
       }
     ],
     "real_chart": [
       {
         "career_facts": [
-          "十二岁入三味书屋读书。",
-          "1936年10月19日上午五时二十五分逝世。"
+          "1901年没有找到教职，担任瑞士专利局技术助理。",
+          "1914年任柏林凯泽·威廉物理研究所所长。",
+          "1933年放弃德国公民身份并前往美国，在普林斯顿任理论物理教授。",
+          "1955年4月18日在新泽西州普林斯顿逝世。"
         ],
-        "chart_status": "not_applicable_missing_hour",
-        "person_id": "public-lu-xun"
+        "chart_status": "time_quoted_conversion_unsettled",
+        "person_id": "public-einstein"
       },
       {
         "career_facts": [
-          "1962年2月24日参加院士会议招待会，散会后倒地逝世。"
+          "1895年加入皇家骑兵，并做过兼职记者。",
+          "任海军大臣期间主导加里波利战役，因批评辞职并到西线作战。",
+          "1929年大选后失去席位，随后约十一年不在政府内任职。",
+          "1940年至1945年任首相，1945年大选失败下台；1951年至1955年再次任首相，1955年因健康辞职。",
+          "1965年1月24日在伦敦逝世。"
         ],
-        "chart_status": "not_applicable_missing_hour",
-        "person_id": "public-hu-shi"
+        "chart_status": "time_quoted_conversion_unsettled",
+        "person_id": "public-churchill"
       },
       {
         "career_facts": [
-          "1924年从金坛县立中学初中毕业，入上海中华职业学校，一年后离校，在父亲的小杂货铺当学徒。",
-          "1931年到清华大学工作。",
-          "1985年6月12日在日本东京作学术报告时逝世。"
+          "从剧院进入百代公司，1908年起拍摄历史片和通俗小说改编。",
+          "1920年后停止拍片，退居老年演员住所。",
+          "1944年3月3日在讷伊逝世。"
         ],
-        "chart_status": "not_applicable_missing_hour",
-        "person_id": "public-hua-luogeng"
+        "chart_status": "hour_not_independently_confirmed",
+        "person_id": "public-denola"
+      },
+      {
+        "career_facts": [
+          "1919年成为卢森堡议会第一位女议员，1919至1931年间是唯一的女议员。",
+          "1920年提出两性民事与经济平等法案，未通过。",
+          "离开社会党后，1931年未再当选。"
+        ],
+        "chart_status": "hour_not_independently_confirmed",
+        "person_id": "public-thomas-clement"
       }
     ],
     "sample_supports_validity_claim": false,
     "shuffle_is_full_distribution": false,
     "shuffled_pairing": [
       {
-        "career_facts_from": "public-hua-luogeng",
-        "chart_from": "public-lu-xun"
+        "career_facts_from": "public-thomas-clement",
+        "chart_from": "public-einstein"
       },
       {
-        "career_facts_from": "public-hu-shi",
-        "chart_from": "public-hu-shi"
+        "career_facts_from": "public-churchill",
+        "chart_from": "public-churchill"
       },
       {
-        "career_facts_from": "public-lu-xun",
-        "chart_from": "public-hua-luogeng"
+        "career_facts_from": "public-einstein",
+        "chart_from": "public-denola"
+      },
+      {
+        "career_facts_from": "public-denola",
+        "chart_from": "public-thomas-clement"
       }
     ]
   },
@@ -126,19 +158,34 @@
     },
     "display_name": "沙盒甲",
     "fictional": true,
-    "living_place_label": "虚构街区，不是真实地址",
+    "living_place_label": "虚构街区的社区档案室，不是真实地址",
     "occupation_hypothesis": {
       "candidates": [
         "后勤照料",
         "社区记录"
       ],
-      "claim": "传统类象假设，可编辑，不表示八字客观决定职业。",
-      "source": "bazi_day_stem_hypothesis",
+      "citation": "研究沙盒自行编写的日干类象表，不是古籍引文。",
+      "claim": "人为设定的候选，可编辑，不表示八字客观决定职业。",
+      "field_class": "hypothesis",
+      "is_bazi_fact": false,
+      "source": "sandbox_protocol_v1_human_set_table",
       "usable_as_validation_label": false
     },
     "occupation_label": null,
     "persona_id": "sandbox-focal-01",
-    "real_identity": null
+    "real_identity": null,
+    "synthetic_occupation": {
+      "editor": "sandbox_protocol_v1",
+      "field_class": "synthetic_research_setting",
+      "is_bazi_fact": false,
+      "note": "这是研究设定的虚构职业，不是八字推算出的事实。",
+      "selected_from_candidates": [
+        "后勤照料",
+        "社区记录"
+      ],
+      "title": "社区记录",
+      "usable_as_validation_label": false
+    }
   },
   "real_validation": {
     "four_arm_model_run": false,
@@ -146,6 +193,19 @@
     "reason": "没有本人同意、可核验的真实职业或未来行为记录。不收集未授权的出生时间，也不用虚构人物或历史名人补成验证样本。",
     "records_in_repo": 0,
     "status": "blocked"
+  },
+  "same_background_inputs": {
+    "field_classes": {
+      "behavior": "not_generated",
+      "birth_and_chart": "fictional",
+      "graph": "synthetic",
+      "occupation": "synthetic_research_setting"
+    },
+    "llm_called": false,
+    "model_run": false,
+    "same_background": "人物编号：sandbox-focal-01。虚构。\n生活环境：虚构街区的社区档案室，不是真实地址。\n研究设定职业：社区记录。这不是八字事实。\n关系：一起做社区记录；同一楼层邻居。\n场景：是否把一份共享备忘录交给同事继续改。只讨论合作或拒绝。\n",
+    "with_bazi": "人物编号：sandbox-focal-01。虚构。\n生活环境：虚构街区的社区档案室，不是真实地址。\n研究设定职业：社区记录。这不是八字事实。\n关系：一起做社区记录；同一楼层邻居。\n场景：是否把一份共享备忘录交给同事继续改。只讨论合作或拒绝。\n本组附上八字：辛巳甲午己酉己巳。八字不决定职业。\n",
+    "without_bazi": "人物编号：sandbox-focal-01。虚构。\n生活环境：虚构街区的社区档案室，不是真实地址。\n研究设定职业：社区记录。这不是八字事实。\n关系：一起做社区记录；同一楼层邻居。\n场景：是否把一份共享备忘录交给同事继续改。只讨论合作或拒绝。\n本组不附八字。\n"
   },
   "simulated_behavior": {
     "choice": "cooperate",

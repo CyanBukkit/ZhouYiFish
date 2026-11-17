@@ -14,7 +14,9 @@
 python3 -m research.cli persona-demo
 ```
 
-产出在 `research/sandbox/demo_persona.json`。人物、关系和模拟选择都标成虚构。公开历史例子在 `research/cases/public_figures.json`，三人的时辰都缺失，四柱标为不适用。
+可读示例是 `research/sandbox/EXAMPLE.md`，结构数据在 `research/sandbox/demo_persona.json`。沙盒甲的虚构职业是“社区记录”，并标明这不是八字事实。同一背景导出了无八字和有八字两段输入，没有调用模型。
+
+公开例子在 `research/cases/public_figures.json`。爱因斯坦和丘吉尔有二手出生时刻来源，德诺拉和托马-克莱芒的钟点只见于未能直接打开的 Astro-Databank 摘录。这些钟点都没有换算成四柱。鲁迅、胡适、华罗庚仍只有日期。这不是盲测，也不估计增益。
 
 这是一项探索性研究。它问的是：把一套事先写死的传统起卦计数交给预测流程以后，事件级概率会不会比对照更好。它不假设答案是“会”。
 

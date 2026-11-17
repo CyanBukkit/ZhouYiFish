@@ -56,17 +56,20 @@ def test_sandbox_hypothesis_cannot_validate_itself():
         assert_not_validation_label(simulated)
 
 
-def test_historical_cases_have_no_hour_and_no_ranking():
+def test_historical_cases_keep_time_and_career_sources_separate():
     payload = json.loads((ROOT / "research/cases/public_figures.json").read_text(encoding="utf-8"))
     assert payload["best_worst_ranking"] == "not_applied"
-    assert payload["ordinary_controls"] == "not_found"
-    assert payload["not_a_blind_test"]
-    for case in payload["cases"]:
-        assert case["hour"] is None
-        assert case["chart_status"] == "not_applicable_missing_hour"
+    assert payload["bazi_emitted"] is False
+    timed = payload["time_sourced_cases"]
+    assert 3 <= len(timed) <= 6
+    for case in timed:
         assert case["deceased"] is True
-        assert case["birth_date_source"]["url"].startswith("http")
+        assert case["chart_status"] != "complete_under_stated_policy"
+        assert case["birth_time_source"]["url"].startswith("http")
         assert case["career_source"]["url"].startswith("http")
+        assert case["birth_time_source"]["url"] != case["career_source"]["url"]
+        assert "命好" not in case["path_note"]
+    assert all(case["hour"] is None for case in payload["date_only_cases"])
 
 
 def test_real_validation_is_blocked_without_consent():
@@ -76,6 +79,16 @@ def test_real_validation_is_blocked_without_consent():
     with pytest.raises(ConsentBlocked):
         validate_real_record({"authorization": "public_web", "domain": "choice"})
     bundle = demo_bundle()
+    occupation = bundle["persona"]["synthetic_occupation"]
+    assert occupation["title"] == "社区记录"
+    assert occupation["is_bazi_fact"] is False
+    assert occupation["field_class"] == "synthetic_research_setting"
+    inputs = bundle["same_background_inputs"]
+    assert inputs["model_run"] is False
+    assert "社区记录" in inputs["without_bazi"]
+    assert "社区记录" in inputs["with_bazi"]
+    assert "辛巳甲午己酉己巳" not in inputs["without_bazi"]
+    assert "辛巳甲午己酉己巳" in inputs["with_bazi"]
     assert bundle["weather_answers_this_question"] is False
     assert bundle["real_validation"]["records_in_repo"] == 0
     assert bundle["historical_cases"]["accuracy_scored"] is False

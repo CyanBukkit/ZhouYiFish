@@ -64,7 +64,7 @@ def exploratory_case_controls() -> dict[str, Any]:
 
     path = Path(__file__).resolve().parent / "cases" / "public_figures.json"
     payload = json.loads(path.read_text(encoding="utf-8"))
-    cases = payload["cases"]
+    cases = payload["time_sourced_cases"]
     ids = [case["person_id"] for case in cases]
     shuffled = fisher_yates(ids, HmacCounter("persona-case-control-v1", "shuffle-v1"))
     return {
@@ -85,7 +85,12 @@ def exploratory_case_controls() -> dict[str, Any]:
         ],
         "shuffle_is_full_distribution": False,
         "non_divination_control": [
-            {"person_id": case["person_id"], "year": case["gregorian_date"][:4], "place": case["place"]}
+            {
+                "person_id": case["person_id"],
+                "year": case["birth_time_source"]["quoted_time"][:4],
+                "place": case["birth_time_source"]["place"],
+                "uses_chart": False,
+            }
             for case in cases
         ],
     }
