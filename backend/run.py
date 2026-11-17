@@ -26,12 +26,17 @@ def main():
     """主函数"""
     # 验证配置
     errors = Config.validate()
-    if errors:
+    blocking = [err for err in errors if err.startswith("ZEP_API_URL")]
+    optional = [err for err in errors if err not in blocking]
+    if blocking:
         print("配置错误:")
-        for err in errors:
+        for err in blocking:
             print(f"  - {err}")
-        print("\n请检查 .env 文件中的配置")
         sys.exit(1)
+    if optional:
+        print("MiroFish 图谱与群体仿真仍需要这些配置，ZhouYiFish 排盘和档案可以启动:")
+        for err in optional:
+            print(f"  - {err}")
     
     # 创建应用
     app = create_app()

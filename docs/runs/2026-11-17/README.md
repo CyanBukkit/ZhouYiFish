@@ -10,4 +10,5 @@
 两套记录都没有评估模型能力或预测精度。用户电脑上的探针不是前端端到端，也不是 OASIS。云端页面测试没有调用模型。
 
 - 用户电脑产物：[../2026-11-17-operator-host/NOTE.md](../2026-11-17-operator-host/NOTE.md)
-- 云端页面：[../2026-11-17-cloud-ui/RUN.md](../2026-11-17-cloud-ui/RUN.md)
+- 云端旧入口：[../2026-11-17-cloud-ui/RUN.md](../2026-11-17-cloud-ui/RUN.md)
+- 之后做好的产品界面，仍无模型密钥：[../2026-11-17-product-ui/README.md](../2026-11-17-product-ui/README.md)
