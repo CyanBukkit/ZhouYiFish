@@ -1,0 +1,320 @@
+{
+  "accuracy_claimed": false,
+  "integrity": {
+    "behavior_outputs_invented": 0,
+    "leakage_without_bazi": "not_detected",
+    "model_calls": 0,
+    "occupation_marked_research_setting": true,
+    "people": 3,
+    "scenarios": 3
+  },
+  "kind": "engineering_sandbox_not_accuracy",
+  "llm_diagnosis": {
+    "blocker": "环境变量未设置。未搜索其他密钥，也未调用模型。",
+    "credential_env": "ZHOUYI_LLM_API_KEY",
+    "credential_present": false,
+    "local_config_file_present": false,
+    "model_calls": 0,
+    "this_process_is_not_the_experiment_model": true,
+    "will_call_model": false
+  },
+  "model_calls": 0,
+  "people": [
+    {
+      "fictional": true,
+      "graph": {
+        "edges": [
+          {
+            "relation": "一起做社区档案管理员",
+            "source": "sandbox-focal-01",
+            "target": "sandbox-colleague-01"
+          },
+          {
+            "relation": "同一楼层邻居",
+            "source": "sandbox-focal-01",
+            "target": "sandbox-neighbor-01"
+          }
+        ],
+        "fictional": true,
+        "field_class": "synthetic",
+        "nodes": [
+          {
+            "fictional": true,
+            "id": "sandbox-focal-01",
+            "kind": "focal",
+            "synthetic_occupation": "社区档案管理员"
+          },
+          {
+            "fictional": true,
+            "id": "sandbox-colleague-01",
+            "kind": "colleague",
+            "synthetic_occupation": "社区档案室同事"
+          },
+          {
+            "fictional": true,
+            "id": "sandbox-neighbor-01",
+            "kind": "neighbor",
+            "synthetic_occupation": null
+          }
+        ],
+        "usable_as_validation_label": false
+      },
+      "inputs": {
+        "field_classes": {
+          "behavior": "not_generated",
+          "birth_and_chart": "fictional",
+          "graph": "synthetic",
+          "occupation": "synthetic_research_setting"
+        },
+        "llm_called": false,
+        "model_run": false,
+        "same_background": "人物编号：sandbox-focal-01。虚构。\n生活环境：虚构街区的社区档案室，不是真实地址。\n研究设定职业：社区档案管理员。这不是八字事实。\n关系：一起做社区档案管理员；同一楼层邻居。\n场景：是否把一份共享备忘录交给同事继续改。只讨论合作或拒绝。\n",
+        "with_bazi": "人物编号：sandbox-focal-01。虚构。\n生活环境：虚构街区的社区档案室，不是真实地址。\n研究设定职业：社区档案管理员。这不是八字事实。\n关系：一起做社区档案管理员；同一楼层邻居。\n场景：是否把一份共享备忘录交给同事继续改。只讨论合作或拒绝。\n本组附上八字：辛巳甲午己酉己巳。八字不决定职业。\n",
+        "without_bazi": "人物编号：sandbox-focal-01。虚构。\n生活环境：虚构街区的社区档案室，不是真实地址。\n研究设定职业：社区档案管理员。这不是八字事实。\n关系：一起做社区档案管理员；同一楼层邻居。\n场景：是否把一份共享备忘录交给同事继续改。只讨论合作或拒绝。\n本组不附八字。\n"
+      },
+      "persona_id": "sandbox-focal-01",
+      "pillars": "辛巳甲午己酉己巳",
+      "synthetic_occupation": {
+        "editor": "sandbox_protocol_v1",
+        "field_class": "synthetic_research_setting",
+        "is_bazi_fact": false,
+        "note": "这是研究设定的虚构职业，不是八字推算出的事实。",
+        "selected_from_candidates": [
+          "社区档案管理员",
+          "养老院生活助理"
+        ],
+        "title": "社区档案管理员",
+        "usable_as_validation_label": false
+      }
+    },
+    {
+      "fictional": true,
+      "graph": {
+        "edges": [
+          {
+            "relation": "一起做夜班档案值班员",
+            "source": "sandbox-focal-02",
+            "target": "sandbox-colleague-01"
+          },
+          {
+            "relation": "同一楼层邻居",
+            "source": "sandbox-focal-02",
+            "target": "sandbox-neighbor-01"
+          }
+        ],
+        "fictional": true,
+        "field_class": "synthetic",
+        "nodes": [
+          {
+            "fictional": true,
+            "id": "sandbox-focal-02",
+            "kind": "focal",
+            "synthetic_occupation": "夜班档案值班员"
+          },
+          {
+            "fictional": true,
+            "id": "sandbox-colleague-01",
+            "kind": "colleague",
+            "synthetic_occupation": "社区档案室同事"
+          },
+          {
+            "fictional": true,
+            "id": "sandbox-neighbor-01",
+            "kind": "neighbor",
+            "synthetic_occupation": null
+          }
+        ],
+        "usable_as_validation_label": false
+      },
+      "inputs": {
+        "field_classes": {
+          "behavior": "not_generated",
+          "birth_and_chart": "fictional",
+          "graph": "synthetic",
+          "occupation": "synthetic_research_setting"
+        },
+        "llm_called": false,
+        "model_run": false,
+        "same_background": "人物编号：sandbox-focal-02。虚构。\n生活环境：虚构小区的自行车维修点，不是真实地址。\n研究设定职业：夜班档案值班员。这不是八字事实。\n关系：一起做夜班档案值班员；同一楼层邻居。\n场景：是否把一份共享备忘录交给同事继续改。只讨论合作或拒绝。\n",
+        "with_bazi": "人物编号：sandbox-focal-02。虚构。\n生活环境：虚构小区的自行车维修点，不是真实地址。\n研究设定职业：夜班档案值班员。这不是八字事实。\n关系：一起做夜班档案值班员；同一楼层邻居。\n场景：是否把一份共享备忘录交给同事继续改。只讨论合作或拒绝。\n本组附上八字：辛未辛丑癸未丁巳。八字不决定职业。\n",
+        "without_bazi": "人物编号：sandbox-focal-02。虚构。\n生活环境：虚构小区的自行车维修点，不是真实地址。\n研究设定职业：夜班档案值班员。这不是八字事实。\n关系：一起做夜班档案值班员；同一楼层邻居。\n场景：是否把一份共享备忘录交给同事继续改。只讨论合作或拒绝。\n本组不附八字。\n"
+      },
+      "persona_id": "sandbox-focal-02",
+      "pillars": "辛未辛丑癸未丁巳",
+      "synthetic_occupation": {
+        "editor": "sandbox_protocol_v1",
+        "field_class": "synthetic_research_setting",
+        "is_bazi_fact": false,
+        "note": "这是研究设定的虚构职业，不是八字推算出的事实。",
+        "selected_from_candidates": [
+          "夜班档案值班员",
+          "室内资料归档员"
+        ],
+        "title": "夜班档案值班员",
+        "usable_as_validation_label": false
+      }
+    },
+    {
+      "fictional": true,
+      "graph": {
+        "edges": [
+          {
+            "relation": "一起做药店调剂员",
+            "source": "sandbox-focal-03",
+            "target": "sandbox-colleague-01"
+          },
+          {
+            "relation": "同一楼层邻居",
+            "source": "sandbox-focal-03",
+            "target": "sandbox-neighbor-01"
+          }
+        ],
+        "fictional": true,
+        "field_class": "synthetic",
+        "nodes": [
+          {
+            "fictional": true,
+            "id": "sandbox-focal-03",
+            "kind": "focal",
+            "synthetic_occupation": "药店调剂员"
+          },
+          {
+            "fictional": true,
+            "id": "sandbox-colleague-01",
+            "kind": "colleague",
+            "synthetic_occupation": "社区档案室同事"
+          },
+          {
+            "fictional": true,
+            "id": "sandbox-neighbor-01",
+            "kind": "neighbor",
+            "synthetic_occupation": null
+          }
+        ],
+        "usable_as_validation_label": false
+      },
+      "inputs": {
+        "field_classes": {
+          "behavior": "not_generated",
+          "birth_and_chart": "fictional",
+          "graph": "synthetic",
+          "occupation": "synthetic_research_setting"
+        },
+        "llm_called": false,
+        "model_run": false,
+        "same_background": "人物编号：sandbox-focal-03。虚构。\n生活环境：虚构文化馆的登记台，不是真实地址。\n研究设定职业：药店调剂员。这不是八字事实。\n关系：一起做药店调剂员；同一楼层邻居。\n场景：是否把一份共享备忘录交给同事继续改。只讨论合作或拒绝。\n",
+        "with_bazi": "人物编号：sandbox-focal-03。虚构。\n生活环境：虚构文化馆的登记台，不是真实地址。\n研究设定职业：药店调剂员。这不是八字事实。\n关系：一起做药店调剂员；同一楼层邻居。\n场景：是否把一份共享备忘录交给同事继续改。只讨论合作或拒绝。\n本组附上八字：戊辰壬戌辛酉丙申。八字不决定职业。\n",
+        "without_bazi": "人物编号：sandbox-focal-03。虚构。\n生活环境：虚构文化馆的登记台，不是真实地址。\n研究设定职业：药店调剂员。这不是八字事实。\n关系：一起做药店调剂员；同一楼层邻居。\n场景：是否把一份共享备忘录交给同事继续改。只讨论合作或拒绝。\n本组不附八字。\n"
+      },
+      "persona_id": "sandbox-focal-03",
+      "pillars": "戊辰壬戌辛酉丙申",
+      "synthetic_occupation": {
+        "editor": "sandbox_protocol_v1",
+        "field_class": "synthetic_research_setting",
+        "is_bazi_fact": false,
+        "note": "这是研究设定的虚构职业，不是八字推算出的事实。",
+        "selected_from_candidates": [
+          "药店调剂员",
+          "博物馆藏品登记员"
+        ],
+        "title": "药店调剂员",
+        "usable_as_validation_label": false
+      }
+    }
+  ],
+  "scenario_prompts": {
+    "sandbox-focal-01": [
+      {
+        "behavior_output": null,
+        "model_run": false,
+        "scenario": "是否把一份共享备忘录交给同事继续改",
+        "with_bazi": "人物编号：sandbox-focal-01。虚构。\n生活环境：虚构街区的社区档案室，不是真实地址。\n研究设定职业：社区档案管理员。这不是八字事实。\n关系：一起做社区档案管理员；同一楼层邻居。\n场景：是否把一份共享备忘录交给同事继续改。只讨论合作或拒绝。\n本组附上八字：辛巳甲午己酉己巳。八字不决定职业。\n",
+        "without_bazi": "人物编号：sandbox-focal-01。虚构。\n生活环境：虚构街区的社区档案室，不是真实地址。\n研究设定职业：社区档案管理员。这不是八字事实。\n关系：一起做社区档案管理员；同一楼层邻居。\n场景：是否把一份共享备忘录交给同事继续改。只讨论合作或拒绝。\n本组不附八字。\n"
+      },
+      {
+        "behavior_output": null,
+        "model_run": false,
+        "scenario": "是否报名参加社区读书会",
+        "with_bazi": "人物编号：sandbox-focal-01。虚构。\n生活环境：虚构街区的社区档案室，不是真实地址。\n研究设定职业：社区档案管理员。这不是八字事实。\n关系：一起做社区档案管理员；同一楼层邻居。\n场景：是否报名参加社区读书会。只讨论合作或拒绝。\n本组附上八字：辛巳甲午己酉己巳。八字不决定职业。\n",
+        "without_bazi": "人物编号：sandbox-focal-01。虚构。\n生活环境：虚构街区的社区档案室，不是真实地址。\n研究设定职业：社区档案管理员。这不是八字事实。\n关系：一起做社区档案管理员；同一楼层邻居。\n场景：是否报名参加社区读书会。只讨论合作或拒绝。\n本组不附八字。\n"
+      },
+      {
+        "behavior_output": null,
+        "model_run": false,
+        "scenario": "是否在小组会上说明自己的不同意见",
+        "with_bazi": "人物编号：sandbox-focal-01。虚构。\n生活环境：虚构街区的社区档案室，不是真实地址。\n研究设定职业：社区档案管理员。这不是八字事实。\n关系：一起做社区档案管理员；同一楼层邻居。\n场景：是否在小组会上说明自己的不同意见。只讨论合作或拒绝。\n本组附上八字：辛巳甲午己酉己巳。八字不决定职业。\n",
+        "without_bazi": "人物编号：sandbox-focal-01。虚构。\n生活环境：虚构街区的社区档案室，不是真实地址。\n研究设定职业：社区档案管理员。这不是八字事实。\n关系：一起做社区档案管理员；同一楼层邻居。\n场景：是否在小组会上说明自己的不同意见。只讨论合作或拒绝。\n本组不附八字。\n"
+      }
+    ],
+    "sandbox-focal-02": [
+      {
+        "behavior_output": null,
+        "model_run": false,
+        "scenario": "是否把一份共享备忘录交给同事继续改",
+        "with_bazi": "人物编号：sandbox-focal-02。虚构。\n生活环境：虚构小区的自行车维修点，不是真实地址。\n研究设定职业：夜班档案值班员。这不是八字事实。\n关系：一起做夜班档案值班员；同一楼层邻居。\n场景：是否把一份共享备忘录交给同事继续改。只讨论合作或拒绝。\n本组附上八字：辛未辛丑癸未丁巳。八字不决定职业。\n",
+        "without_bazi": "人物编号：sandbox-focal-02。虚构。\n生活环境：虚构小区的自行车维修点，不是真实地址。\n研究设定职业：夜班档案值班员。这不是八字事实。\n关系：一起做夜班档案值班员；同一楼层邻居。\n场景：是否把一份共享备忘录交给同事继续改。只讨论合作或拒绝。\n本组不附八字。\n"
+      },
+      {
+        "behavior_output": null,
+        "model_run": false,
+        "scenario": "是否报名参加社区读书会",
+        "with_bazi": "人物编号：sandbox-focal-02。虚构。\n生活环境：虚构小区的自行车维修点，不是真实地址。\n研究设定职业：夜班档案值班员。这不是八字事实。\n关系：一起做夜班档案值班员；同一楼层邻居。\n场景：是否报名参加社区读书会。只讨论合作或拒绝。\n本组附上八字：辛未辛丑癸未丁巳。八字不决定职业。\n",
+        "without_bazi": "人物编号：sandbox-focal-02。虚构。\n生活环境：虚构小区的自行车维修点，不是真实地址。\n研究设定职业：夜班档案值班员。这不是八字事实。\n关系：一起做夜班档案值班员；同一楼层邻居。\n场景：是否报名参加社区读书会。只讨论合作或拒绝。\n本组不附八字。\n"
+      },
+      {
+        "behavior_output": null,
+        "model_run": false,
+        "scenario": "是否在小组会上说明自己的不同意见",
+        "with_bazi": "人物编号：sandbox-focal-02。虚构。\n生活环境：虚构小区的自行车维修点，不是真实地址。\n研究设定职业：夜班档案值班员。这不是八字事实。\n关系：一起做夜班档案值班员；同一楼层邻居。\n场景：是否在小组会上说明自己的不同意见。只讨论合作或拒绝。\n本组附上八字：辛未辛丑癸未丁巳。八字不决定职业。\n",
+        "without_bazi": "人物编号：sandbox-focal-02。虚构。\n生活环境：虚构小区的自行车维修点，不是真实地址。\n研究设定职业：夜班档案值班员。这不是八字事实。\n关系：一起做夜班档案值班员；同一楼层邻居。\n场景：是否在小组会上说明自己的不同意见。只讨论合作或拒绝。\n本组不附八字。\n"
+      }
+    ],
+    "sandbox-focal-03": [
+      {
+        "behavior_output": null,
+        "model_run": false,
+        "scenario": "是否把一份共享备忘录交给同事继续改",
+        "with_bazi": "人物编号：sandbox-focal-03。虚构。\n生活环境：虚构文化馆的登记台，不是真实地址。\n研究设定职业：药店调剂员。这不是八字事实。\n关系：一起做药店调剂员；同一楼层邻居。\n场景：是否把一份共享备忘录交给同事继续改。只讨论合作或拒绝。\n本组附上八字：戊辰壬戌辛酉丙申。八字不决定职业。\n",
+        "without_bazi": "人物编号：sandbox-focal-03。虚构。\n生活环境：虚构文化馆的登记台，不是真实地址。\n研究设定职业：药店调剂员。这不是八字事实。\n关系：一起做药店调剂员；同一楼层邻居。\n场景：是否把一份共享备忘录交给同事继续改。只讨论合作或拒绝。\n本组不附八字。\n"
+      },
+      {
+        "behavior_output": null,
+        "model_run": false,
+        "scenario": "是否报名参加社区读书会",
+        "with_bazi": "人物编号：sandbox-focal-03。虚构。\n生活环境：虚构文化馆的登记台，不是真实地址。\n研究设定职业：药店调剂员。这不是八字事实。\n关系：一起做药店调剂员；同一楼层邻居。\n场景：是否报名参加社区读书会。只讨论合作或拒绝。\n本组附上八字：戊辰壬戌辛酉丙申。八字不决定职业。\n",
+        "without_bazi": "人物编号：sandbox-focal-03。虚构。\n生活环境：虚构文化馆的登记台，不是真实地址。\n研究设定职业：药店调剂员。这不是八字事实。\n关系：一起做药店调剂员；同一楼层邻居。\n场景：是否报名参加社区读书会。只讨论合作或拒绝。\n本组不附八字。\n"
+      },
+      {
+        "behavior_output": null,
+        "model_run": false,
+        "scenario": "是否在小组会上说明自己的不同意见",
+        "with_bazi": "人物编号：sandbox-focal-03。虚构。\n生活环境：虚构文化馆的登记台，不是真实地址。\n研究设定职业：药店调剂员。这不是八字事实。\n关系：一起做药店调剂员；同一楼层邻居。\n场景：是否在小组会上说明自己的不同意见。只讨论合作或拒绝。\n本组附上八字：戊辰壬戌辛酉丙申。八字不决定职业。\n",
+        "without_bazi": "人物编号：sandbox-focal-03。虚构。\n生活环境：虚构文化馆的登记台，不是真实地址。\n研究设定职业：药店调剂员。这不是八字事实。\n关系：一起做药店调剂员；同一楼层邻居。\n场景：是否在小组会上说明自己的不同意见。只讨论合作或拒绝。\n本组不附八字。\n"
+      }
+    ]
+  },
+  "shuffle": {
+    "adjusted_because_draw_was_identity": false,
+    "pairs": [
+      {
+        "background_of": "sandbox-focal-01",
+        "chart_from": "sandbox-focal-01",
+        "own_chart": true,
+        "pillars": "辛巳甲午己酉己巳"
+      },
+      {
+        "background_of": "sandbox-focal-02",
+        "chart_from": "sandbox-focal-03",
+        "own_chart": false,
+        "pillars": "戊辰壬戌辛酉丙申"
+      },
+      {
+        "background_of": "sandbox-focal-03",
+        "chart_from": "sandbox-focal-02",
+        "own_chart": false,
+        "pillars": "辛未辛丑癸未丁巳"
+      }
+    ],
+    "shuffle_is_full_distribution": false
+  }
+}

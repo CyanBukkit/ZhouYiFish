@@ -14,7 +14,7 @@
 python3 -m research.cli persona-demo
 ```
 
-可读示例是 `research/sandbox/EXAMPLE.md`，结构数据在 `research/sandbox/demo_persona.json`。沙盒甲的虚构职业是“社区记录”，并标明这不是八字事实。同一背景导出了无八字和有八字两段输入，没有调用模型。
+可读示例是 `research/sandbox/EXAMPLE.md`，结构数据在 `research/sandbox/demo_persona.json`。沙盒甲的研究设定职业是“社区档案管理员”，不是八字事实。多人、多场景和打乱八字的离线检查在 `research/experiments/persona_sandbox_v1/`。没有调用模型，因此没有行为输出，也不能记准确率。
 
 公开例子在 `research/cases/public_figures.json`。爱因斯坦和丘吉尔有二手出生时刻来源，德诺拉和托马-克莱芒的钟点只见于未能直接打开的 Astro-Databank 摘录。这些钟点都没有换算成四柱。鲁迅、胡适、华罗庚仍只有日期。这不是盲测，也不估计增益。
 

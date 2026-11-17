@@ -1,0 +1,9 @@
+{
+  "blocker": "环境变量未设置。未搜索其他密钥，也未调用模型。",
+  "credential_env": "ZHOUYI_LLM_API_KEY",
+  "credential_present": false,
+  "local_config_file_present": false,
+  "model_calls": 0,
+  "this_process_is_not_the_experiment_model": true,
+  "will_call_model": false
+}

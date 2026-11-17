@@ -30,7 +30,7 @@ def demo_bundle() -> dict[str, object]:
             display_name="沙盒甲",
             living_place_label="虚构街区的社区档案室，不是真实地址",
         ),
-        "社区记录",
+        "社区档案管理员",
     )
     graph = build_relationship_graph(
         persona["persona_id"],
@@ -66,7 +66,7 @@ def example_markdown(bundle: dict[str, object]) -> str:
             f"选定职业：{occupation['title']}",
             "选定职业的字段类别是 synthetic_research_setting，is_bazi_fact 为假。",
             "生活环境：虚构街区的社区档案室。",
-            "关系：与一位同事一起做社区记录，并有一位同楼邻居。",
+            "关系：与一位同事一起做社区档案管理，并有一位同楼邻居。",
             "",
             "下面两段输入使用同一背景。第二段只多出八字。没有调用模型。",
             "",

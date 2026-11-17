@@ -80,13 +80,13 @@ def test_real_validation_is_blocked_without_consent():
         validate_real_record({"authorization": "public_web", "domain": "choice"})
     bundle = demo_bundle()
     occupation = bundle["persona"]["synthetic_occupation"]
-    assert occupation["title"] == "社区记录"
+    assert occupation["title"] == "社区档案管理员"
     assert occupation["is_bazi_fact"] is False
     assert occupation["field_class"] == "synthetic_research_setting"
     inputs = bundle["same_background_inputs"]
     assert inputs["model_run"] is False
-    assert "社区记录" in inputs["without_bazi"]
-    assert "社区记录" in inputs["with_bazi"]
+    assert "社区档案管理员" in inputs["without_bazi"]
+    assert "社区档案管理员" in inputs["with_bazi"]
     assert "辛巳甲午己酉己巳" not in inputs["without_bazi"]
     assert "辛巳甲午己酉己巳" in inputs["with_bazi"]
     assert bundle["weather_answers_this_question"] is False

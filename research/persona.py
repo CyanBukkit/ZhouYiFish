@@ -10,17 +10,19 @@ from typing import Any
 from research.bazi import four_pillars
 
 # Editable traditional imagery. Not a destiny table and not a validation label.
+# Human-written job titles for the sandbox. They look like ordinary occupations
+# and are not quotations from a classical fortune-telling manual.
 OCCUPATION_HYPOTHESIS = {
-    "甲": ["文书沟通", "教学协助"],
-    "乙": ["园艺协作", "资料整理"],
-    "丙": ["公开讲解", "活动联络"],
-    "丁": ["灯下编辑", "小型咨询"],
-    "戊": ["仓储协调", "场地值守"],
-    "己": ["后勤照料", "社区记录"],
-    "庚": ["工具维护", "流程核对"],
-    "辛": ["精细校对", "样品登记"],
-    "壬": ["路线沟通", "信息转发"],
-    "癸": ["夜间值班记录", "雨水无关的室内归档"],
+    "甲": ["中学语文教师", "出版社编辑"],
+    "乙": ["城市园艺技师", "公共图书馆助理"],
+    "丙": ["社区活动组织者", "博物馆讲解员"],
+    "丁": ["杂志校对编辑", "社区法律咨询助理"],
+    "戊": ["仓库管理员", "校园场地管理员"],
+    "己": ["社区档案管理员", "养老院生活助理"],
+    "庚": ["自行车维修技师", "实验室设备管理员"],
+    "辛": ["药店调剂员", "博物馆藏品登记员"],
+    "壬": ["公交调度员", "社区信息站值班员"],
+    "癸": ["夜班档案值班员", "室内资料归档员"],
 }
 
 
@@ -109,7 +111,7 @@ def build_relationship_graph(focal_id: str, occupation_title: str) -> dict[str, 
                 "id": "sandbox-colleague-01",
                 "fictional": True,
                 "kind": "colleague",
-                "synthetic_occupation": "同一社区档案室的同事",
+                "synthetic_occupation": "社区档案室同事",
             },
             {
                 "id": "sandbox-neighbor-01",

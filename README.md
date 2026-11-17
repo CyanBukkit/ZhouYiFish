@@ -1,3 +1,21 @@
+# ZhouYiFish: experimental persona research
+
+ZhouYiFish keeps the upstream [MiroFish](https://github.com/666ghj/MiroFish) application (AGPL-3.0) and adds an experiment on fictional birth charts, research-setting occupations, living context, social ties, and low-risk behavior scenes. A chart does not determine an occupation, and no accuracy gain has been shown.
+
+| Item | Status |
+| --- | --- |
+| Fictional people and four pillars | Engineering demo in `research/sandbox/EXAMPLE.md` |
+| Traditional imagery | A human-written candidate list, not a classical quotation and not a fact |
+| Same background with, without, and shuffled charts | Offline inputs in `research/experiments/persona_sandbox_v1/result.json` |
+| Four model arms and OASIS | Not run. No model call is made unless this task is given an explicit credential |
+| Consented future behavior | Not provided, so real validation is blocked |
+| Public historical people | Sourced examples only. No four pillars when historical time conversion is unsettled. Not a blind test |
+| Weather trial | Historical out-of-scope audit, not the core result |
+
+Reproduce with `python3 -m pip install -r research/requirements.txt`, then `python3 -m research.cli persona-demo` and `python3 -m research.cli persona-experiment`. `python3 -m research.cli llm-diagnose` reports whether the named variable exists and does not print secrets. Details are in [research/README.md](research/README.md).
+
+The MiroFish documentation follows.
+
 <div align="center">
 
 <img src="./static/image/MiroFish_logo_compressed.jpeg" alt="MiroFish Logo" width="75%"/>

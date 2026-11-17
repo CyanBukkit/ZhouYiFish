@@ -276,6 +276,25 @@ def run_four_arm(
     }
 
 
+def llm_diagnose() -> dict[str, Any]:
+    """Report whether the named credential is present. Never print its value."""
+
+    env_name = "ZHOUYI_LLM_API_KEY"
+    config_path = Path(__file__).resolve().parent / "llm_config.local.json"
+    present = bool(os.environ.get(env_name))
+    return {
+        "credential_env": env_name,
+        "credential_present": present,
+        "local_config_file_present": config_path.is_file(),
+        "model_calls": 0,
+        "will_call_model": False,
+        "this_process_is_not_the_experiment_model": True,
+        "blocker": None
+        if present
+        else "环境变量未设置。未搜索其他密钥，也未调用模型。",
+    }
+
+
 def llm_run_status(config_path: str | None = None) -> dict[str, Any]:
     """Report the live four-arm blocker without searching the environment for secrets."""
 
