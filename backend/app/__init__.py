@@ -53,8 +53,7 @@ def create_app(config_class=Config):
     def log_request():
         logger = get_logger('mirofish.request')
         logger.debug(f"请求: {request.method} {request.path}")
-        if request.content_type and 'json' in request.content_type:
-            logger.debug(f"请求体: {request.get_json(silent=True)}")
+        # ZhouYiFish 请求可能含有运行时密钥或出生资料，不记录正文。
     
     @app.after_request
     def log_response(response):
@@ -62,16 +61,31 @@ def create_app(config_class=Config):
         logger.debug(f"响应: {response.status_code}")
         return response
     
-    # 注册蓝图
-    from .api import graph_bp, simulation_bp, report_bp
-    app.register_blueprint(graph_bp, url_prefix='/api/graph')
-    app.register_blueprint(simulation_bp, url_prefix='/api/simulation')
-    app.register_blueprint(report_bp, url_prefix='/api/report')
+    # MiroFish 图谱路由依赖可选组件。失败时仍提供 ZhouYiFish。
+    try:
+        from .api import graph_bp, simulation_bp, report_bp
+        app.register_blueprint(graph_bp, url_prefix='/api/graph')
+        app.register_blueprint(simulation_bp, url_prefix='/api/simulation')
+        app.register_blueprint(report_bp, url_prefix='/api/report')
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("MiroFish 路由未注册：%s", exc.__class__.__name__)
+
+    from .zhouyi_app.api import bp as zhouyi_bp
+    app.register_blueprint(zhouyi_bp, url_prefix='/api/zhouyi')
     
     # 健康检查
     @app.route('/health')
     def health():
-        return {'status': 'ok', 'service': 'MiroFish Backend'}
+        from .zhouyi_app.settings import runtime
+        view = runtime.public_view()
+        return {
+            'status': 'ok',
+            'service': 'ZhouYiFish',
+            'mirofish_backend': True,
+            'llm_configured': view['key_configured'],
+            'zep_configured': view['zep_configured'],
+            'zep_required_for_core': False,
+        }
     
     if should_log_startup:
         logger.info("MiroFish Backend 启动完成")

@@ -71,6 +71,12 @@ def build_cohort() -> list[dict[str, Any]]:
 
 
 def shuffled_charts(people: list[dict[str, Any]]) -> dict[str, Any]:
+    """One fixed permutation. A person may keep their own chart.
+
+    persona_sandbox_v1 already recorded that case for sandbox-focal-01.
+    A later no-self-pair version needs a new counter and a new directory.
+    Do not rewrite the published result.json to remove the self-pair.
+    """
     ids = [item["persona"]["persona_id"] for item in people]
     charts = {item["persona"]["persona_id"]: item["persona"]["chart"]["pillars"] for item in people}
     order = fisher_yates(list(ids), HmacCounter("persona-sandbox-v1", "chart-shuffle-v1"))

@@ -1,0 +1,68 @@
+.zy {
+  min-height: 100vh;
+  background: #f3ecdf;
+  color: #241c16;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Songti SC", "Noto Serif SC", serif;
+}
+.zy a { color: inherit; }
+.zy-nav {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #d9cbb8;
+  background: #f7f1e6;
+  position: sticky;
+  top: 0;
+}
+.zy-brand { font-weight: 700; letter-spacing: 0.08em; text-decoration: none; }
+.zy-nav a { text-decoration: none; font-size: 0.95rem; }
+.zy-nav a.router-link-active { border-bottom: 2px solid #9c2f2f; }
+.zy-main { max-width: 1080px; margin: 0 auto; padding: 1.5rem; }
+.zy h1 { font-size: 2.4rem; font-weight: 600; line-height: 1.2; }
+.zy h2 { font-size: 1.25rem; margin: 0 0 0.6rem; }
+.zy-lead { font-size: 1.15rem; max-width: 40rem; }
+.zy-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 1rem; }
+.zy-card, .zy-form, .zy-list {
+  background: #fffaf3;
+  border: 1px solid #e4d5c3;
+  border-radius: 14px;
+  padding: 1rem;
+}
+.zy-actions, .zy-row { display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
+.zy button, .zy-link {
+  background: #9c2f2f;
+  color: #fffaf3;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.55rem 0.95rem;
+  text-decoration: none;
+  cursor: pointer;
+  font: inherit;
+}
+.zy button.secondary, .zy-link.secondary { background: #1f4d3a; }
+.zy button.quiet { background: transparent; color: #241c16; border: 1px solid #c9b59a; }
+.zy button:disabled { opacity: 0.55; cursor: not-allowed; }
+.zy label { display: grid; gap: 0.25rem; font-size: 0.92rem; margin-bottom: 0.7rem; }
+.zy input, .zy textarea, .zy select {
+  font: inherit;
+  border: 1px solid #d9cbb8;
+  background: #fff;
+  border-radius: 8px;
+  padding: 0.45rem 0.55rem;
+  color: #241c16;
+}
+.zy-split { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.zy-pill { display: inline-block; border-radius: 999px; padding: 0.1rem 0.5rem; background: #efe2d2; font-size: 0.8rem; }
+.zy-warn { background: #fff1e4; border: 1px solid #e0b089; border-radius: 10px; padding: 0.7rem 0.8rem; }
+.zy-error { background: #fde8e4; border: 1px solid #e3aaa2; border-radius: 10px; padding: 0.7rem 0.8rem; }
+.zy-ok { background: #e7f2ea; border: 1px solid #b7d4c0; border-radius: 10px; padding: 0.7rem 0.8rem; }
+.zy-graph { width: 100%; height: 280px; background: #f7f1e6; border-radius: 12px; }
+.zy-pillars { font-size: 1.6rem; letter-spacing: 0.18em; }
+.zy-table { width: 100%; border-collapse: collapse; }
+.zy-table td, .zy-table th { text-align: left; border-bottom: 1px solid #eadfD0; padding: 0.4rem; vertical-align: top; }
+.zy-log { white-space: pre-wrap; font-family: "IBM Plex Mono", "Noto Sans SC", monospace; font-size: 0.86rem; }
+@media (max-width: 800px) {
+  .zy-grid, .zy-split { grid-template-columns: 1fr; }
+  .zy-nav { flex-wrap: wrap; }
+}

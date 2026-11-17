@@ -1,13 +1,34 @@
-# ZhouYiFish：实验性人物背景研究
+# ZhouYiFish
 
-ZhouYiFish 在保留上游 [MiroFish](https://github.com/666ghj/MiroFish)（AGPL-3.0）应用的同时，另做一项实验：用生辰四柱讨论虚构人物的背景、研究设定职业、生活网络、社交关系和低风险行为场景。八字不能决定职业，也还没有准确率提高的结果。
+ZhouYiFish 是可在浏览器里走完的中文实验工作台：人物档案、四柱、事实与假设分栏、关系图、低风险场景圆桌和四臂对照。上游 [MiroFish](https://github.com/666ghj/MiroFish)（AGPL-3.0）仍在 `/mirofish`。八字不决定职业，也还没有准确率提高的结果。
+
+```bash
+chmod +x scripts/start-zhouyi.sh
+./scripts/start-zhouyi.sh
+```
+
+浏览器打开 `http://127.0.0.1:3000/`。开发服务器把 `/api` 转到 5001，页面不写死 `localhost:5001`。不配置密钥也能排盘、保存档案、编辑关系图和查看历史。需要模型时，把密钥放在环境变量 `ZHOUYI_LLM_API_KEY`，或在「模型」页提交到本进程内存。页面只显示是否已配置，不把密钥放进浏览器存储、仓库或日志。
+
+| 已实现 | 未实现或未通过 |
+| --- | --- |
+| 新首页、档案表单、四柱、事实/假设分栏、可编辑关系图、历史、JSON/Markdown 导出 | 真实模型端到端。云端没有密钥，分析会明确失败，不伪造回答 |
+| SQLite。健康检查、排盘、档案在没有 LLM 和 Zep 时也能启动 | OASIS 群体仿真和 Zep 记忆。圆桌引擎名为 `zhouyi_roundtable_v1` |
+| OpenAI 兼容设置，可选 `mimo-v2.6-pro` 与 `gpt-6-astra`，默认端点 `http://m4.cyanbukkit.cn:3000/v1`，掩码和一次连接测试 | 真太阳时、子初换日、对真实结局的准确率 |
+| 无八字、本人八字、无自配对打乱、等字节中性信息。已用的 v1 打乱文件不回改 | 2026-11-17 用户电脑上的 4 次 HTTP 500 是另一环境，没有正文，不能证明接口本身损坏，也不是这个页面对模型的调用 |
+
+模型页写明配置优先级：单次模型名、进程内存、`ZHOUYI_LLM_*`，密钥才回退到 `LLM_API_KEY`。不沿用 `LLM_BASE_URL`。HTTP 明文端点会提示一次风险。每次预算最多 60 次调用，可以取消。模拟输出不是准确率。
+
+两套环境的 2026-11-17 记录在 [docs/runs/2026-11-17/README.md](docs/runs/2026-11-17/README.md)。研究说明在 [research/README.md](research/README.md)。
+
+下面保留上游 MiroFish 的原文说明。
 
 | 类别 | 状态 |
 | --- | --- |
 | 虚构人物与四柱 | 已做工程演示。`research/sandbox/EXAMPLE.md` |
 | 传统类象假说 | 人为设定的职业候选，不是古籍引文，不是八字事实 |
 | 同背景有/无八字及打乱八字 | 离线输入已导出。`research/experiments/persona_sandbox_v1/result.json` |
-| 模型四臂与 OASIS | 未运行。没有明示给本任务的模型凭据就不会调用 |
+| 模型四臂与 OASIS | 对照未跑。之后在用户电脑上的短探针另有记录，没有评分 |
+| 2026-11-17 运行记录 | 两套独立检查：用户电脑 4 次 HTTP 500，云端页面打开后图谱失败。[docs/runs/2026-11-17/README.md](docs/runs/2026-11-17/README.md) |
 | 本人同意的未来行为 | 未提供，真实验证阻塞 |
 | 公开历史人物 | 只有带来源的案例，时区未换算就不排四柱，不是盲测 |
 | 天气试验 | 历史超范围审计，不是本项目的核心成果 |

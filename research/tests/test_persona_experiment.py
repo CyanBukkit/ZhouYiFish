@@ -1,7 +1,9 @@
 # Copyright (C) 2026 ZhouYiFish contributors
 # SPDX-License-Identifier: AGPL-3.0-only
 
+import hashlib
 import json
+from pathlib import Path
 
 import pytest
 
@@ -32,6 +34,22 @@ def test_cohort_has_real_looking_jobs_and_no_model_output():
     pillars = [pair["pillars"] for pair in result["shuffle"]["pairs"]]
     assert sorted(pillars) == sorted(person["pillars"] for person in result["people"])
     assert any(not pair["own_chart"] for pair in result["shuffle"]["pairs"])
+
+
+def test_frozen_result_keeps_focal01_self_pair():
+    path = Path(__file__).resolve().parents[1] / "experiments/persona_sandbox_v1/result.json"
+    digest = hashlib.sha256(path.read_bytes()).hexdigest()
+    assert digest == "8c5c997bbe0efd1d1df3e442e4894e97c5b5a75d300f01ca9b75a40e27d6169f"
+    result = json.loads(path.read_text(encoding="utf-8"))
+    pair = next(item for item in result["shuffle"]["pairs"] if item["background_of"] == "sandbox-focal-01")
+    assert pair == {
+        "background_of": "sandbox-focal-01",
+        "chart_from": "sandbox-focal-01",
+        "own_chart": True,
+        "pillars": "辛巳甲午己酉己巳",
+    }
+    assert result["model_calls"] == 0
+    assert result["shuffle"]["adjusted_because_draw_was_identity"] is False
 
 
 def test_accuracy_path_fails_closed():

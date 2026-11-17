@@ -1,0 +1,573 @@
+{
+  "title": "ZhouYiFish persona sandbox live API test",
+  "timezone_label": "Asia/Shanghai (UTC+8)",
+  "generated_at": "2026-11-17T10:59:38+08:00",
+  "source": {
+    "repo": "https://github.com/CyanBukkit/ZhouYiFish",
+    "ref": "main",
+    "path": "research/experiments/persona_sandbox_v1/result.json",
+    "github_blob_sha": "b8c041d2b3c1e6295b750c7dcaf96f0b4ddc2a16",
+    "note": "narrow read of existing sandbox prompts; shuffled-arm text was not present as a ready-made field and is derived from the with_bazi template plus the frozen shuffle table",
+    "local_input_sha256": "8c5c997bbe0efd1d1df3e442e4894e97c5b5a75d300f01ca9b75a40e27d6169f"
+  },
+  "endpoint_host_path": "http://m4.cyanbukkit.cn:3000/v1/chat/completions",
+  "transport": "http_plaintext_as_provided_by_user",
+  "models_requested": [
+    "mimo-v2.6-pro",
+    "gpt-6-astra"
+  ],
+  "settings": {
+    "temperature": 0,
+    "max_tokens_comparison": 512,
+    "max_tokens_connectivity": 16,
+    "timeout_sec": 90,
+    "max_concurrency": 2,
+    "hard_request_limit": 60,
+    "same_params_max_retries": 1
+  },
+  "request_budget": {
+    "limit": 60,
+    "used": 4,
+    "remaining": 56
+  },
+  "record_counts": {
+    "all_records": 4,
+    "connectivity": 4,
+    "comparison": 0,
+    "skipped": 0,
+    "unrun": 54
+  },
+  "unrun_items": [
+    {
+      "request_model": "mimo-v2.6-pro",
+      "persona_id": "sandbox-focal-01",
+      "scenario": "是否把一份共享备忘录交给同事继续改",
+      "arm": "without_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "mimo-v2.6-pro",
+      "persona_id": "sandbox-focal-01",
+      "scenario": "是否把一份共享备忘录交给同事继续改",
+      "arm": "with_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "mimo-v2.6-pro",
+      "persona_id": "sandbox-focal-01",
+      "scenario": "是否把一份共享备忘录交给同事继续改",
+      "arm": "shuffled_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "mimo-v2.6-pro",
+      "persona_id": "sandbox-focal-01",
+      "scenario": "是否报名参加社区读书会",
+      "arm": "without_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "mimo-v2.6-pro",
+      "persona_id": "sandbox-focal-01",
+      "scenario": "是否报名参加社区读书会",
+      "arm": "with_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "mimo-v2.6-pro",
+      "persona_id": "sandbox-focal-01",
+      "scenario": "是否报名参加社区读书会",
+      "arm": "shuffled_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "mimo-v2.6-pro",
+      "persona_id": "sandbox-focal-01",
+      "scenario": "是否在小组会上说明自己的不同意见",
+      "arm": "without_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "mimo-v2.6-pro",
+      "persona_id": "sandbox-focal-01",
+      "scenario": "是否在小组会上说明自己的不同意见",
+      "arm": "with_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "mimo-v2.6-pro",
+      "persona_id": "sandbox-focal-01",
+      "scenario": "是否在小组会上说明自己的不同意见",
+      "arm": "shuffled_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "mimo-v2.6-pro",
+      "persona_id": "sandbox-focal-02",
+      "scenario": "是否把一份共享备忘录交给同事继续改",
+      "arm": "without_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "mimo-v2.6-pro",
+      "persona_id": "sandbox-focal-02",
+      "scenario": "是否把一份共享备忘录交给同事继续改",
+      "arm": "with_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "mimo-v2.6-pro",
+      "persona_id": "sandbox-focal-02",
+      "scenario": "是否把一份共享备忘录交给同事继续改",
+      "arm": "shuffled_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "mimo-v2.6-pro",
+      "persona_id": "sandbox-focal-02",
+      "scenario": "是否报名参加社区读书会",
+      "arm": "without_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "mimo-v2.6-pro",
+      "persona_id": "sandbox-focal-02",
+      "scenario": "是否报名参加社区读书会",
+      "arm": "with_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "mimo-v2.6-pro",
+      "persona_id": "sandbox-focal-02",
+      "scenario": "是否报名参加社区读书会",
+      "arm": "shuffled_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "mimo-v2.6-pro",
+      "persona_id": "sandbox-focal-02",
+      "scenario": "是否在小组会上说明自己的不同意见",
+      "arm": "without_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "mimo-v2.6-pro",
+      "persona_id": "sandbox-focal-02",
+      "scenario": "是否在小组会上说明自己的不同意见",
+      "arm": "with_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "mimo-v2.6-pro",
+      "persona_id": "sandbox-focal-02",
+      "scenario": "是否在小组会上说明自己的不同意见",
+      "arm": "shuffled_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "mimo-v2.6-pro",
+      "persona_id": "sandbox-focal-03",
+      "scenario": "是否把一份共享备忘录交给同事继续改",
+      "arm": "without_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "mimo-v2.6-pro",
+      "persona_id": "sandbox-focal-03",
+      "scenario": "是否把一份共享备忘录交给同事继续改",
+      "arm": "with_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "mimo-v2.6-pro",
+      "persona_id": "sandbox-focal-03",
+      "scenario": "是否把一份共享备忘录交给同事继续改",
+      "arm": "shuffled_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "mimo-v2.6-pro",
+      "persona_id": "sandbox-focal-03",
+      "scenario": "是否报名参加社区读书会",
+      "arm": "without_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "mimo-v2.6-pro",
+      "persona_id": "sandbox-focal-03",
+      "scenario": "是否报名参加社区读书会",
+      "arm": "with_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "mimo-v2.6-pro",
+      "persona_id": "sandbox-focal-03",
+      "scenario": "是否报名参加社区读书会",
+      "arm": "shuffled_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "mimo-v2.6-pro",
+      "persona_id": "sandbox-focal-03",
+      "scenario": "是否在小组会上说明自己的不同意见",
+      "arm": "without_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "mimo-v2.6-pro",
+      "persona_id": "sandbox-focal-03",
+      "scenario": "是否在小组会上说明自己的不同意见",
+      "arm": "with_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "mimo-v2.6-pro",
+      "persona_id": "sandbox-focal-03",
+      "scenario": "是否在小组会上说明自己的不同意见",
+      "arm": "shuffled_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "gpt-6-astra",
+      "persona_id": "sandbox-focal-01",
+      "scenario": "是否把一份共享备忘录交给同事继续改",
+      "arm": "without_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "gpt-6-astra",
+      "persona_id": "sandbox-focal-01",
+      "scenario": "是否把一份共享备忘录交给同事继续改",
+      "arm": "with_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "gpt-6-astra",
+      "persona_id": "sandbox-focal-01",
+      "scenario": "是否把一份共享备忘录交给同事继续改",
+      "arm": "shuffled_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "gpt-6-astra",
+      "persona_id": "sandbox-focal-01",
+      "scenario": "是否报名参加社区读书会",
+      "arm": "without_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "gpt-6-astra",
+      "persona_id": "sandbox-focal-01",
+      "scenario": "是否报名参加社区读书会",
+      "arm": "with_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "gpt-6-astra",
+      "persona_id": "sandbox-focal-01",
+      "scenario": "是否报名参加社区读书会",
+      "arm": "shuffled_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "gpt-6-astra",
+      "persona_id": "sandbox-focal-01",
+      "scenario": "是否在小组会上说明自己的不同意见",
+      "arm": "without_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "gpt-6-astra",
+      "persona_id": "sandbox-focal-01",
+      "scenario": "是否在小组会上说明自己的不同意见",
+      "arm": "with_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "gpt-6-astra",
+      "persona_id": "sandbox-focal-01",
+      "scenario": "是否在小组会上说明自己的不同意见",
+      "arm": "shuffled_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "gpt-6-astra",
+      "persona_id": "sandbox-focal-02",
+      "scenario": "是否把一份共享备忘录交给同事继续改",
+      "arm": "without_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "gpt-6-astra",
+      "persona_id": "sandbox-focal-02",
+      "scenario": "是否把一份共享备忘录交给同事继续改",
+      "arm": "with_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "gpt-6-astra",
+      "persona_id": "sandbox-focal-02",
+      "scenario": "是否把一份共享备忘录交给同事继续改",
+      "arm": "shuffled_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "gpt-6-astra",
+      "persona_id": "sandbox-focal-02",
+      "scenario": "是否报名参加社区读书会",
+      "arm": "without_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "gpt-6-astra",
+      "persona_id": "sandbox-focal-02",
+      "scenario": "是否报名参加社区读书会",
+      "arm": "with_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "gpt-6-astra",
+      "persona_id": "sandbox-focal-02",
+      "scenario": "是否报名参加社区读书会",
+      "arm": "shuffled_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "gpt-6-astra",
+      "persona_id": "sandbox-focal-02",
+      "scenario": "是否在小组会上说明自己的不同意见",
+      "arm": "without_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "gpt-6-astra",
+      "persona_id": "sandbox-focal-02",
+      "scenario": "是否在小组会上说明自己的不同意见",
+      "arm": "with_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "gpt-6-astra",
+      "persona_id": "sandbox-focal-02",
+      "scenario": "是否在小组会上说明自己的不同意见",
+      "arm": "shuffled_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "gpt-6-astra",
+      "persona_id": "sandbox-focal-03",
+      "scenario": "是否把一份共享备忘录交给同事继续改",
+      "arm": "without_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "gpt-6-astra",
+      "persona_id": "sandbox-focal-03",
+      "scenario": "是否把一份共享备忘录交给同事继续改",
+      "arm": "with_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "gpt-6-astra",
+      "persona_id": "sandbox-focal-03",
+      "scenario": "是否把一份共享备忘录交给同事继续改",
+      "arm": "shuffled_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "gpt-6-astra",
+      "persona_id": "sandbox-focal-03",
+      "scenario": "是否报名参加社区读书会",
+      "arm": "without_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "gpt-6-astra",
+      "persona_id": "sandbox-focal-03",
+      "scenario": "是否报名参加社区读书会",
+      "arm": "with_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "gpt-6-astra",
+      "persona_id": "sandbox-focal-03",
+      "scenario": "是否报名参加社区读书会",
+      "arm": "shuffled_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "gpt-6-astra",
+      "persona_id": "sandbox-focal-03",
+      "scenario": "是否在小组会上说明自己的不同意见",
+      "arm": "without_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "gpt-6-astra",
+      "persona_id": "sandbox-focal-03",
+      "scenario": "是否在小组会上说明自己的不同意见",
+      "arm": "with_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    },
+    {
+      "request_model": "gpt-6-astra",
+      "persona_id": "sandbox-focal-03",
+      "scenario": "是否在小组会上说明自己的不同意见",
+      "arm": "shuffled_bazi",
+      "reason": "connectivity_failed_or_not_run"
+    }
+  ],
+  "models": {
+    "mimo-v2.6-pro": {
+      "connectivity_ok": false,
+      "stopped": false,
+      "stop_reason": null,
+      "request_records": 2,
+      "comparison_latest": 0,
+      "comparison_ok": 0,
+      "structured_ok": 0,
+      "structured_ok_rate_among_ok": null,
+      "usage_all_records": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "records_with_usage": 0
+      },
+      "usage_comparison_latest": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "records_with_usage": 0
+      },
+      "latency_ms_ok": {
+        "n": 0,
+        "min": null,
+        "max": null,
+        "mean": null
+      },
+      "response_models_seen": [],
+      "complete_persona_scenario_triples": 0,
+      "among_complete_ok_triples": {
+        "choice_all_arms_equal": 0,
+        "text_all_arms_equal": 0,
+        "without_vs_with_choice_diff": 0,
+        "without_vs_shuffled_choice_diff": 0,
+        "with_vs_shuffled_choice_diff": 0,
+        "without_vs_with_text_diff": 0
+      },
+      "per_item_arm_comparison": []
+    },
+    "gpt-6-astra": {
+      "connectivity_ok": false,
+      "stopped": false,
+      "stop_reason": null,
+      "request_records": 2,
+      "comparison_latest": 0,
+      "comparison_ok": 0,
+      "structured_ok": 0,
+      "structured_ok_rate_among_ok": null,
+      "usage_all_records": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "records_with_usage": 0
+      },
+      "usage_comparison_latest": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "records_with_usage": 0
+      },
+      "latency_ms_ok": {
+        "n": 0,
+        "min": null,
+        "max": null,
+        "mean": null
+      },
+      "response_models_seen": [],
+      "complete_persona_scenario_triples": 0,
+      "among_complete_ok_triples": {
+        "choice_all_arms_equal": 0,
+        "text_all_arms_equal": 0,
+        "without_vs_with_choice_diff": 0,
+        "without_vs_shuffled_choice_diff": 0,
+        "with_vs_shuffled_choice_diff": 0,
+        "without_vs_with_text_diff": 0
+      },
+      "per_item_arm_comparison": []
+    }
+  },
+  "caveats": [
+    "没有真实行为标签，本结果不是准确率、Brier 分数或提升证据。",
+    "模型输出不是 ground truth。",
+    "服务返回的 model 字段不是独立身份核验，不能据此声称 gpt-6-astra 或 mimo-v2.6-pro 已与官方型号核实。",
+    "未使用公开价格表，因此不报告金额，只报告 usage token 计数（若服务返回）。",
+    "sandbox-focal-01 的冻结 shuffle 对为 own_chart=true，打乱臂与附八字臂使用相同八字；若提示文本因此相同，臂间差异不能归因于八字不同。",
+    "系统指令是本次实验包装，不在仓库 result.json 的现成字段中。",
+    "本实验是聊天补全对照，不是原版 MiroFish 群体仿真。"
+  ],
+  "core_conclusion": "仅可报告实验性虚构人物输出的可用性、结构输出率与各臂文本/选择差异，无法证明对现实行为预测更准。",
+  "connectivity_outcome": {
+    "mimo-v2.6-pro": [
+      {
+        "request_index": 1,
+        "attempt": 1,
+        "retry_of": null,
+        "http_status": 500,
+        "latency_ms": 10,
+        "ok": false,
+        "error": "HTTPError 500",
+        "started_at": "2026-11-17T10:59:38+08:00",
+        "response_body_captured": false
+      },
+      {
+        "request_index": 2,
+        "attempt": 2,
+        "retry_of": 1,
+        "http_status": 500,
+        "latency_ms": 1,
+        "ok": false,
+        "error": "HTTPError 500",
+        "started_at": "2026-11-17T10:59:38+08:00",
+        "response_body_captured": false
+      }
+    ],
+    "gpt-6-astra": [
+      {
+        "request_index": 3,
+        "attempt": 1,
+        "retry_of": null,
+        "http_status": 500,
+        "latency_ms": 1,
+        "ok": false,
+        "error": "HTTPError 500",
+        "started_at": "2026-11-17T10:59:38+08:00",
+        "response_body_captured": false
+      },
+      {
+        "request_index": 4,
+        "attempt": 2,
+        "retry_of": 3,
+        "http_status": 500,
+        "latency_ms": 1,
+        "ok": false,
+        "error": "HTTPError 500",
+        "started_at": "2026-11-17T10:59:38+08:00",
+        "response_body_captured": false
+      }
+    ]
+  },
+  "comparison_calls": 0,
+  "response_body_captured": false,
+  "response_body_capture_note": "本轮记录器未把 HTTP 响应体写入 JSONL，属于记录缺陷；脚本已修复供以后复现使用。本轮未再向端点发送请求以补取响应体。",
+  "network_observation_without_additional_api_calls": {
+    "dns": "m4.cyanbukkit.cn resolved to 198.18.0.1:3000",
+    "tcp_connect_ok": true,
+    "tcp_connect_latency_ms": 1,
+    "sandbox_egress_env_present": true,
+    "egress_proxy_name": "runner-egress-proxy",
+    "egress_tunnel_addr": "127.0.0.1:8791",
+    "interpretation": "四次 chat/completions 均在 1–10ms 内返回 HTTP 500。主机名解析到 198.18.0.1 且存在沙箱出口代理环境变量，与本机/网关快速失败相符，但因未保存响应体，不能唯一断定为策略拦截或远端 500。未改协议、未换服务、未绕过网关，对照调用未开始。"
+  },
+  "updated_at": "2026-11-17T11:01:10+08:00"
+}

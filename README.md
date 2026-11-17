@@ -1,13 +1,34 @@
-# ZhouYiFish: experimental persona research
+# ZhouYiFish
 
-ZhouYiFish keeps the upstream [MiroFish](https://github.com/666ghj/MiroFish) application (AGPL-3.0) and adds an experiment on fictional birth charts, research-setting occupations, living context, social ties, and low-risk behavior scenes. A chart does not determine an occupation, and no accuracy gain has been shown.
+ZhouYiFish is an experimental Chinese workbench for a person archive, four pillars, separated facts and hypotheses, a relationship graph, and a small round-table. It keeps the upstream [MiroFish](https://github.com/666ghj/MiroFish) application (AGPL-3.0) at `/mirofish`. A chart does not determine an occupation, and no accuracy gain has been shown.
+
+```bash
+chmod +x scripts/start-zhouyi.sh
+./scripts/start-zhouyi.sh
+```
+
+Open `http://127.0.0.1:3000/`. The API is on port 5001 and the dev server proxies `/api`. Copy `.env.example` to `.env` only when you want a server-side key. Leave `ZHOUYI_LLM_API_KEY` empty to use charts, archives, the graph, and history. The settings page can hold a key in process memory; it is not returned, logged, or stored in the browser.
+
+| Implemented | Not done or not passed |
+| --- | --- |
+| New home, archive form, four pillars, fact/hypothesis columns, editable graph, history, JSON/Markdown export | Real model end-to-end. This cloud run has no key, so analysis fails closed |
+| SQLite. Health, charts, and archives start with no LLM or Zep key | OASIS swarm and Zep memory. The round table is `zhouyi_roundtable_v1` |
+| OpenAI-compatible settings for `mimo-v2.6-pro` and `gpt-6-astra`, default endpoint `http://m4.cyanbukkit.cn:3000/v1`, masked key, one connection test | True solar time, 子初 day boundary, accuracy against real outcomes |
+| Four arms: no chart, own chart, no-self-pair shuffled chart, equal-byte neutral text. v1 shuffle file is unchanged | The 2026-11-17 user-host probe (4 HTTP 500s, no body) is a separate machine and does not show this UI calling the endpoint |
+
+Configuration order is in the model page: request model, process memory, `ZHOUYI_LLM_*`, then `LLM_API_KEY` only. `LLM_BASE_URL` is not reused. HTTP endpoints show one plaintext warning. Each run accepts at most 60 calls and can be cancelled. Simulated text is not an accuracy score.
+
+The 2026-11-17 records of the two separate environments remain in [docs/runs/2026-11-17/README.md](docs/runs/2026-11-17/README.md). Research notes stay in [research/README.md](research/README.md).
+
+The MiroFish documentation follows.
 
 | Item | Status |
 | --- | --- |
 | Fictional people and four pillars | Engineering demo in `research/sandbox/EXAMPLE.md` |
 | Traditional imagery | A human-written candidate list, not a classical quotation and not a fact |
 | Same background with, without, and shuffled charts | Offline inputs in `research/experiments/persona_sandbox_v1/result.json` |
-| Four model arms and OASIS | Not run. No model call is made unless this task is given an explicit credential |
+| Four model arms and OASIS | Comparison not run. A later user-host probe is recorded separately and did not score |
+| 2026-11-17 run records | Two independent checks: four HTTP 500 probes on the user machine, and a cloud UI failure. [docs/runs/2026-11-17/README.md](docs/runs/2026-11-17/README.md) |
 | Consented future behavior | Not provided, so real validation is blocked |
 | Public historical people | Sourced examples only. No four pillars when historical time conversion is unsettled. Not a blind test |
 | Weather trial | Historical out-of-scope audit, not the core result |
