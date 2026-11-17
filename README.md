@@ -12,6 +12,7 @@ Open `http://127.0.0.1:3000/`. The API is on port 5001 and the dev server proxie
 | Implemented | Not done or not passed |
 | --- | --- |
 | New home, archive form, four pillars, fact/hypothesis columns, editable graph, history, JSON/Markdown export | Real model end-to-end. This cloud run has no key, so analysis fails closed |
+| Five-step rule chain `yhzp-month-command-v1`: strength, month-command structure, supportive/unsupportive gods, ten-god combinations, luck and annual pillars | 从格, 化气格, and the full 《穷通宝鉴》 climate table. No invented classical score |
 | SQLite. Health, charts, and archives start with no LLM or Zep key | OASIS swarm and Zep memory. The round table is `zhouyi_roundtable_v1` |
 | OpenAI-compatible settings for `mimo-v2.6-pro` and `gpt-6-astra`, default endpoint `http://m4.cyanbukkit.cn:3000/v1`, masked key, one connection test | True solar time, 子初 day boundary, accuracy against real outcomes |
 | Four arms: no chart, own chart, no-self-pair shuffled chart, equal-byte neutral text. v1 shuffle file is unchanged | The 2026-11-17 user-host probe (4 HTTP 500s, no body) is a separate machine and does not show this UI calling the endpoint |

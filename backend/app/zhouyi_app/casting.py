@@ -14,6 +14,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from research.bazi import JIE_BRANCH, POLICY, FourPillarsError, four_pillars, term_instant
+from research.bazi_rules import evaluate
 from research.persona import hypothetical_occupations
 
 SCENARIOS = [
@@ -58,7 +59,17 @@ def active_jie(moment: datetime) -> dict[str, str]:
     }
 
 
-def cast_fields(fields: dict[str, str | bool]) -> dict[str, object]:
+def luck_params(fields: dict[str, object]) -> dict[str, object]:
+    year = fields.get("liunian_year")
+    return {
+        "luck_mode": fields.get("luck_mode") or "",
+        "luck_sex": fields.get("luck_sex") or "",
+        "luck_direction": fields.get("luck_direction") or "",
+        "liunian_year": int(year) if year else None,
+    }
+
+
+def cast_fields(fields: dict[str, object]) -> dict[str, object]:
     """Return a chart payload. Missing hour stays incomplete on purpose."""
 
     base = {
@@ -71,10 +82,13 @@ def cast_fields(fields: dict[str, str | bool]) -> dict[str, object]:
         "does_not_determine_occupation": True,
     }
     if not fields.get("birth_date"):
-        return {**base, "status": "not_applicable", "reason": "没有出生日期，不能排盘。", "pillars": None}
+        chart = {**base, "status": "not_applicable", "reason": "没有出生日期，不能排盘。", "pillars": None}
+        chart["reading"] = evaluate(chart, luck_params(fields))
+        return chart
     if not fields.get("birth_time"):
-        skipped = four_pillars(None, hour_known=False)
-        return {**base, **skipped}
+        chart = {**base, **four_pillars(None, hour_known=False)}
+        chart["reading"] = evaluate(chart, luck_params(fields))
+        return chart
     moment = parse_moment(str(fields["birth_date"]), str(fields["birth_time"]), str(fields["timezone"]))
     chart = four_pillars(moment, hour_known=True)
     chart.update(base)
@@ -82,4 +96,5 @@ def cast_fields(fields: dict[str, str | bool]) -> dict[str, object]:
     day = str(chart["day_pillar"])
     occupations = hypothetical_occupations(day)
     chart["rule_candidates"] = occupations
+    chart["reading"] = evaluate(chart, luck_params(fields))
     return chart

@@ -45,7 +45,11 @@ class Store:
                     birth_place TEXT,
                     known_occupation TEXT,
                     living_background TEXT,
-                    notes TEXT
+                    notes TEXT,
+                    luck_mode TEXT,
+                    luck_sex TEXT,
+                    luck_direction TEXT,
+                    liunian_year INTEGER
                 );
                 CREATE TABLE IF NOT EXISTS charts (
                     persona_id TEXT PRIMARY KEY,
@@ -103,6 +107,15 @@ class Store:
                 );
                 """
             )
+            columns = {row[1] for row in db.execute("PRAGMA table_info(personas)")}
+            for name, typedef in (
+                ("luck_mode", "TEXT"),
+                ("luck_sex", "TEXT"),
+                ("luck_direction", "TEXT"),
+                ("liunian_year", "INTEGER"),
+            ):
+                if name not in columns:
+                    db.execute(f"ALTER TABLE personas ADD COLUMN {name} {typedef}")
 
     def _connect(self) -> sqlite3.Connection:
         db = sqlite3.connect(self.path, check_same_thread=False)
@@ -122,8 +135,9 @@ class Store:
                         """
                         INSERT INTO personas (
                             id, created_at, updated_at, display_name, fictional, birth_date,
-                            birth_time, timezone, birth_place, known_occupation, living_background, notes
-                        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                            birth_time, timezone, birth_place, known_occupation, living_background, notes,
+                            luck_mode, luck_sex, luck_direction, liunian_year
+                        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                         """,
                         (
                             persona_id,
@@ -138,6 +152,10 @@ class Store:
                             fields.get("known_occupation") or "",
                             fields.get("living_background") or "",
                             fields.get("notes") or "",
+                            fields.get("luck_mode") or "",
+                            fields.get("luck_sex") or "",
+                            fields.get("luck_direction") or "",
+                            fields.get("liunian_year"),
                         ),
                     )
                 else:
@@ -145,7 +163,8 @@ class Store:
                         """
                         UPDATE personas SET updated_at=?, display_name=?, fictional=?, birth_date=?,
                             birth_time=?, timezone=?, birth_place=?, known_occupation=?,
-                            living_background=?, notes=? WHERE id=?
+                            living_background=?, notes=?, luck_mode=?, luck_sex=?, luck_direction=?,
+                            liunian_year=? WHERE id=?
                         """,
                         (
                             stamp,
@@ -158,6 +177,10 @@ class Store:
                             fields.get("known_occupation") or "",
                             fields.get("living_background") or "",
                             fields.get("notes") or "",
+                            fields.get("luck_mode") or "",
+                            fields.get("luck_sex") or "",
+                            fields.get("luck_direction") or "",
+                            fields.get("liunian_year"),
                             persona_id,
                         ),
                     )
@@ -401,6 +424,10 @@ class Store:
             "known_occupation": row["known_occupation"] or "",
             "living_background": row["living_background"] or "",
             "notes": row["notes"] or "",
+            "luck_mode": row["luck_mode"] or "",
+            "luck_sex": row["luck_sex"] or "",
+            "luck_direction": row["luck_direction"] or "",
+            "liunian_year": row["liunian_year"],
             "known_facts": {
                 "occupation": row["known_occupation"] or "",
                 "living_background": row["living_background"] or "",

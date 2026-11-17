@@ -4,7 +4,9 @@
     <h1>从生辰到可核对的人物工作台</h1>
     <p class="zy-lead">建立档案，用已核对的节气规则排四柱，把你写下的事实和规则假设分开，再画关系、跑低风险场景。没有模型密钥时，排盘和档案仍然可用，分析会明确失败，不会编造结果。</p>
     <div class="zy-actions">
-      <button @click="loadExample" :disabled="busy">加载虚构样例</button>
+      <button @click="loadExample" :disabled="busy">加载沙盒甲</button>
+      <button class="secondary" @click="loadNamed('/api/zhouyi/examples/sandbox-qiang')" :disabled="busy">加载沙盒强</button>
+      <button class="quiet" @click="loadNamed('/api/zhouyi/examples/sandbox-ruo')" :disabled="busy">加载沙盒弱</button>
       <router-link class="zy-link secondary" to="/personas">新建自己的档案</router-link>
       <router-link class="zy-link quiet" to="/settings">模型设置</router-link>
     </div>
@@ -42,16 +44,20 @@ const router = useRouter()
 const busy = ref(false)
 const error = ref('')
 
-async function loadExample() {
+async function loadNamed(path) {
   busy.value = true
   error.value = ''
   try {
-    const bundle = await zhouyi('/api/zhouyi/examples/sandbox-jia', { method: 'POST', body: {} })
+    const bundle = await zhouyi(path, { method: 'POST', body: {} })
     router.push(`/workbench/${bundle.persona.id}`)
   } catch (err) {
     error.value = err.message
   } finally {
     busy.value = false
   }
+}
+
+function loadExample() {
+  return loadNamed('/api/zhouyi/examples/sandbox-jia')
 }
 </script>
